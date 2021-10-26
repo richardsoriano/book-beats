@@ -1,0 +1,130 @@
+[
+  {
+    "_id": "12345",
+    "name": "Mark Martinez Tellez",
+    "email": "mark@devmentor.live",
+    "preferences": {
+      "maxNumberOfBooks": 5,
+      "genres": ["thriller", "teen", "horror"]
+    },
+    "assignments": [
+      {
+        "_id": "kjhgww",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": { "_id": "as3dfsh", "name": "High Plains books" },
+        "book": {
+          "_id": "dfgyhs",
+          "title": "Carrie",
+          "genres": ["thriller", "teen", "horror"]
+        },
+        "review": [
+          { "character-development": 7 },
+          { "story": 8 },
+          {
+            "first-impression": "I really liked the book and the characters and the plot kept me guessing!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "45697",
+    "name": "Richard Soriano",
+    "email": "soriano.richard2020@gmail.com",
+    "preferences": {
+      "maxNumberOfBooks": 5,
+      "genres": ["thriller", "teen", "horror"]
+    },
+    "assignments": [
+      {
+        "_id": "kjss2ww",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": { "_id": "as3dfsh", "name": "High Plains books" },
+        "book": {
+          "_id": "dfgyhs",
+          "title": "Carrie",
+          "genres": ["thriller", "teen", "horror"]
+        },
+        "review": [
+          { "character-development": 4 },
+          { "story": 5 },
+          {
+            "first-impression": "The book didn't impress me much, and I thought it dragged too much in the middle."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "45697",
+    "name": "Holly Soriano",
+    "email": "sorianopictures@gmail.com",
+    "preferences": {
+      "maxNumberOfBooks": 5,
+      "genres": ["thriller", "teen", "horror"]
+    },
+    "assignments": [
+      {
+        "_id": "hjss2ww",
+        "assignedOn": "2021-10-3",
+        "reviewedOn": "2021-10-22",
+        "event": { "_id": "as3dfsh", "name": "High Plains books" },
+        "book": {
+          "_id": "dfgyhs1",
+          "title": "Bear Claw",
+          "genres": ["western", "native america", "drama"]
+        },
+        "review": [
+          { "character-development": 7 },
+          { "story": 9 },
+          {
+            "first-impression": "This book was a page turner. I felt the female chars were flat."
+          }
+        ]
+      },
+      {
+        "_id": "hjss2ww",
+        "assignedOn": "2021-10-3",
+        "reviewedOn": "2021-10-22",
+        "event": { "_id": "as3dfsh", "name": "High Plains books" },
+        "book": {
+          "_id": "2003",
+          "title": "In 50 years, we'll all be chicks",
+          "genres": ["thriller", "comedy"]
+        },
+        "review": [
+          { "character-development": 10 },
+          { "story": 9 },
+          {
+            "first-impression": "This is a funny take on life."
+          }
+        ]
+      },
+      {
+        "_id": "2002",
+        "assignedOn": "2021-10-3",
+        "reviewedOn": null,
+        "event": { "_id": "as3dfsh", "name": "High Plains books" },
+        "book": {
+          "_id": "2002",
+          "title": "Light Matters",
+          "genres": ["comedy", "sci-fi"]
+        },
+        "review": []
+      },
+      {
+        "_id": "kjss2ww",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": null,
+        "event": { "_id": "as3dfsh", "name": "High Plains books" },
+        "book": {
+          "_id": "dfgyhs",
+          "title": "Carrie",
+          "genres": ["thriller", "teen", "horror"]
+        }
+      }
+    ]
+  }
+]

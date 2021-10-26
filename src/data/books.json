@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "2001",
+    "title": "Dark Matters",
+    "genres": ["thriller", "sci-fi", "space opera"]
+  },
+  {
+    "_id": "2002",
+    "title": "Light Matters",
+    "genres": ["comedy", "sci-fi"]
+  },
+  {
+    "_id": "2003",
+    "title": "In 50 years, we'll all be chicks",
+    "genres": ["comedy", "authobiography"]
+  }
+]
