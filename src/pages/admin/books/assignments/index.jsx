@@ -14,10 +14,8 @@ function aggregateBookAssignments(readers) {
     .reduce((acc, book) => {
       return acc.map((book) => book._id).includes(book._id)
         ? acc
-        : [...acc, book];
+        : [...acc, { ...book, round: 1 }];
     }, []);
-
-  console.dir(books);
 
   return books.reduce((acc, book) => {
     const assigned = readers.flatMap((reader) =>
@@ -39,30 +37,10 @@ function aggregateBookAssignments(readers) {
         ...book,
         assignedCount: assigned.length,
         reviewedCount: reviewed.length,
+        status:
+          assigned.length === reviewed.length ? "Completed" : "In progress",
       },
     ];
-  }, []);
-
-  return readers.reduce((acc, reader) => {
-    return [
-      ...acc,
-      ...reader.assignments.map((assignment) => ({
-        book: assignment.book,
-        round: 1,
-        assigned: readers.filter((reader) =>
-          reader.assignments.map(
-            (_assignment) => _assignment._id === assignment._id
-          )
-        ).length,
-        completed: readers.filter((reader) =>
-          reader.assignments.map(
-            (_assignment) =>
-              _assignment._id === assignment._id && assignment.reviewedOn
-          )
-        ).length,
-      })),
-    ];
-    return acc;
   }, []);
 }
 
