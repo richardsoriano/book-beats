@@ -2,16 +2,21 @@
   {
     "_id": "2001",
     "title": "Dark Matters",
-    "genres": ["thriller", "sci-fi", "space opera"]
+    "categories": ["First Book", "Art & Photography"]
   },
   {
     "_id": "2002",
     "title": "Light Matters",
-    "genres": ["comedy", "sci-fi"]
+    "categories": ["Childrens", "Fiction"]
   },
   {
     "_id": "2003",
     "title": "In 50 years, we'll all be chicks",
-    "genres": ["comedy", "authobiography"]
+    "categories": ["Fiction", "First Book", "Childrens"]
+  },
+  {
+    "_id": "2003",
+    "title": "Some other book",
+    "categories": ["Fiction", "First Book", "Childrens"]
   }
 ]

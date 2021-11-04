@@ -10,11 +10,11 @@ export default function AdminBookAssignment({ bookAssignment }) {
           {bookAssignment.map((book) => (
             <tr>
               <td>1{book.title}</td>
-              <td>2{book.genres.join(",")}</td>
+              <td>2{book.categories.join(',')}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  );
+  )
 }

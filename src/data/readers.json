@@ -5,7 +5,7 @@
     "email": "mark@devmentor.live",
     "preferences": {
       "maxNumberOfBooks": 5,
-      "genres": ["thriller", "teen", "horror"]
+      "categories": ["thriller", "teen", "horror"]
     },
     "assignments": [
       {
@@ -16,7 +16,7 @@
         "book": {
           "_id": "dfgyhs",
           "title": "Carrie",
-          "genres": ["thriller", "teen", "horror"]
+          "categories": ["thriller", "teen", "horror"]
         },
         "review": [
           { "character-development": 7 },
@@ -34,7 +34,7 @@
     "email": "soriano.richard2020@gmail.com",
     "preferences": {
       "maxNumberOfBooks": 5,
-      "genres": ["thriller", "teen", "horror"]
+      "categories": ["thriller", "teen", "horror"]
     },
     "assignments": [
       {
@@ -45,7 +45,7 @@
         "book": {
           "_id": "dfgyhs",
           "title": "Carrie",
-          "genres": ["thriller", "teen", "horror"]
+          "categories": ["thriller", "teen", "horror"]
         },
         "review": [
           { "character-development": 4 },
@@ -63,7 +63,7 @@
     "email": "sorianopictures@gmail.com",
     "preferences": {
       "maxNumberOfBooks": 5,
-      "genres": ["thriller", "teen", "horror"]
+      "categories": ["native america", "western", "drama", "thriller", "horror"]
     },
     "assignments": [
       {
@@ -74,7 +74,7 @@
         "book": {
           "_id": "dfgyhs1",
           "title": "Bear Claw",
-          "genres": ["western", "native america", "drama"]
+          "categories": ["western", "native america", "drama"]
         },
         "review": [
           { "character-development": 7 },
@@ -92,7 +92,7 @@
         "book": {
           "_id": "2003",
           "title": "In 50 years, we'll all be chicks",
-          "genres": ["thriller", "comedy"]
+          "categories": ["thriller", "comedy"]
         },
         "review": [
           { "character-development": 10 },
@@ -110,7 +110,7 @@
         "book": {
           "_id": "2002",
           "title": "Light Matters",
-          "genres": ["comedy", "sci-fi"]
+          "categories": ["comedy", "sci-fi"]
         },
         "review": []
       },
@@ -122,7 +122,7 @@
         "book": {
           "_id": "dfgyhs",
           "title": "Carrie",
-          "genres": ["thriller", "teen", "horror"]
+          "categories": ["thriller", "teen", "horror"]
         }
       }
     ]

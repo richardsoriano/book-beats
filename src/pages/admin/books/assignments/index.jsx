@@ -1,9 +1,8 @@
-import AdminBookAssignments from "@/features/admin/books/assignments";
-import readers from "@/data/readers";
+import AdminBookAssignments from '@/features/admin/books/assignments'
+import readers from '@/data/readers'
 
 export default function AdminBookAssignmentsPage({ bookAssignments }) {
-  // return <div>{JSON.stringify(bookAssignments)}</div>;
-  return <AdminBookAssignments bookAssignments={bookAssignments} />;
+  return <AdminBookAssignments bookAssignments={bookAssignments} />
 }
 
 function aggregateBookAssignments(readers) {
@@ -14,22 +13,22 @@ function aggregateBookAssignments(readers) {
     .reduce((acc, book) => {
       return acc.map((book) => book._id).includes(book._id)
         ? acc
-        : [...acc, { ...book, round: 1 }];
-    }, []);
+        : [...acc, { ...book, round: 1 }]
+    }, [])
 
   return books.reduce((acc, book) => {
     const assigned = readers.flatMap((reader) =>
       reader.assignments.filter(
         (assignment) => assignment.book._id === book._id
       )
-    );
+    )
 
     const reviewed = readers.flatMap((reader) =>
       reader.assignments.filter(
         (assignment) =>
           assignment.book._id === book._id && assignment.reviewedOn
       )
-    );
+    )
 
     return [
       ...acc,
@@ -38,10 +37,10 @@ function aggregateBookAssignments(readers) {
         assignedCount: assigned.length,
         reviewedCount: reviewed.length,
         status:
-          assigned.length === reviewed.length ? "Completed" : "In progress",
+          assigned.length === reviewed.length ? 'Completed' : 'In progress',
       },
-    ];
-  }, []);
+    ]
+  }, [])
 }
 
 export function getServerSideProps() {
@@ -49,5 +48,5 @@ export function getServerSideProps() {
     props: {
       bookAssignments: aggregateBookAssignments(readers),
     },
-  };
+  }
 }

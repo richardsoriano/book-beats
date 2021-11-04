@@ -1,53 +1,35 @@
-import { useState } from "react";
+import { useState } from 'react'
+import { uniq } from '@/modules/array'
+import Filters from './filters'
+import ReaderAssignmentResults from './results'
 
-export default function AdminReaderAssignments({ readerAssignments }) {
-  const [query, setQuery] = useState("");
+export default function AdminReadersAssignments({ readerAssignments = [] }) {
+  const [query, setQuery] = useState('')
+  const [filteredCategories, setFilteredCategories] = useState([])
 
-  function search(assignments) {
-    if (query.length < 3) return assignments;
-    return assignments.filter((assignment) =>
-      assignment.name.toLowerCase().includes(query.toLowerCase())
-    );
-  }
+  const categories = uniq(
+    readerAssignments.reduce((acc, assignment) => {
+      return [...acc, ...assignment.categories]
+    }, [])
+  )
 
   return (
-    <div>
-      <input
-        placeholder='Type to filter on name'
-        type='text'
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+    <div className='container mx-auto'>
+      <h1 className='text-2xl font-bold'>Reader Assignments</h1>
+
+      <Filters
+        setFilteredCategories={setFilteredCategories}
+        filteredCategories={filteredCategories}
+        categories={categories}
+        setQuery={setQuery}
+        query={query}
       />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Max Books</th>
-            <th>Prefered Genres</th>
-            <th>Assigned</th>
-            <th>Completed</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {search(readerAssignments).map((readerAssignment) => (
-            <tr>
-              <td>{readerAssignment.name}</td>
-              <td>{readerAssignment.preferences.maxNumberOfBooks}</td>
-              <td>{readerAssignment.preferences.genres.join(",")}</td>
-              <td>{readerAssignment.assignedCount}</td>
-              <td>{readerAssignment.reviewedCount}</td>
-              <td>
-                {parseInt(readerAssignment.assignedCount) ===
-                  parseInt(readerAssignment.reviewedCount) &&
-                parseInt(readerAssignment.reviewedCount) > 0
-                  ? "Completed"
-                  : "In progress"}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <ReaderAssignmentResults
+        readerAssignments={readerAssignments}
+        query={query}
+        filteredCategories={filteredCategories}
+      />
     </div>
-  );
+  )
 }
