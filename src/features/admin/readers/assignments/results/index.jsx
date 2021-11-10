@@ -5,7 +5,7 @@ import SortableColumn from './sortable-column'
 export default function ReaderAssignmentResults({
   readerAssignments,
   query,
-  filteredcategories,
+  filteredCategories,
 }) {
   const [sortableColumn, setSortableColumn] = useState(undefined)
   const [sortableDirection, setSortableDirection] = useState(undefined)
@@ -58,7 +58,7 @@ export default function ReaderAssignmentResults({
         </tr>
       </thead>
       <tbody>
-        {sort(filter(search(readerAssignments, query), filteredcategories)).map(
+        {sort(filter(search(readerAssignments, query), filteredCategories)).map(
           (readerAssignment) => (
             <tr>
               <td>{readerAssignment.reader}</td>

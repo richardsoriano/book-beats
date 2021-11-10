@@ -31,7 +31,7 @@ export default function Filters({
           <TextField
             placeholder='Type to filter on name'
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(val) => setQuery(val)}
           />
         </div>
       </div>

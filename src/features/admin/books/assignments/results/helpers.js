@@ -1,13 +1,13 @@
 export function filter(
   assignments,
   filteredStatus,
-  filteredcategories,
+  filteredCategories,
   statuses
 ) {
   return assignments.filter(
     (assignment) =>
       filterByStatus(assignment, filteredStatus, statuses) &&
-      filterBycategories(assignment, filteredcategories)
+      filterByCategories(assignment, filteredCategories)
   )
 }
 
@@ -36,10 +36,11 @@ function filterByStatus(assignment, filteredStatus, statuses) {
   return compareCaseInsensitive(assignment.status, filteredStatus)
 }
 
-function filterBycategories(assignment, filteredcategories) {
-  if (filteredcategories.length === 0) return true
+function filterByCategories(assignment, filteredCategories) {
+  console.log(filteredCategories)
+  if (filteredCategories.length === 0) return true
   return assignment.categories.some((category) =>
-    filteredcategories.includes(category)
+    filteredCategories.includes(category)
   )
 }
 

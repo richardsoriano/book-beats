@@ -7,7 +7,7 @@ export default function BookAssignmentResults({
   query,
   statuses,
   filteredStatus,
-  filteredcategories,
+  filteredCategories,
 }) {
   const [sortableColumn, setSortableColumn] = useState(undefined)
   const [sortableDirection, setSortableDirection] = useState(undefined)
@@ -64,7 +64,7 @@ export default function BookAssignmentResults({
           filter(
             search(bookAssignments, query),
             filteredStatus,
-            filteredcategories,
+            filteredCategories,
             statuses
           )
         ).map((bookAssignment) => (

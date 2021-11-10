@@ -1,6 +1,6 @@
-export function filter(assignments, filteredcategories) {
+export function filter(assignments, filteredCategories) {
   return assignments.filter((assignment) =>
-    filterBycategories(assignment, filteredcategories)
+    filterByCategories(assignment, filteredCategories)
   )
 }
 
@@ -24,9 +24,9 @@ function searchCategory(assignment, query) {
   )
 }
 
-function filterBycategories(assignment, filteredcategories) {
-  if (filteredcategories.length === 0) return true
+function filterByCategories(assignment, filteredCategories) {
+  if (filteredCategories.length === 0) return true
   return assignment.categories.some((category) =>
-    filteredcategories.includes(category)
+    filteredCategories.includes(category)
   )
 }
