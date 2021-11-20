@@ -14,11 +14,7 @@ Wranglers assign 4 readers per book per category.
 
 Wranglers place 4 books in a BAG (new term)
 1 bag is assigned to a reader.
-Bags are numbered.
+Bags are numbered. Number can be inputed and edited.
 
-Assign books to a bag number then to a reader?
-
-Assign 4 books to a reader, then assign to a bag?
-
-
+Assign bag number to a reader
 

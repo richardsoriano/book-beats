@@ -36,6 +36,7 @@
       "maxNumberOfBooks": 5,
       "categories": ["thriller", "teen", "horror"]
     },
+    "bags": ["61983853f17ab9815c17058d"],
     "assignments": [
       {
         "_id": "kjss2ww",

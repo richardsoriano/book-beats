@@ -1,3 +1,11 @@
-export default function CreateBag({}) {
-  return <div>create bag</div>
+export default function CreateBag({ bagName, setBagName }) {
+  return (
+    <div>
+      <TextField
+        placeholder='Name the bag'
+        value={bagName}
+        onChange={(bagName) => setBagName(bagName)}
+      />
+    </div>
+  )
 }
