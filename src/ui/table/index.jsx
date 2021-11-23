@@ -43,7 +43,7 @@ export default function Table({ columns = [], rows = [], renderRow }) {
           ))}
         </tr>
       </thead>
-      <tbody>{rows.map((row) => renderRow(row))}</tbody>
+      <tbody>{rows.map((row, i) => renderRow(row, i))}</tbody>
     </table>
   )
 }
