@@ -12,6 +12,7 @@ const newBag = {
 }
 
 export default function AdminBags({ bags, books }) {
+  const [_bags, setBags] = useState(bags)
   const [selectedBag, setSelectedBag] = useState(undefined)
   return (
     <>
@@ -22,7 +23,7 @@ export default function AdminBags({ bags, books }) {
           { heading: 'Category' },
           { heading: 'Num books' },
         ]}
-        rows={bags}
+        rows={_bags}
         renderRow={(bag, i) => {
           const tdProps = {
             className: `${i % 2 !== 0 ? 'bg-blue-100' : ''} p-2`,
@@ -42,8 +43,10 @@ export default function AdminBags({ bags, books }) {
           <Form
             bagProps={selectedBag}
             books={books}
-            onCreate={(json) => {
-              alert(json)
+            onSave={(json) => {
+              setBags((prev) =>
+                prev.map((bag) => (bag._id === json._id ? json : bag))
+              )
               setSelectedBag(undefined)
             }}
           />

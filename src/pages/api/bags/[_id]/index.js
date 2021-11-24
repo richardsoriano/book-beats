@@ -1,12 +1,15 @@
 import dbPromise from '@/modules/mongodb'
+import { ObjectId } from 'mongodb'
 
 export default async function SaveBag(req, res) {
   const { _id, name, category, books } = JSON.parse(req.body)
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection('bags')
+
   const { upsertedId } = await collection.updateOne(
-    { _id },
+    { _id: ObjectId(_id) },
     { $set: { name, category, books } }
   )
-  res.status(200).json(upsertedId)
+
+  res.status(200).json({ _id: upsertedId.toString(), name, category, books })
 }
