@@ -8,6 +8,21 @@ export default function AdminBagsPage({ bags, books }) {
   return <AdminBags bags={bags} books={books} />
 }
 
+function aggregateBags(bags) {
+  return bags.reduce((acc, bag) => {
+    return [
+      ...acc,
+      {
+        _id: bag._id,
+        name: bag.name,
+        category: bag.category,
+        books: bag.books,
+        numBooks: bag.books.length,
+      },
+    ]
+  }, [])
+}
+
 export async function getServerSideProps(ctx) {
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection('bags')
@@ -16,7 +31,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      bags: jsonify(bags),
+      bags: aggregateBags(jsonify(bags)),
       books,
     },
   }

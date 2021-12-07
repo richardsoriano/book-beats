@@ -8,13 +8,14 @@ export default function SortableColumn({
   sort = false,
 }) {
   return (
-    <th
-      className={`${className} ${sort ? 'underline' : ''}`}
-      onClick={() => setSort(true)}
-    >
-      <div className='flex space-x-1 items-center'>
+    <th onClick={setSort}>
+      <div
+        className={`${className} ${
+          sort ? 'underline' : ''
+        } flex space-x-1 items-center`}
+      >
         <div>{children}</div>
-        <div className='w-3'>
+        <div className='w-4'>
           {sort &&
             (sortableDirection === 'asc' ? (
               <ChevronUpIcon />

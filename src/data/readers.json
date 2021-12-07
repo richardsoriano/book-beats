@@ -7,6 +7,7 @@
       "maxNumberOfBooks": 5,
       "categories": ["thriller", "teen", "horror"]
     },
+    "role": "reader",
     "assignments": [
       {
         "_id": "kjhgww",
@@ -37,6 +38,7 @@
       "categories": ["thriller", "teen", "horror"]
     },
     "bags": ["61983853f17ab9815c17058d"],
+    "role": "reader",
     "assignments": [
       {
         "_id": "kjss2ww",
@@ -66,6 +68,7 @@
       "maxNumberOfBooks": 5,
       "categories": ["native america", "western", "drama", "thriller", "horror"]
     },
+    "role": "wrangler",
     "assignments": [
       {
         "_id": "hjss2ww",

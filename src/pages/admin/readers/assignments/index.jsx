@@ -1,5 +1,7 @@
+import dbPromise, { jsonify } from '@/modules/mongodb'
 import AdminReadersAssignments from '@/features/admin/readers/assignments'
-import readers from '@/data/readers'
+
+// import readers from '@/data/readers'
 
 export default function AdminReadersAssignmentsPage({ readerAssignments }) {
   return <AdminReadersAssignments readerAssignments={readerAssignments} />
@@ -20,10 +22,15 @@ function aggregateReaderAssignments(readers) {
   }))
 }
 
-export function getServerSideProps() {
+export async function getServerSideProps() {
+  const dbConnection = await dbPromise
+  const collection = await dbConnection.db().collection('readers')
+  const readers = await collection.find({}).toArray()
+
+  console.log('getServerSideProps')
   return {
     props: {
-      readerAssignments: aggregateReaderAssignments(readers),
+      readerAssignments: aggregateReaderAssignments(jsonify(readers)),
     },
   }
 }
