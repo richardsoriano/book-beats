@@ -1,9 +1,13 @@
-import "./globals.css";
+import { SessionProvider } from 'next-auth/react'
+import './globals.css'
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
-    <div className='container mx-auto'>
+    <SessionProvider session={session}>
       <Component {...pageProps} />
-    </div>
-  );
+    </SessionProvider>
+  )
 }
