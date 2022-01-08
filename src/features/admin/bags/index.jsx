@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import Form from './form'
+import BagForm from './form'
 import Table from '@/ui/table'
 import Modal from '@/ui/modal'
 import Button from '@/ui/buttons'
@@ -71,15 +71,12 @@ export default function AdminBags({ bags, books }) {
       />
       {selectedBag && (
         <Modal open={selectedBag} close={() => setSelectedBag(undefined)}>
-          <Form
-            bagProps={selectedBag}
+          <BagForm
             books={books}
-            onSave={(json) => {
-              setBags((prev) =>
-                prev.map((bag) => (bag._id === json._id ? json : bag))
-              )
-              setSelectedBag(undefined)
-            }}
+            bagProps={selectedBag}
+            bags={_bags}
+            setBags={setBags}
+            setSelectedBag={setSelectedBag}
           />
         </Modal>
       )}

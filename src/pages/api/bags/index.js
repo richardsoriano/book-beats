@@ -1,15 +1,11 @@
 import dbPromise from '@/modules/mongodb'
 
 export default async function CreateBag(req, res) {
-  const { name, email, category, role } = JSON.parse(req.body)
+  const { name, category, books } = JSON.parse(req.body)
+  console.log('create', name)
+
   const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection('readers')
-  const { insertedId } = await collection.insertOne({
-    name,
-    email,
-    category,
-    role,
-  })
-  console.dir(insertedId)
+  const collection = await dbConnection.db().collection('bags')
+  const { insertedId } = await collection.insertOne({ name, category, books })
   res.status(201).json({ _id: insertedId.toString(), name, category, books })
 }

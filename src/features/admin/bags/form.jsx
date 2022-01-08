@@ -8,7 +8,13 @@ import NameBag from './steps/name-bag'
 import AttachCategory from './steps/attach-category'
 import AddBooks from './steps/add-books'
 
-export default function BagForm({ bagProps, books, onSave = () => {} }) {
+export default function BagForm({
+  books,
+  bagProps,
+  bags,
+  setBags = () => {},
+  setSelectedBag = () => {},
+}) {
   const [bag, setBag] = useState(bagProps)
 
   const [currentStep, setCurrentStep] = useState(0)
@@ -31,14 +37,43 @@ export default function BagForm({ bagProps, books, onSave = () => {} }) {
     },
   ]
 
+  // async function saveBag() {
+  //   const bagId = bag._id ? bag._id : ''
+  //   const res = await fetch(`/api/bags/${bagId}`, {
+  //     method: bagId ? 'PATCH' : 'POST',
+  //     body: JSON.stringify(bag),
+  //   })
+
+  //   onSave(await res.json())
+  // }
   async function saveBag() {
     const bagId = bag._id ? bag._id : ''
+    let newBag
     const res = await fetch(`/api/bags/${bagId}`, {
       method: bagId ? 'PATCH' : 'POST',
       body: JSON.stringify(bag),
     })
+      .then((res) => res.json())
+      .then((data) => {
+        // enter you logic when the fetch is successful
+        newBag = {
+          _id: data._id,
+          name: data.name,
+          category: data.category,
+          books: data.books,
+          numBooks: bag.books.length,
+        }
+      })
+    if (bagId !== '') {
+      bags.map((_bag) => console.log(_bag._id))
 
-    onSave(await res.json())
+      // remove the old version
+      setBags((prev) => prev.filter((_bag) => _bag._id !== bagId))
+      bags.map((_bag) => console.log(_bag._id))
+    }
+
+    setBags((prev) => [...prev, newBag])
+    setSelectedBag(undefined)
   }
 
   return (
