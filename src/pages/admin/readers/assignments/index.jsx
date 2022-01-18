@@ -4,7 +4,6 @@ import AdminReadersAssignments from '@/features/admin/readers/assignments'
 import readers from '@/data/readers'
 
 export default function AdminReadersAssignmentsPage({ readerAssignments }) {
-  console.log('readers', readers)
   return <AdminReadersAssignments readerAssignments={readerAssignments} />
   // readers
 }
