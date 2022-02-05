@@ -9,7 +9,7 @@ export default function TextField({
     <>
       {label && <label>{label}</label>}
       <input
-        className='block w-full border p-2'
+        className='block w-1/4 border p-2'
         placeholder={placeholder}
         type={type}
         value={value}

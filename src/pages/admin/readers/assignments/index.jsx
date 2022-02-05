@@ -1,12 +1,11 @@
 // import dbPromise, { jsonify } from '@/modules/mongodb'
-import AdminReadersAssignments from '@/features/admin/readers/assignments'
+import AdminReadersInvitees from '@/features/admin/readers/invitees'
 
 import readers from '@/data/readers'
 
 export default function AdminReadersAssignmentsPage({ readerAssignments }) {
   console.log('readers', readers)
-  return <AdminReadersAssignments readerAssignments={readerAssignments} />
-  // readers
+  return <AdminReadersInvitees readerAssignments={readerAssignments} />
 }
 
 function aggregateReaderAssignments(readers) {
