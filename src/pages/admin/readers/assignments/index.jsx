@@ -5,7 +5,6 @@ import readers from '@/data/readers'
 
 export default function AdminReadersAssignmentsPage({ readerAssignments }) {
   return <AdminReadersAssignments readerAssignments={readerAssignments} />
-  // readers
 }
 
 function aggregateReaderAssignments(readers) {

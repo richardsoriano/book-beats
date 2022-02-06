@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "2001",
+    "name": "F 101",
+    "category": "First Book",
+    "books": ["Dark Matters", "Colleen"],
+    "pickupStatus": "needs pickup",
+    "assigned": "Mark Martinez Tellez"
+  },
+  {
+    "_id": "2002",
+    "name": "C 101",
+    "books": [
+      "Harvey Holds His Own",
+      "The Nighthawk’s Harmonica: A Montana Roundup"
+    ],
+    "category": "Childrens",
+    "pickupStatus": "picked up",
+    "assigned": "Mark Martinez Tellez"
+  },
+  {
+    "_id": "2003",
+    "name": "W 101",
+    "books": ["The Nighthawk’s Harmonica: A Montana Roundup", "Winding Down"],
+    "category": "Woman Writer",
+    "pickupStatus": "needs pickup",
+    "assigned": "Richard Soriano"
+  },
+  {
+    "_id": "2004",
+    "name": "I 101",
+    "books": [
+      "On a Good Horse",
+      "The Nighthawk’s Harmonica: A Montana Roundup"
+    ],
+    "category": "Indegenous Writer",
+    "pickupStatus": "needs pickup",
+    "assigned": "Holly Soriano"
+  }
+]
