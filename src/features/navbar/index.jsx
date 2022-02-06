@@ -37,13 +37,13 @@ export default function NavBar({}) {
                   Bags
                 </a>
                 <a
-                  href='#'
+                  href='/admin/readers/invitees'
                   className='py-5 px-3 text-gray-700 hover:text-gray-900'
                 >
                   Volunteers
                 </a>
                 <a
-                  href='#'
+                  href='/admin/bags/judges'
                   className='py-5 px-3 text-gray-700 hover:text-gray-900'
                 >
                   Scores

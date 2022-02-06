@@ -19,7 +19,7 @@ export default function LandingPage() {
           Then they can rate them online.
         </p>
         <p>Judges will rate and choose the top 3 winners for each category</p>
-        <p className='text-sm'>Created by Richard Soriano</p>
+        <p className='text-sm'>Created by Richard Soriano 2022</p>
       </Page>
     </div>
   )
