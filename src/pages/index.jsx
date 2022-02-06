@@ -24,3 +24,8 @@ export default function LandingPage() {
     </div>
   )
 }
+export function getServerSideProps() {
+  return {
+    props: {},
+  }
+}

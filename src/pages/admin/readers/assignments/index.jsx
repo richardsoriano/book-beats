@@ -4,13 +4,8 @@ import AdminReadersInvitees from '@/features/admin/readers/invitees'
 import readers from '@/data/readers'
 
 export default function AdminReadersAssignmentsPage({ readerAssignments }) {
-<<<<<<< HEAD
-  console.log('readers', readers)
-  return <AdminReadersInvitees readerAssignments={readerAssignments} />
-=======
   return <AdminReadersAssignments readerAssignments={readerAssignments} />
-  // readers
->>>>>>> 42db95c3890c28d56951e6dbe9b8e2291b38c545
+
 }
 
 function aggregateReaderAssignments(readers) {
