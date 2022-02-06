@@ -2,13 +2,7 @@ import AdminReadersInvitees from '@/features/admin/readers/invitees'
 import readers from '@/data/readers'
 
 export default function AdminReadersInviteesPage({ readers }) {
-  // return <AdminReadersInvitees readers={readers} />
-  console.log('readers invitees', readers)
-  return (
-    <div>
-      <h1>hello Admin Readers Invitees Page</h1>
-    </div>
-  )
+  return <AdminReadersInvitees readers={readers} />
 }
 
 function aggregateReaderInvitees(readers) {

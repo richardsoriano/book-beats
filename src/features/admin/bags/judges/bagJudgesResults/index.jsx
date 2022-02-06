@@ -32,7 +32,7 @@ export default function BagJudgesResults({
           <tr>
             <td {...tdProps}>{bag.name}</td>
             <td {...tdProps}>{bag.category}</td>
-            <td {...tdProps}>{bag.books.join(', ')}</td>
+            <td {...tdProps}>{bag.books.map((book) => book.title + ',')}</td>
             <td {...tdProps}>{bag.assigned}</td>
             <td {...tdProps}>{bag.pickupStatus}</td>
             <td {...tdDel}>{<XIcon className='w-5 h-5 text-red-500' />}</td>
