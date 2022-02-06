@@ -1,27 +1,26 @@
 import { useState, useEffect } from 'react'
-import { filter, search } from './helpers'
+import { search, filter } from './helpers'
 import SortableColumn from './sortable-column'
 
 export default function BookAssignmentResults({
   bookAssignments,
   query,
-  statuses,
   filteredStatus,
   filteredCategories,
+  statuses,
 }) {
   const [sortableColumn, setSortableColumn] = useState(undefined)
   const [sortableDirection, setSortableDirection] = useState(undefined)
+
   const thClassNames = 'text-left font-bold border-b-2'
-
   const columns = [
-    { heading: 'Title', sortable: 'title' },
-    { heading: 'Round', sortable: 'round' },
-    { heading: 'categories', sortable: 'categories' },
-    { heading: 'Assigned', sortable: 'assignedCount' },
-    { heading: 'Completed', sortable: 'reviewedCount' },
-    { heading: 'Status', sortable: 'status' },
+    { heading: 'Title', sortColumn: 'title' },
+    { heading: 'Round', sortColumn: 'round' },
+    { heading: 'Categories', sortColumn: 'categories' },
+    { heading: 'Assigned', sortColumn: 'assignedCount' },
+    { heading: 'Completed', sortColumn: 'reviewedCount' },
+    { heading: 'Status', sortColumn: 'status' },
   ]
-
   useEffect((sortableColumn) => {
     if (!sortableColumn) return
   }, [])
@@ -37,24 +36,23 @@ export default function BookAssignmentResults({
       return 0
     })
   }
-
   return (
     <table cellSpacing={0} cellPadding={0} className='w-full table-auto'>
       <thead>
         <tr>
-          {columns.map((column) => (
+          {columns.map((col) => (
             <SortableColumn
+              className={thClassNames}
+              sort={sortableColumn === col.sortColumn}
               setSort={() => {
-                setSortableColumn(column.sortable)
+                setSortableColumn(col.sortColumn)
                 setSortableDirection((prev) =>
                   prev === 'asc' ? 'desc' : 'asc'
                 )
               }}
-              sort={sortableColumn === column.sortable}
-              className={thClassNames}
               sortableDirection={sortableDirection}
             >
-              {column.heading}
+              {col.heading}
             </SortableColumn>
           ))}
         </tr>
@@ -71,11 +69,10 @@ export default function BookAssignmentResults({
           <tr>
             <td>{bookAssignment.title}</td>
             <td>{bookAssignment.round}</td>
-            <td>{bookAssignment.categories.join(', ')}</td>
+            <td>{bookAssignment.categories.join(',')}</td>
             <td>{bookAssignment.assignedCount}</td>
             <td>{bookAssignment.reviewedCount}</td>
-
-            <td>{bookAssignment.status}</td>
+            <td>{bookAssignment.status} </td>
           </tr>
         ))}
       </tbody>
