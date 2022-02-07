@@ -1,15 +1,14 @@
-import AdminBookAssignments from '@/features/admin/books/assignments'
+import AdminBooksAssignments from '@/features/admin/books/assignments'
 import readers from '@/data/readers'
 
-export default function AdminBookAssignmentsPage({ bookAssignments }) {
-  return <AdminBookAssignments bookAssignments={bookAssignments} />
+export default function AdminBooksAssignmentsPage({ bookAssignments }) {
+  return <AdminBooksAssignments bookAssignments={bookAssignments} />
 }
 
 function aggregateBookAssignments(readers) {
   const books = readers
-    .flatMap((reader) =>
-      reader.assignments.flatMap((assignment) => assignment.book)
-    )
+    .flatMap((reader) => reader.assignments)
+    .flatMap((assignment) => assignment.book)
     .reduce((acc, book) => {
       return acc.map((book) => book._id).includes(book._id)
         ? acc
@@ -22,7 +21,6 @@ function aggregateBookAssignments(readers) {
         (assignment) => assignment.book._id === book._id
       )
     )
-
     const reviewed = readers.flatMap((reader) =>
       reader.assignments.filter(
         (assignment) =>
@@ -42,7 +40,6 @@ function aggregateBookAssignments(readers) {
     ]
   }, [])
 }
-
 export function getServerSideProps() {
   return {
     props: {

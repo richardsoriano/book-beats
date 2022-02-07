@@ -4,7 +4,7 @@ import TextField from 'ui/text-field'
 import MuliSelectField from 'ui/multi-select-field'
 import SelectField from 'ui/select-field'
 
-import Button from 'ui/buttons'
+import Button from 'ui/button'
 
 const role = ['reader', 'wrangler', 'judge']
 export default function ReaderInviteeForm({

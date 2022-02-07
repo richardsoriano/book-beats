@@ -92,19 +92,34 @@ export default function NavBar({}) {
         </div>
         {/* mobile menu */}
         <div className='mobile-menu md:hidden'>
-          <a href='#' className='block py-2 px-4 text-sm hover:bg-gray-200'>
+          <a
+            href='/admin/books/assignments'
+            className='block py-2 px-4 text-sm hover:bg-gray-200'
+          >
             Books
           </a>
-          <a href='#' className='block py-2 px-4 text-sm hover:bg-gray-200'>
+          <a
+            href='/admin/bags'
+            className='block py-2 px-4 text-sm hover:bg-gray-200'
+          >
             Bags
           </a>
-          <a href='#' className='block py-2 px-4 text-sm hover:bg-gray-200'>
+          <a
+            href='/admin/readers/invitees'
+            className='block py-2 px-4 text-sm hover:bg-gray-200'
+          >
             Volunteers
           </a>
-          <a href='#' className='block py-2 px-4 text-sm hover:bg-gray-200'>
+          <a
+            href='/admin/bags/judges'
+            className='block py-2 px-4 text-sm hover:bg-gray-200'
+          >
             Scores
           </a>
-          <a href='#' className='block py-2 px-4 text-sm hover:bg-gray-200'>
+          <a
+            href='/admin/readers/assignments'
+            className='block py-2 px-4 text-sm hover:bg-gray-200'
+          >
             Assignments
           </a>
         </div>

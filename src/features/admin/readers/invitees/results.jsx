@@ -39,7 +39,7 @@ export default function ReaderInviteeResults({ readers, query }) {
               <td {...tdProps}>{reader.name}</td>
               <td {...tdProps}>{reader.email}</td>
               <td {...tdProps}>{reader.categories.join(', ')}</td>
-              <td {...tdProps}>{reader.role}</td>
+              <td {...tdProps}>{reader.role.join(',')}</td>
               <td {...tdDelProps}>
                 {<XIcon className='w-5 h-5 text-red-500' />}
               </td>

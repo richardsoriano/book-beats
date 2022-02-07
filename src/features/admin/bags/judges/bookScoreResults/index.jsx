@@ -1,34 +1,25 @@
 import { useState, useEffect } from 'react'
-import { search, filter } from './helpers'
-import SortableColumn from './sortable-column'
+import { filter } from './helpers'
+import SortableColumn from '../../../books/assignments/results/sortable-column'
 
-export default function BookAssignmentResults({
-  bookAssignments,
-  query,
-  filteredStatus,
-  filteredCategories,
-  statuses,
-}) {
+export default function BookScoreResults({ books, filteredCategories }) {
   const [sortableColumn, setSortableColumn] = useState(undefined)
   const [sortableDirection, setSortableDirection] = useState(undefined)
 
   const thClassNames = 'text-left font-bold border-b-2'
   const columns = [
     { heading: 'Title', sortColumn: 'title' },
-    { heading: 'Round', sortColumn: 'round' },
     { heading: 'Categories', sortColumn: 'categories' },
-    { heading: 'Assigned', sortColumn: 'assignedCount' },
-    { heading: 'Completed', sortColumn: 'reviewedCount' },
-    { heading: 'Status', sortColumn: 'status' },
+    { heading: 'Score', sortColumn: 'score' },
   ]
   useEffect((sortableColumn) => {
     if (!sortableColumn) return
   }, [])
 
-  function sort(assignments) {
-    if (!sortableColumn) return assignments
+  function sort(books) {
+    if (!sortableColumn) return books
 
-    return assignments.sort((a, b) => {
+    return books.sort((a, b) => {
       if (a[sortableColumn] > b[sortableColumn])
         return sortableDirection === 'asc' ? 1 : -1
       if (a[sortableColumn] < b[sortableColumn])
@@ -58,21 +49,11 @@ export default function BookAssignmentResults({
         </tr>
       </thead>
       <tbody>
-        {sort(
-          filter(
-            search(bookAssignments, query),
-            filteredStatus,
-            filteredCategories,
-            statuses
-          )
-        ).map((bookAssignment) => (
+        {sort(filter(books, filteredCategories)).map((book) => (
           <tr>
-            <td>{bookAssignment.title}</td>
-            <td>{bookAssignment.round}</td>
-            <td>{bookAssignment.categories.join(',')}</td>
-            <td>{bookAssignment.assignedCount}</td>
-            <td>{bookAssignment.reviewedCount}</td>
-            <td>{bookAssignment.status} </td>
+            <td>{book.title}</td>
+            <td>{book.categories.join(', ')}</td>
+            <td>{book.score}</td>
           </tr>
         ))}
       </tbody>
