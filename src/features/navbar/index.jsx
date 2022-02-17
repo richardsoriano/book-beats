@@ -1,4 +1,8 @@
+import { useSession, signOut, signIn } from 'next-auth/react'
+
 export default function NavBar({}) {
+  const { data: session } = useSession()
+
   return (
     <>
       <nav className='bg-blue-100'>
@@ -58,15 +62,26 @@ export default function NavBar({}) {
             </div>
             {/* secondary nav--> */}
             <div className='hidden md:flex items-center space-x-1'>
-              <a href='#' className='py-5 px-3'>
-                Login
-              </a>
-              <a
-                href='#'
-                className='py-3 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300 '
-              >
-                Sign up
-              </a>
+              {session ? (
+                <>
+                  {' '}
+                  <a onClick={signOut} className='py-5 px-3'>
+                    Log out
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a onClick={signIn} className='py-5 px-3'>
+                    Login
+                  </a>
+                  <a
+                    href='#'
+                    className='py-3 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300 '
+                  >
+                    Sign up
+                  </a>
+                </>
+              )}
             </div>
             {/* mobile button --> */}
             <div className='md:hidden flex items-center'>

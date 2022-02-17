@@ -6,7 +6,7 @@ import { compare } from 'bcrypt'
 
 export default NextAuth({
   adapter: MongoDBAdapter(dbPromise),
-
+  session: { strategy: 'jwt' },
   providers: [
     CredentialsProvider({
       credentials: {
