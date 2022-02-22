@@ -64,7 +64,10 @@ export default function NavBar({}) {
             <div className='hidden md:flex items-center space-x-1'>
               {session ? (
                 <>
-                  {' '}
+                  Signed in as
+                  <br />
+                  {session.user?.email}
+                  <br />
                   <a onClick={signOut} className='py-5 px-3'>
                     Log out
                   </a>
