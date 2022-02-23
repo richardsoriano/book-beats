@@ -7,6 +7,18 @@ import { compare } from 'bcrypt'
 export default NextAuth({
   adapter: MongoDBAdapter(dbPromise),
   session: { strategy: 'jwt' },
+  callbacks: {
+    async session({ session, token }) {
+      session.user = token.user
+      return session
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user
+      }
+      return token
+    },
+  },
   providers: [
     CredentialsProvider({
       credentials: {
@@ -20,11 +32,14 @@ export default NextAuth({
           .collection('users')
           .findOne({ email: credentials.email })
 
+        const json = {
+          _id: user._id.toString(),
+          email: user.email,
+          type: user.type,
+        }
+
         return (await compare(credentials.password, user.hashedPassword))
-          ? {
-              id: user._id.toString(),
-              email: user.email,
-            }
+          ? json
           : null
       },
     }),

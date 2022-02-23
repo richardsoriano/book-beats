@@ -112,7 +112,6 @@ export default function BagPage({ books }) {
       body: JSON.stringify(bag),
     })
     const json = res.json()
-    console.dir(json)
   }
   return (
     <div className='container flex justify-center mt-16'>
