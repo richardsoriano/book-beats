@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import TextField from '@/ui/text-field'
+import Dropdown from '@/ui/dropdown'
 import Button from '@/ui/button'
+import bookCategories from '@/data/categories.json'
 
 export default function AdminEditBook({ selectedBook, onChange, close }) {
   const [values, setValues] = useState(
     selectedBook || {
       title: '',
       author: '',
+      categories: [],
     }
   )
 
@@ -43,6 +46,18 @@ export default function AdminEditBook({ selectedBook, onChange, close }) {
             setValues((prev) => ({
               ...prev,
               author,
+            }))
+          }
+        />
+      </div>
+      <div>
+        <Dropdown
+          value={values.categories}
+          items={bookCategories}
+          onChange={(categories) =>
+            setValues((prev) => ({
+              ...prev,
+              categories,
             }))
           }
         />
