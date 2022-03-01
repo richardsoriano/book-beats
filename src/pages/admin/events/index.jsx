@@ -7,7 +7,7 @@ import categories from '@/data/categories'
 
 import dbPromise, { jsonify } from '@/modules/mongodb'
 
-export default function AdminBooksPage({ books }) {
+export default function AdminEventPage({ events }) {
   return (
     <div className='container mx-auto mt-16 ml-6 '>
       <Page
@@ -15,25 +15,17 @@ export default function AdminBooksPage({ books }) {
         description='This is to assist the administrator in the Montana Book Clubs'
       >
         <CrudList
-          collectionName='books'
-          resourceName='Book'
-          rows={books}
+          collectionName='events'
+          resourceName='Event'
+          rows={events}
           columns={{
-            title: {
-              label: 'Title',
+            name: {
+              label: 'Name',
               control: 'text',
             },
-            author: {
-              label: 'Author',
+            city: {
+              label: 'City',
               control: 'text',
-            },
-            categories: {
-              label: 'Categories',
-              control: 'select',
-              options: categories.map((category) => ({
-                label: category,
-                value: category,
-              })),
             },
           }}
         />
@@ -53,9 +45,9 @@ export async function getServerSideProps(ctx) {
     }
 
   const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection('books')
-  const books = await collection.find({}).toArray()
+  const collection = await dbConnection.db().collection('events')
+  const events = await collection.find({}).toArray()
   return {
-    props: { books: jsonify(books) },
+    props: { events: jsonify(events) },
   }
 }

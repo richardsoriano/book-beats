@@ -17,7 +17,7 @@ export default function SelectField({
     <div className='relative w-full' ref={ref}>
       {label && <label onClick={() => setOpen(true)}>{label}</label>}
       <div
-        className='border p-2 w-full'
+        className='w-full p-2 border'
         onClick={() => setOpen((prev) => !prev)}
       >
         {value}
@@ -27,7 +27,7 @@ export default function SelectField({
       >
         {options.map((option) => (
           <div
-            className='bg-white p-2'
+            className='p-2 bg-white'
             onClick={() => {
               onChange(option)
               setOpen(false)

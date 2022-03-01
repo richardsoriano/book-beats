@@ -1,70 +1,58 @@
-import { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/solid'
 
 export default function Dropdown({
+  children,
   value,
-  items,
-  onChange,
-  renderItem = (item) => item,
+  items = [],
+  onChange = () => {},
 }) {
-  const [selected, setSelected] = useState(items[0])
-
   return (
-    <Listbox
-      value={value || selected}
-      onChange={(selected) => onChange(selected)}
-    >
-      <div className='relative mt-1'>
-        <Listbox.Button className='relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm'>
-          <span className='block truncate'>
-            {renderItem(value || selected)}
-          </span>
-          <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
-            <SelectorIcon
-              className='w-5 h-5 text-gray-400'
+    <div>
+      <Menu as='div' className='relative inline-block text-left bg-white '>
+        <div>
+          <Menu.Button className='flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-gray-900 rounded-md text-black-800 bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+            {value ? value.label : children}
+            <ChevronDownIcon
+              className='w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100'
               aria-hidden='true'
             />
-          </span>
-        </Listbox.Button>
+          </Menu.Button>
+        </div>
         <Transition
           as={Fragment}
-          leave='transition ease-in duration-100'
-          leaveFrom='opacity-100'
-          leaveTo='opacity-0'
+          enter='transition ease-out duration-100'
+          enterFrom='transform opacity-0 scale-95'
+          enterTo='transform opacity-100 scale-100'
+          leave='transition ease-in duration-75'
+          leaveFrom='transform opacity-100 scale-100'
+          leaveTo='transform opacity-0 scale-95'
         >
-          <Listbox.Options className='absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-            {items.map((item, i) => (
-              <Listbox.Option
-                key={i}
-                className={({ active }) =>
-                  `cursor-default select-none relative py-2 pl-10 pr-4 ${
-                    active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'
-                  }`
-                }
-                value={item}
-              >
-                {({ selected }) => (
-                  <>
-                    <span
-                      className={`block truncate ${
-                        selected ? 'font-medium' : 'font-normal'
-                      }`}
+          <Menu.Items className='absolute left-0 z-50 w-56 mt-2 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+            {items.map((item) => (
+              <div className='px-1 py-1' onClick={() => onChange(item)}>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active
+                          ? 'bg-violet-500 text-black-800'
+                          : 'bg-white text-gray-900'
+                      }  bg-white group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                     >
-                      {renderItem(item)}
-                    </span>
-                    {selected ? (
-                      <span className='absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600'>
-                        <CheckIcon className='w-5 h-5' aria-hidden='true' />
-                      </span>
-                    ) : null}
-                  </>
-                )}
-              </Listbox.Option>
+                      <div className='flex items-start px-3 py-2 space-x-2'>
+                        <div>{item.icon}</div>
+                        <div>{item.label}</div>
+                      </div>
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>
             ))}
-          </Listbox.Options>
+          </Menu.Items>
         </Transition>
-      </div>
-    </Listbox>
+      </Menu>
+    </div>
   )
 }
