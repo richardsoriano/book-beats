@@ -14,4 +14,14 @@ handler.post(async (req, res) => {
   res.json({ _id: insertedId, ...record })
 })
 
+handler.get(async (req, res) => {
+  const records = await (await clientPromise)
+    .db()
+    .collection(req.query.collectionName)
+    .find({})
+    .toArray()
+
+  res.json(records)
+})
+
 export default handler

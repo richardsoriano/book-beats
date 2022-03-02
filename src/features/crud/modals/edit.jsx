@@ -4,6 +4,8 @@ import { PrimaryButton, LinkButton } from '@/ui/buttons'
 import TextField from '@/ui/text-field'
 import Dropdown from '@/ui/dropdown'
 
+import CollectionSelect from '@/ui/forms/collection-select'
+
 export default function EditModal({
   resourceName,
   values,
@@ -51,6 +53,48 @@ export default function EditModal({
             >
               Select {columns[key].label}
             </Dropdown>
+          )
+        case 'reader-select':
+          return (
+            <CollectionSelect
+              collectionName='readers'
+              label={columns[key].label}
+              value={value}
+              onChange={(reader) =>
+                setValues((prev) => ({
+                  ...prev,
+                  [key]: reader,
+                }))
+              }
+              renderItem={(reader) => (
+                <div>
+                  <div>{reader.name}</div>
+                  <div>{reader.email}</div>
+                </div>
+              )}
+              matchColumns={['name', 'email']}
+            />
+          )
+        case 'book-select':
+          return (
+            <CollectionSelect
+              collectionName='books'
+              label={columns[key].label}
+              value={value}
+              onChange={(reader) =>
+                setValues((prev) => ({
+                  ...prev,
+                  [key]: reader,
+                }))
+              }
+              renderItem={(book) => (
+                <div>
+                  <div>{book.title}</div>
+                  <div>{book.author}</div>
+                </div>
+              )}
+              matchColumns={['title', 'author']}
+            />
           )
       }
     } catch (e) {

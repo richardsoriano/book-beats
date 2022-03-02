@@ -44,6 +44,8 @@ export default function CrudList({
         return cell.label
       case 'array':
         return cell.join(' ')
+      case 'reader':
+        return [cell.name, `(${cell.email})`].join(' ')
 
       default:
         return cell
