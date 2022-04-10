@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import BookScoreResults from './bookScoreResults'
-import Filters from './bookScoreResults/filters'
-import BagJudgesResults from './bagJudgesResults'
-import categories from '@/data/categories'
+import { useState } from "react"
+import BookScoreResults from "./bookScoreResults"
+import Filters from "./bookScoreResults/filters"
+import BagJudgesResults from "./bagJudgesResults"
+import categories from "@/data/categories"
 
-import Modal from '@/ui/modal'
-import Button from '@/ui/button'
-import BagJudgeForm from './form'
+import Modal from "@/ui/modal"
+import Button from "@/ui/buttons"
+import BagJudgeForm from "./form"
 
 const newBag = {
-  _id: '',
-  name: '',
+  _id: "",
+  name: "",
   category: undefined,
   books: [],
   assigned: [],
-  pickupStatus: '',
+  pickupStatus: "",
 }
 
 export default function AdminBagsJudges({
@@ -27,7 +27,7 @@ export default function AdminBagsJudges({
   const [selectedBag, setSelectedBag] = useState(undefined)
   const [bagToDelete, setBagToDelete] = useState(undefined)
   const [filteredCategories, setFilteredCategories] = useState([])
-  const pickupStatuses = ['needs pickup', 'picked up', 'returned']
+  const pickupStatuses = ["needs pickup", "picked up", "returned"]
 
   function deleteBag(bag) {
     setBagToDelete(bag)
@@ -36,14 +36,14 @@ export default function AdminBagsJudges({
   async function deleteBagConfirmed() {
     const newBag = {
       _id: bagToDelete._id,
-      name: '',
+      name: "",
       category: undefined,
       books: [],
       assigned: [],
-      pickupStatus: '',
+      pickupStatus: "",
     }
     const res = await fetch(`/api/bags/${bagToDelete._id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       body: JSON.stringify(newBag),
     })
     setBags((prev) => prev.filter((_bag) => _bag._id !== bagToDelete._id))
@@ -51,17 +51,17 @@ export default function AdminBagsJudges({
 
   return (
     <>
-      <h1 className='text-2xl font-bold'>Book Scores</h1>
+      <h1 className="text-2xl font-bold">Book Scores</h1>
       <Filters
         setFilteredCategories={setFilteredCategories}
         filteredCategories={filteredCategories}
         categories={categories}
       />
       <BookScoreResults books={books} filteredCategories={filteredCategories} />
-      <div className='mb-4 mt-4 border-1 bg-blue-100'>
+      <div className="mt-4 mb-4 bg-blue-100 border-1">
         <p>&nbsp;</p>
       </div>
-      <h1 className='text-2xl font-bold'>Bags for Judges</h1>
+      <h1 className="text-2xl font-bold">Bags for Judges</h1>
       <Button onClick={() => setSelectedBag(newBag)}>New Bag</Button>
 
       <BagJudgesResults

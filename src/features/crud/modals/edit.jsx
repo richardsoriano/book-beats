@@ -60,18 +60,14 @@ export default function EditModal({
               collectionName='readers'
               label={columns[key].label}
               value={value}
-              onChange={(reader) =>
+              onChange={(value) =>
                 setValues((prev) => ({
                   ...prev,
-                  [key]: reader,
+                  [key]: value,
                 }))
               }
-              renderItem={(reader) => (
-                <div>
-                  <div>{reader.name}</div>
-                  <div>{reader.email}</div>
-                </div>
-              )}
+              renderSearchItem={columns[key].renderSearchItem}
+              renderSelectedItem={columns[key].renderSelectedItem}
               matchColumns={['name', 'email']}
             />
           )
@@ -87,12 +83,8 @@ export default function EditModal({
                   [key]: reader,
                 }))
               }
-              renderItem={(book) => (
-                <div>
-                  <div>{book.title}</div>
-                  <div>{book.author}</div>
-                </div>
-              )}
+              renderSearchItem={columns[key].renderSearchItem}
+              renderSelectedItem={columns[key].renderSelectedItem}
               matchColumns={['title', 'author']}
             />
           )

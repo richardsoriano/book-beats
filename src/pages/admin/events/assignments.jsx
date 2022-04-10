@@ -20,12 +20,34 @@ export default function AdminEventAssignmentsPage({ assignments }) {
           rows={assignments}
           columns={{
             reader: {
-              label: 'Reader',
+              label: 'Search for a reader',
               control: 'reader-select',
+              renderSearchItem: (reader) => (
+                <div className='flex items-center justify-between p-2 border hover:cursor-pointer hover:bg-blue-50'>
+                  <div>{reader.name}</div>
+                  <div>{reader.email}</div>
+                </div>
+              ),
+              renderSelectedItem: (reader) => (
+                <div className='flex items-center justify-between p-2 border hover:cursor-pointer hover:bg-blue-50'>
+                  <div>{reader.name}</div>
+                </div>
+              ),
             },
             book: {
-              label: 'Book',
+              label: 'Search for a book',
               control: 'book-select',
+              renderSearchItem: (book) => (
+                <div className='flex items-center justify-between p-2 border hover:cursor-pointer hover:bg-blue-50'>
+                  <div>{book.title}</div>
+                  <div>{book.author}</div>
+                </div>
+              ),
+              renderSelectedItem: (book) => (
+                <div className='flex items-center justify-between p-2 border hover:cursor-pointer hover:bg-blue-50'>
+                  <div>{book.title}</div>
+                </div>
+              ),
             },
           }}
         />

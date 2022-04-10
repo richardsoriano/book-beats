@@ -1,5 +1,5 @@
-import TextField from 'ui/text-field'
-import Button from 'ui/button'
+import TextField from "ui/text-field"
+import Button from "ui/buttons"
 
 export default function nameBag({ bag, setBag = () => {} }) {
   return (
