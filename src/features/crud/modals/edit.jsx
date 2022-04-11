@@ -1,10 +1,10 @@
-import Modal from '@/ui/modal'
-import { PrimaryButton, LinkButton } from '@/ui/buttons'
+import Modal from "@/ui/modal"
+import { PrimaryButton, LinkButton } from "@/ui/buttons"
 
-import TextField from '@/ui/text-field'
-import Dropdown from '@/ui/dropdown'
+import TextField from "@/ui/text-field"
+import Dropdown from "@/ui/dropdown"
 
-import CollectionSelect from '@/ui/forms/collection-select'
+import CollectionSelect from "@/ui/forms/collection-select"
 
 export default function EditModal({
   resourceName,
@@ -18,11 +18,11 @@ export default function EditModal({
   onSave = () => {},
 }) {
   function getEditControl(key, value) {
-    if (['_id', 'id'].includes(key)) return ''
+    if (["_id", "id"].includes(key)) return ""
 
     try {
       switch (columns[key].control) {
-        case 'text':
+        case "text":
           return (
             <TextField
               label={columns[key].label}
@@ -36,7 +36,7 @@ export default function EditModal({
             />
           )
 
-        case 'select':
+        case "select":
           return (
             <Dropdown
               value={value}
@@ -54,10 +54,10 @@ export default function EditModal({
               Select {columns[key].label}
             </Dropdown>
           )
-        case 'reader-select':
+        case "reader-select":
           return (
             <CollectionSelect
-              collectionName='readers'
+              collectionName="readers"
               label={columns[key].label}
               value={value}
               onChange={(value) =>
@@ -68,13 +68,13 @@ export default function EditModal({
               }
               renderSearchItem={columns[key].renderSearchItem}
               renderSelectedItem={columns[key].renderSelectedItem}
-              matchColumns={['name', 'email']}
+              matchColumns={["name", "email"]}
             />
           )
-        case 'book-select':
+        case "book-select":
           return (
             <CollectionSelect
-              collectionName='books'
+              collectionName="books"
               label={columns[key].label}
               value={value}
               onChange={(reader) =>
@@ -85,7 +85,7 @@ export default function EditModal({
               }
               renderSearchItem={columns[key].renderSearchItem}
               renderSelectedItem={columns[key].renderSelectedItem}
-              matchColumns={['title', 'author']}
+              matchColumns={["title", "author"]}
             />
           )
       }
@@ -104,17 +104,17 @@ export default function EditModal({
         title: `Creating a new ${resourceName}`,
       }}
     >
-      <div className='my-12'>
+      <div className="my-12">
         {values &&
           Object.entries(values).map(([key, value]) => (
-            <div className='my-2'>{getEditControl(key, value)}</div>
+            <div className="my-2">{getEditControl(key, value)}</div>
           ))}
       </div>
 
       <PrimaryButton block onClick={() => onSave(values)}>
         Save
       </PrimaryButton>
-      <div className='px-1 py-2'>
+      <div className="px-1 py-2">
         <LinkButton onClick={close}>Cancel and close</LinkButton>
       </div>
     </Modal>
