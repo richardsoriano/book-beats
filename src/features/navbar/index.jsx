@@ -27,11 +27,8 @@ export default function NavBar({}) {
               </div>
               {/* primary nav --> */}
               <div className="items-center hidden space-x-1 md:flex">
-                <Link href="/">
-                  <a
-                    href="/admin/books/assignments"
-                    className="px-3 py-5 text-gray-700 hover:text-gray-900"
-                  >
+                <Link href="/admin/books/assignments">
+                  <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
                     Books
                   </a>
                 </Link>
