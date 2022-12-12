@@ -43,10 +43,11 @@ export default function AdminBags({ bags, books, readerAssignments }) {
   const readers = readerAssignments.map(
     (readerAssignment) => readerAssignment.reader
   )
+  console.log("selected", selectedBag)
   return (
     <div>
       <h1 className="text-2xl font-bold">Bags</h1>
-      <Button onClick={() => setSelectedBag(newBag)}>New Bag</Button>
+      <Button onClick={() => setSelectedBag(newBag)}>1New Bag</Button>
       <Table
         columns={[
           { heading: "Name", sortable: "name" },
