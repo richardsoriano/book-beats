@@ -1,4 +1,4 @@
-import multer from "multer"
+// import multer from "multer"
 import { getSession } from "next-auth/react"
 import nc from "next-connect"
 
@@ -7,16 +7,16 @@ import nc from "next-connect"
 //     bodyParser: false,
 //   },
 // }
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(process.cwd(), "public", "uploads"))
-    },
-    filename: function (req, file, cb) {
-      cb(null, new Date().getTime() + "-" + file.originalname)
-    },
-  }),
-})
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(process.cwd(), "public", "uploads"))
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, new Date().getTime() + "-" + file.originalname)
+//     },
+//   }),
+// })
 // const bodyParser = require("body-parser")
 // app.use(bodyParser.json())
 // const record = JSON.parse(req.body)
