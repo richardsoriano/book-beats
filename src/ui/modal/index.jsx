@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react"
 
 export default function Modal({ children, open = false, close = () => {} }) {
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={Boolean(open)} as={Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-10 overflow-y-auto"

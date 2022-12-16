@@ -1,8 +1,8 @@
-import NavBar from 'features/navbar'
-import Footer from 'features/footer'
+import NavBar from "features/navbar"
+import Footer from "features/footer"
 export default function Layout({ children }) {
   return (
-    <div className='container mx-auto'>
+    <div className="container mx-auto">
       <NavBar />
       {children}
 
