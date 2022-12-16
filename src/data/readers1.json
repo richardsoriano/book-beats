@@ -20,7 +20,11 @@
         "assignedOn": "2021-10-5",
         "reviewedOn": "2021-10-21",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "101",
+        "book": {
+          "_id": "201",
+          "title": "The Gardener's universe",
+          "categories": ["Photography", "Art", "Nature"]
+        },
         "review": {
           "creativity": 5,
           "topic": 5,
@@ -34,7 +38,11 @@
         "assignedOn": "2022-1-5",
         "reviewedOn": "2022-1-6",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "102",
+        "book": {
+          "_id": "202",
+          "title": "Harvey Holds His Own",
+          "categories": ["Photography", "Art", "Nature", "First Book"]
+        },
         "review": {
           "creativity": 5,
           "topic": 5,
@@ -48,7 +56,11 @@
         "assignedOn": "2022-1-5",
         "reviewedOn": "2022-1-6",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "103",
+        "book": {
+          "_id": "203",
+          "title": "The Nighthawk’s Harmonica: A Montana Roundup",
+          "categories": ["Photography", "Art", "Nature", "Woman Writer"]
+        },
         "review": {
           "creativity": 5,
           "topic": 5,
@@ -75,7 +87,11 @@
         "assignedOn": "2021-10-5",
         "reviewedOn": "2021-10-21",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "2003",
+        "book": {
+          "_id": "dfgyhs",
+          "title": "Howl: A look at the Big Bad Wolf",
+          "categories": ["Nature", "Children", "Art"]
+        },
         "review": {
           "creativity": 4,
           "topic": 4,
@@ -89,7 +105,11 @@
         "assignedOn": "2022-1-5",
         "reviewedOn": "2022-1-6",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "102",
+        "book": {
+          "_id": "202",
+          "title": "Harvey Holds His Own",
+          "categories": ["Photography", "Art", "Nature", "First Book"]
+        },
         "review": {
           "creativity": 4,
           "topic": 4,
@@ -103,7 +123,11 @@
         "assignedOn": "2022-1-5",
         "reviewedOn": "2022-1-6",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "103",
+        "book": {
+          "_id": "203",
+          "title": "The Nighthawk’s Harmonica: A Montana Roundup",
+          "categories": ["Photography", "Art", "Nature", "Woman Writer"]
+        },
         "review": {
           "creativity": 4,
           "topic": 4,
@@ -137,7 +161,11 @@
         "assignedOn": "2021-10-3",
         "reviewedOn": "2021-10-22",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "2001",
+        "book": {
+          "_id": "2001",
+          "title": "The Historians",
+          "categories": ["Woman Writer", "Fiction", "Poetry", "Nature"]
+        },
         "review": {
           "creativity": 2,
           "topic": 2,
@@ -151,7 +179,11 @@
         "assignedOn": "2021-10-3",
         "reviewedOn": "2021-10-22",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "2002",
+        "book": {
+          "_id": "2001",
+          "title": "Second Wind ",
+          "categories": ["Woman Writer", "Nature", "Children", "Poetry"]
+        },
         "review": {
           "creativity": 2,
           "topic": 2,
@@ -165,7 +197,17 @@
         "assignedOn": "2021-10-5",
         "reviewedOn": "2021-10-22",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "2003",
+        "book": {
+          "_id": "2001",
+          "title": "Forever Neverland ",
+          "categories": [
+            "Big Sky",
+            "Woman Writer",
+            "Nature",
+            "Photography",
+            "Children"
+          ]
+        },
         "review": {
           "creativity": 2,
           "topic": 2,
@@ -179,7 +221,11 @@
         "assignedOn": "2022-1-5",
         "reviewedOn": "2022-1-6",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "102",
+        "book": {
+          "_id": "202",
+          "title": "Harvey Holds His Own",
+          "categories": ["Photography", "Art", "Nature", "First Book"]
+        },
         "review": {
           "creativity": 2,
           "topic": 2,
@@ -193,7 +239,11 @@
         "assignedOn": "2022-1-5",
         "reviewedOn": "2022-1-6",
         "event": { "_id": "as3dfsh", "name": "High Plains books" },
-        "book": "103",
+        "book": {
+          "_id": "203",
+          "title": "The Nighthawk’s Harmonica: A Montana Roundup",
+          "categories": ["Photography", "Art", "Nature", "Woman Writer"]
+        },
         "review": {
           "creativity": 1,
           "topic": 1,

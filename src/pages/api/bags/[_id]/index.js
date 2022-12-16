@@ -1,13 +1,14 @@
-import dbPromise from '@/modules/mongodb'
-import { ObjectId } from 'mongodb'
-import connect from 'next-connect'
+import dbPromise from "@/modules/mongodb"
+import { ObjectId } from "mongodb"
+import connect from "next-connect"
 
 const handler = connect()
 
 async function saveBag(req, res) {
   const { _id, name, category, books } = JSON.parse(req.body)
+
   const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection('bags')
+  const collection = await dbConnection.db().collection("bags")
 
   const dbRes = await collection.updateOne(
     { _id: ObjectId(_id) },
@@ -22,7 +23,7 @@ handler.patch((req, res) => saveBag(req, res))
 handler.delete(async (req, res) => {
   const { _id, name, category, books } = JSON.parse(req.body)
   const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection('bags')
+  const collection = await dbConnection.db().collection("bags")
 
   await collection.deleteOne({ _id: ObjectId(_id) })
 
