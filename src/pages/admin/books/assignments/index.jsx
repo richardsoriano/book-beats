@@ -1,30 +1,31 @@
-import AdminBooksAssignments from '@/features/admin/books/assignments'
-import readers from '@/data/readers'
-
+import AdminBooksAssignments from "@/features/admin/books/assignments"
+import readers from "@/data/readers"
+import books from "@/data/books"
 export default function AdminBooksAssignmentsPage({ bookAssignments }) {
   return <AdminBooksAssignments bookAssignments={bookAssignments} />
 }
 
-function aggregateBookAssignments(readers) {
-  const books = readers
-    .flatMap((reader) => reader.assignments)
-    .flatMap((assignment) => assignment.book)
-    .reduce((acc, book) => {
-      return acc.map((book) => book._id).includes(book._id)
-        ? acc
-        : [...acc, { ...book, round: 1 }]
-    }, [])
-
+function aggregateBookAssignments(readers, books) {
+  // const books = readers
+  //   .flatMap((reader) => reader.assignments)
+  //   .flatMap((assignment) => assignment.book)
+  //   .reduce((acc, book) => {
+  //     return acc.map((book) => book._id).includes(book._id)
+  //       ? acc
+  //       : [...acc, { ...book, round: 1 }]
+  //   }, [])
+  // const bookIds = ["101", "102", "103", "2001", "2002"]
+  // bookIds.map((bookId) => {
+  //   books.filter((book) => book._id === bookId)
+  // })
+  // console.log("books:", books)
   return books.reduce((acc, book) => {
     const assigned = readers.flatMap((reader) =>
-      reader.assignments.filter(
-        (assignment) => assignment.book._id === book._id
-      )
+      reader.assignments.filter((assignment) => assignment.book === book._id)
     )
     const reviewed = readers.flatMap((reader) =>
       reader.assignments.filter(
-        (assignment) =>
-          assignment.book._id === book._id && assignment.reviewedOn
+        (assignment) => assignment.book === book._id && assignment.reviewedOn
       )
     )
 
@@ -35,7 +36,7 @@ function aggregateBookAssignments(readers) {
         assignedCount: assigned.length,
         reviewedCount: reviewed.length,
         status:
-          assigned.length === reviewed.length ? 'Completed' : 'In progress',
+          assigned.length === reviewed.length ? "Completed" : "In progress",
       },
     ]
   }, [])
@@ -43,7 +44,7 @@ function aggregateBookAssignments(readers) {
 export function getServerSideProps() {
   return {
     props: {
-      bookAssignments: aggregateBookAssignments(readers),
+      bookAssignments: aggregateBookAssignments(readers, books),
     },
   }
 }

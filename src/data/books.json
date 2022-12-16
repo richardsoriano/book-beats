@@ -1,5 +1,26 @@
 [
   {
+    "_id": "101",
+    "title": "Gardner's Office",
+    "categories": ["First Book", "Art & Photography"]
+  },
+  {
+    "_id": "102",
+    "title": "Harvey how to get sober in 30 days",
+    "categories": ["Childrens", "Fiction"]
+  },
+  {
+    "_id": "103",
+    "title": "Nighthawks in MiddleEarth",
+    "categories": ["Fiction", "First Book", "Childrens"]
+  },
+  {
+    "_id": "104",
+    "title": "Colleen: The Witch Trials",
+    "categories": ["Fiction", "First Book", "Childrens"]
+  },
+
+  {
     "_id": "2001",
     "title": "Dark Matters",
     "categories": ["First Book", "Art & Photography"]

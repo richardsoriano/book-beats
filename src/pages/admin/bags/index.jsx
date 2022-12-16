@@ -1,8 +1,8 @@
-import dbPromise, { jsonify } from '@/modules/mongodb'
-import AdminBags from '@/features/admin/bags'
-import books from '@/data/books'
-import readers from '@/data/readers'
-
+import dbPromise, { jsonify } from "@/modules/mongodb"
+import AdminBags from "@/features/admin/bags"
+import books from "@/data/books"
+import readers from "@/data/readers"
+import mybags from "@/data/bags"
 export default function AdminBagsPage({ bags, books, readerAssignments }) {
   return (
     <AdminBags
@@ -13,8 +13,19 @@ export default function AdminBagsPage({ bags, books, readerAssignments }) {
   )
 }
 
-function aggregateBags(bags) {
-  return bags.reduce((acc, bag) => {
+function aggregateBags(bags, mybags) {
+  // console.log("jsonify", bags)
+  console.log("mybags", mybags)
+
+  return mybags.reduce((acc, bag) => {
+    // bag.books.map(
+    //   (book, i) =>
+    //     book ===
+    //     books.filter((_book) => {
+    //       _book._id === book ? book.title : null
+    //     })
+    // )
+    // console.log("bag books array", bag.books)
     return [
       ...acc,
       {
@@ -42,14 +53,16 @@ function aggregateReaderAssignments(assignments) {
     categories: assignment.preferences.categories,
   }))
 }
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps() {
   const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection('bags')
+  const collection = await dbConnection.db().collection("bags")
   const bags = await collection.find({}).toArray()
-
+  // console.log("bags", bags)
+  // bags: aggregateBags(jsonify(bags)),
+  // console.log("mybags", mybags)
   return {
     props: {
-      bags: aggregateBags(jsonify(bags)),
+      bags: aggregateBags(jsonify(bags), mybags),
       books,
       readerAssignments: aggregateReaderAssignments(readers),
     },
