@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react'
-import useClickOutside from 'hooks/use-click-outside'
-import { CheckCircleIcon } from '@heroicons/react/solid'
+import { useState, useRef } from "react"
+import useClickOutside from "hooks/use-click-outside"
+import { CheckCircleIcon } from "@heroicons/react/solid"
 
 export default function MultiSelectField({
   label,
@@ -15,7 +15,7 @@ export default function MultiSelectField({
   useClickOutside(ref, () => setOpen(false))
 
   return (
-    <div className='relative w-full' ref={ref}>
+    <div className="relative w-full" ref={ref}>
       {label && (
         <label
           onClick={() => {
@@ -27,21 +27,21 @@ export default function MultiSelectField({
       )}
 
       <div
-        className='border p-2 w-full'
+        className="w-full p-2 border"
         onClick={() => setOpen((prev) => !prev)}
       >
-        {value.map((v) => renderOption(v)).join(', ')}
+        {value.map((v) => renderOption(v)).join(", ")}
         &nbsp;
       </div>
 
       <div
         className={`border p-2 w-full mt-1 absolute  ${
-          open ? 'block' : 'hidden'
+          open ? "block" : "hidden"
         }`}
       >
-        {options.map((option) => (
+        {options.map((option, i) => (
           <div
-            className='bg-white flex items-center space-x-1 '
+            className="flex items-center space-x-1 bg-white "
             onClick={() => {
               onChange(
                 value.includes(option)
@@ -49,12 +49,13 @@ export default function MultiSelectField({
                   : [...value, option]
               )
             }}
+            key={i}
           >
-            <div className=' w-5'>
+            <div className="w-5 ">
               {value.includes(option) ? (
-                <CheckCircleIcon className='w-4 h-4 text-green-500' />
+                <CheckCircleIcon className="w-4 h-4 text-green-500" />
               ) : (
-                ''
+                ""
               )}
             </div>
             <div>{renderOption(option)}</div>
@@ -86,7 +87,7 @@ export default function MultiSelectField({
 //       {label && <label onClick={() => setOpen(true)}>{label}</label>}
 //       <div ref={ref} className='w-full'>
 //         <div
-//           className='border p-2 w-full'
+//           className='w-full p-2 border'
 //           onClick={() => setOpen((prev) => !prev)}
 //         >
 //           {value.map((v) => renderOption(v)).join(',')} &nbsp;
@@ -98,7 +99,7 @@ export default function MultiSelectField({
 //         >
 //           {options.map((option) => (
 //             <div
-//               className='bg-white p-2 space-x-2 items-center flex'
+//               className='flex items-center p-2 space-x-2 bg-white'
 //               onClick={() =>
 //                 onChange(
 //                   value.includes(option)

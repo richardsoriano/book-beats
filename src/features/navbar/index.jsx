@@ -27,9 +27,14 @@ export default function NavBar({}) {
               </div>
               {/* primary nav --> */}
               <div className="items-center hidden space-x-1 md:flex">
-                <Link href="/admin/books/assignments">
+                <Link href="/admin/books/list">
                   <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
                     Books
+                  </a>
+                </Link>
+                <Link href="/admin/books/assignments">
+                  <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
+                    Assignments
                   </a>
                 </Link>
                 <Link href="/admin/bags">
@@ -39,7 +44,7 @@ export default function NavBar({}) {
                 </Link>
                 <Link href="/admin/readers/invitees">
                   <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
-                    Volunteers
+                    Readers
                   </a>
                 </Link>
                 <Link href="/admin/bags/judges">
