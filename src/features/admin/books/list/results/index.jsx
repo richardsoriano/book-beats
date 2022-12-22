@@ -90,7 +90,6 @@ export default function BookListResults({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Book</h1>
       <Button onClick={() => setSelectedBook(newBook)}>New Book</Button>
       <Table
         columns={[
@@ -103,9 +102,9 @@ export default function BookListResults({
           { heading: "BigSkyAward", sortable: "bigskyaward" },
           { heading: "ISBN", sortable: "isbn" },
           { heading: "NomBy", sortable: "nominatedby" },
-          { heading: "Pub", sortable: "publisher" },
-          { heading: "Add1", sortable: "paddress1" },
-          { heading: "Add2", sortable: "paddress2" },
+          { heading: "Publisher", sortable: "publisher" },
+          { heading: "Address", sortable: "paddress1" },
+          { heading: "Address 2", sortable: "paddress2" },
           { heading: "City", sortable: "pcity" },
           { heading: "State", sortable: "pstate" },
           { heading: "Zip", sortable: "pzip" },
@@ -119,6 +118,7 @@ export default function BookListResults({
           { heading: "Zip", sortable: "azip" },
           { heading: "Country", sortable: "acountry" },
           { heading: "CopyIDs", sortable: "copyIds" },
+          { heading: "X", sortable: " " },
         ]}
         rows={filter(
           search(_books, query),
@@ -128,11 +128,13 @@ export default function BookListResults({
         )}
         renderRow={(book, i) => {
           const tdProps = {
-            className: `${i % 2 !== 0 ? "bg-blue-100" : ""} p-2`,
+            key: { i },
+            className: `${i % 2 !== 0 ? "bg-blue-100" : ""} px-6 py-4 p-2`,
             onClick: () => setSelectedBook(book),
           }
           const tdDel = {
-            className: `${i % 2 !== 0 ? "bg-blue-100" : ""} p-2`,
+            key: { i },
+            className: `${i % 2 !== 0 ? "bg-blue-100" : ""}  px-6 py-4 p-2`,
             onClick: () => deleteBook(book),
           }
 

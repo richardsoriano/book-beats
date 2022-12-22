@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { PencilIcon, TrashIcon } from "@heroicons/react/solid"
 
-// import { PrimaryButton } from '@/ui/buttons'
 import Button from "@/ui/buttons"
 import ConfirmModal from "./modals/confirm"
 import EditModal from "./modals/edit"
