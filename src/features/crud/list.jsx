@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { PencilIcon, TrashIcon } from '@heroicons/react/solid'
+import { useState } from "react"
+import { PencilIcon, TrashIcon } from "@heroicons/react/solid"
 
-import { PrimaryButton } from '@/ui/buttons'
-
-import ConfirmModal from './modals/confirm'
-import EditModal from './modals/edit'
+// import { PrimaryButton } from '@/ui/buttons'
+import Button from "@/ui/buttons"
+import ConfirmModal from "./modals/confirm"
+import EditModal from "./modals/edit"
 
 export default function CrudList({
   collectionName,
@@ -14,7 +14,7 @@ export default function CrudList({
   values = [],
 }) {
   const initialProps = Object.keys(columns).reduce((acc, column) => {
-    acc[column] = ''
+    acc[column] = ""
     return acc
   }, {})
 
@@ -26,7 +26,7 @@ export default function CrudList({
 
   async function deleteObject(row) {
     const res = await fetch(`/api/resource/${collectionName}/${row._id}`, {
-      method: 'delete',
+      method: "delete",
     })
     const json = await res.json()
     setRows((prev) => prev.filter((_row) => _row._id !== row._id))
@@ -35,17 +35,17 @@ export default function CrudList({
 
   function getLabel(row, column) {
     const cell = row[column]
-    if (cell === undefined) return ''
+    if (cell === undefined) return ""
 
     console.dir({ row, column, cell: row[column] })
 
     switch (columns[column].control) {
-      case 'select':
+      case "select":
         return cell.label
-      case 'array':
-        return cell.join(' ')
-      case 'reader':
-        return [cell.name, `(${cell.email})`].join(' ')
+      case "array":
+        return cell.join(" ")
+      case "reader":
+        return [cell.name, `(${cell.email})`].join(" ")
 
       default:
         return cell
@@ -56,9 +56,9 @@ export default function CrudList({
     const body = JSON.stringify({ ...row, ...values })
 
     const res = await fetch(
-      `/api/resource/${collectionName}/${row._id ? row._id : ''}`,
+      `/api/resource/${collectionName}/${row._id ? row._id : ""}`,
       {
-        method: row._id ? 'put' : 'post',
+        method: row._id ? "put" : "post",
         body,
       }
     )
@@ -75,23 +75,23 @@ export default function CrudList({
 
   function tdClassName(row) {
     return `cursor-pointer border-b p-2 text-left ${
-      selectedRow?._id === row._id ? 'bg-blue-500 text-white' : ''
+      selectedRow?._id === row._id ? "bg-blue-500 text-white" : ""
     }`
   }
 
   function thClassName() {
-    return 'border-b p-2 text-left text-gray-800 bg-black-50'
+    return "border-b p-2 text-left text-gray-800 bg-black-50"
   }
 
   return (
     <>
-      <div className='flex flex-row-reverse w-full my-2'>
-        <PrimaryButton onClick={() => setShowEditModal(true)}>
+      <div className="flex flex-row-reverse w-full my-2">
+        <Button onClick={() => setShowEditModal(true)}>
           Create new {resourceName}
-        </PrimaryButton>
+        </Button>
       </div>
 
-      <table className='w-full p-2 border'>
+      <table className="w-full p-2 border">
         <thead>
           <tr>
             {Object.keys(columns).map((column) => (
@@ -102,7 +102,7 @@ export default function CrudList({
         </thead>
         <tbody>
           {_rows.map((row, i) => (
-            <tr className='even:bg-blue-50 hover:bg-blue-500 hover:text-white'>
+            <tr className="even:bg-blue-50 hover:bg-blue-500 hover:text-white">
               {Object.keys(columns).map((column) => (
                 <td
                   onClick={() => setSelectedRow(row)}
@@ -117,16 +117,16 @@ export default function CrudList({
                 onClick={() => setSelectedRow(row)}
               >
                 {selectedRow?._id === row._id && (
-                  <div className='flex items-center justify-end space-x-2'>
+                  <div className="flex items-center justify-end space-x-2">
                     <PencilIcon
-                      className='w-5 h-5'
+                      className="w-5 h-5"
                       onClick={() => {
                         setEditRowValues(row)
                         setShowEditModal(true)
                       }}
                     />
                     <TrashIcon
-                      className='w-5 h-5'
+                      className="w-5 h-5"
                       onClick={() => setShowConfirmModal(true)}
                     />
                   </div>

@@ -1,9 +1,9 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid"
 
 export default function SortableColumn({
   children,
   className,
-  sortableDirection = 'asc',
+  sortableDirection = "asc",
   setSort = () => {},
   sort = false,
 }) {
@@ -11,13 +11,13 @@ export default function SortableColumn({
     <th onClick={setSort}>
       <div
         className={`${className} ${
-          sort ? 'underline' : ''
+          sort ? "underline" : ""
         } flex space-x-1 items-center`}
       >
         <div>{children}</div>
-        <div className='w-4'>
+        <div className="w-4">
           {sort &&
-            (sortableDirection === 'asc' ? (
+            (sortableDirection === "asc" ? (
               <ChevronUpIcon />
             ) : (
               <ChevronDownIcon />
