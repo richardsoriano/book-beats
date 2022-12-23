@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { search, filter } from './helpers'
-import SortableColumn from './sortable-column'
-
+import { useState } from "react"
+import Table from "ui/table"
+import { search, filter } from "./helpers"
+import { XIcon } from "@heroicons/react/solid"
 export default function BookAssignmentResults({
   bookAssignments,
   query,
@@ -9,73 +9,44 @@ export default function BookAssignmentResults({
   filteredCategories,
   statuses,
 }) {
-  const [sortableColumn, setSortableColumn] = useState(undefined)
-  const [sortableDirection, setSortableDirection] = useState(undefined)
-
-  const thClassNames = 'text-left font-bold border-b-2'
-  const columns = [
-    { heading: 'Title', sortColumn: 'title' },
-    { heading: 'Round', sortColumn: 'round' },
-    { heading: 'Categories', sortColumn: 'categories' },
-    { heading: 'Assigned', sortColumn: 'assignedCount' },
-    { heading: 'Completed', sortColumn: 'reviewedCount' },
-    { heading: 'Status', sortColumn: 'status' },
-  ]
-  useEffect((sortableColumn) => {
-    if (!sortableColumn) return
-  }, [])
-
-  function sort(assignments) {
-    if (!sortableColumn) return assignments
-
-    return assignments.sort((a, b) => {
-      if (a[sortableColumn] > b[sortableColumn])
-        return sortableDirection === 'asc' ? 1 : -1
-      if (a[sortableColumn] < b[sortableColumn])
-        return sortableDirection === 'desc' ? 1 : -1
-      return 0
-    })
-  }
   return (
-    <table cellSpacing={0} cellPadding={0} className='w-full table-auto'>
-      <thead>
-        <tr>
-          {columns.map((col) => (
-            <SortableColumn
-              className={thClassNames}
-              sort={sortableColumn === col.sortColumn}
-              setSort={() => {
-                setSortableColumn(col.sortColumn)
-                setSortableDirection((prev) =>
-                  prev === 'asc' ? 'desc' : 'asc'
-                )
-              }}
-              sortableDirection={sortableDirection}
-            >
-              {col.heading}
-            </SortableColumn>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {sort(
-          filter(
-            search(bookAssignments, query),
-            filteredStatus,
-            filteredCategories,
-            statuses
-          )
-        ).map((bookAssignment) => (
-          <tr>
-            <td>{bookAssignment.title}</td>
-            <td>{bookAssignment.round}</td>
-            <td>{bookAssignment.categories.join(',')}</td>
-            <td>{bookAssignment.assignedCount}</td>
-            <td>{bookAssignment.reviewedCount}</td>
-            <td>{bookAssignment.status} </td>
+    <Table
+      columns={[
+        { heading: "Title", sortable: "title" },
+        { heading: "Round", sortable: "round" },
+        { heading: "Categories", sortable: "categories" },
+        { heading: "Assigned", sortable: "assignedCount" },
+        { heading: "Completed", sortable: "reviewedCount" },
+        { heading: "Status", sortable: "status" },
+      ]}
+      rows={filter(
+        search(bookAssignments, query),
+        filteredStatus,
+        filteredCategories,
+        statuses
+      )}
+      renderRow={(bookAssignment, i) => {
+        const tdProps = {
+          className: `${i % 2 !== 0 ? "bg-blue-100" : ""} px-6 py-4 p-2`,
+          onClick: () => setSelectedBook(book),
+        }
+        const tdDel = {
+          key: { i },
+          className: `${i % 2 !== 0 ? "bg-blue-100" : ""}  px-6 py-4 p-2`,
+          onClick: () => deleteBook(book),
+        }
+        return (
+          <tr key={bookAssignment._id}>
+            <td {...tdProps}>{bookAssignment.title}</td>
+            <td {...tdProps}>{bookAssignment.round}</td>
+            <td {...tdProps}>{bookAssignment.categories.join(", ")}</td>
+            <td {...tdProps}>{bookAssignment.assignedCount}</td>
+            <td {...tdProps}>{bookAssignment.reviewedCount}</td>
+            <td {...tdProps}>{bookAssignment.status}</td>
+            <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        )
+      }}
+    />
   )
 }

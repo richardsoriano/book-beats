@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { uniq } from "@/modules/array"
+
 import Filters from "./filters"
 import BookAssignmentResults from "features/admin/books/assignments/results"
 import categories from "@/data/categories"
@@ -7,19 +7,13 @@ import categories from "@/data/categories"
 const statuses = ["Any", "Completed", "In progress"]
 
 export default function AdminBooksAssignments({ bookAssignments = [] }) {
-  // const categories = uniq(
-  //   bookAssignments.reduce((acc, assignment) => {
-  //     return [...acc, ...assignment.categories]
-  //   }, [])
-  // )
-
   const [query, setQuery] = useState("")
   const [filteredStatus, setFilteredStatus] = useState(statuses[0])
   const [filteredCategories, setFilteredCategories] = useState([])
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Books</h1>
+      <h1 className="text-2xl font-bold">Assignments</h1>
       <Filters
         setFilteredStatus={setFilteredStatus}
         filteredStatus={filteredStatus}
