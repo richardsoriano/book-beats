@@ -1,5 +1,5 @@
 import Modal from "@/ui/modal"
-import { PrimaryButton, LinkButton } from "@/ui/buttons"
+import Button from "@/ui/buttons"
 
 import TextField from "@/ui/text-field"
 import Dropdown from "@/ui/dropdown"
@@ -111,11 +111,11 @@ export default function EditModal({
           ))}
       </div>
 
-      <PrimaryButton block onClick={() => onSave(values)}>
+      <Button block onClick={() => onSave(values)}>
         Save
-      </PrimaryButton>
+      </Button>
       <div className="px-1 py-2">
-        <LinkButton onClick={close}>Cancel and close</LinkButton>
+        <Button onClick={close}>Cancel and close</Button>
       </div>
     </Modal>
   )
