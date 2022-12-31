@@ -3,6 +3,7 @@ import Button from "@/ui/buttons"
 import TextField from "ui/text-field"
 import AttachCategories from "./attachCategories"
 import AttachCopyIds from "./attachCopyIds"
+
 export default function BookForm({
   books,
   categories,
@@ -20,6 +21,9 @@ export default function BookForm({
     let newBook
     console.log("book,", book)
     const res = await fetch(`/api/books/${bookId}`, {
+      header: {
+        "Content-Type": "application/json",
+      },
       method: bookId ? "PATCH" : "POST",
       body: JSON.stringify(book),
     })
@@ -28,9 +32,10 @@ export default function BookForm({
         // enter you logic when the fetch is successful
         newBook = {
           _id: data._id,
+          entryid: data.entryid,
           title: data.title,
-          auth1: data.auth1,
-          auth2: data.auth2,
+          author1: data.author1,
+          author2: data.author2,
           yearpublished: data.yearpublished,
           categories: data.categories,
           bigskyaward: data.bigskyaward,
@@ -67,19 +72,24 @@ export default function BookForm({
       <div className="py-6">
         <h2 className="text-4xl text-blue-400">Edit Book</h2>
         <TextField
+          label="Entry ID"
+          value={book.entryid}
+          onChange={(entryid) => setBook((prev) => ({ ...prev, entryid }))}
+        />
+        <TextField
           label="Title"
           value={book.title}
           onChange={(title) => setBook((prev) => ({ ...prev, title }))}
         />
         <TextField
           label="Author 1"
-          value={book.auth1}
-          onChange={(auth1) => setBook((prev) => ({ ...prev, auth1 }))}
+          value={book.author1}
+          onChange={(author1) => setBook((prev) => ({ ...prev, author1 }))}
         />
         <TextField
           label="Author 2"
-          value={book.auth2}
-          onChange={(auth2) => setBook((prev) => ({ ...prev, auth2 }))}
+          value={book.author2}
+          onChange={(author2) => setBook((prev) => ({ ...prev, author2 }))}
         />
         <TextField
           label="Year Published"

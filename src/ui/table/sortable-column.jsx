@@ -15,7 +15,7 @@ export default function SortableColumn({
         } flex space-x-1 items-center`}
       >
         <div>{children}</div>
-        <div className="w-4">
+        <div className="w-6">
           {sort &&
             (sortableDirection === "asc" ? (
               <ChevronUpIcon />

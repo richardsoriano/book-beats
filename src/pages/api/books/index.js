@@ -3,9 +3,10 @@ import dbPromise from "@/modules/mongodb"
 export default async function CreateBook(req, res) {
   console.log("Create Book")
   let {
+    entryid,
     title,
-    auth1,
-    auth2,
+    author1,
+    author2,
     yearpublished,
     categories,
     bigskyaward,
@@ -34,9 +35,10 @@ export default async function CreateBook(req, res) {
   copyIds = newCopyIds
   console.log(
     "books",
+    entryid,
     title,
-    auth1,
-    auth2,
+    author1,
+    author2,
     yearpublished,
     categories,
     bigskyaward,
@@ -62,9 +64,10 @@ export default async function CreateBook(req, res) {
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection("books")
   const { insertedId } = await collection.insertOne({
+    entryid,
     title,
-    auth1,
-    auth2,
+    author1,
+    author2,
     yearpublished,
     categories,
     bigskyaward,
@@ -90,9 +93,10 @@ export default async function CreateBook(req, res) {
 
   res.status(201).json({
     _id: insertedId.toString(),
+    entryid,
     title,
-    auth1,
-    auth2,
+    author1,
+    author2,
     yearpublished,
     categories,
     bigskyaward,

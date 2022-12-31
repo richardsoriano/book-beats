@@ -9,9 +9,10 @@ import { XIcon } from "@heroicons/react/solid"
 
 const newBook = {
   _id: "",
+  entryid: "",
   title: "",
-  auth1: "",
-  auth2: "",
+  author1: "",
+  author2: "",
   yearpublished: "",
   categories: [],
   bigskyaward: "",
@@ -55,9 +56,10 @@ export default function BookListResults({
     console.log("book to delete", bookToDelete)
     const newBook = {
       _id: bookToDelete._id,
+      entryid: "",
       title: "",
-      auth1: "",
-      auth2: "",
+      author1: "",
+      author2: "",
       yearpublished: "",
       categories: [],
       bigskyaward: "",
@@ -88,15 +90,16 @@ export default function BookListResults({
     setBooks((prev) => prev.filter((_book) => _book._id !== bookToDelete._id))
   }
 
+  console.log("Books", bookList)
   return (
     <div>
       <Button onClick={() => setSelectedBook(newBook)}>New Book</Button>
       <Table
         columns={[
-          { heading: "ID", sortable: "_id" },
+          { heading: "EntryID", sortable: "entryid" },
           { heading: "Title", sortable: "title" },
-          { heading: "Author 1", sortable: "auth1" },
-          { heading: "Author 2", sortable: "auth2" },
+          { heading: "Author 1", sortable: "author1" },
+          { heading: "Author 2", sortable: "author2" },
           { heading: "Published", sortable: "yearpublished" },
           { heading: "Categories", sortable: "categories" },
           { heading: "BigSkyAward", sortable: "bigskyaward" },
@@ -118,7 +121,7 @@ export default function BookListResults({
           { heading: "Zip", sortable: "azip" },
           { heading: "Country", sortable: "acountry" },
           { heading: "CopyIDs", sortable: "copyIds" },
-          { heading: "X", sortable: " " },
+          { heading: "X", sortable: false },
         ]}
         rows={filter(
           search(_books, query),
@@ -128,22 +131,20 @@ export default function BookListResults({
         )}
         renderRow={(book, i) => {
           const tdProps = {
-            key: { i },
-            className: `${i % 2 !== 0 ? "bg-blue-100" : ""} px-6 py-4 p-2`,
+            className: `${i % 2 !== 0 ? "bg-blue-100" : ""} px-2 py-4 p-2`,
             onClick: () => setSelectedBook(book),
           }
           const tdDel = {
-            key: { i },
-            className: `${i % 2 !== 0 ? "bg-blue-100" : ""}  px-6 py-4 p-2`,
+            className: `${i % 2 !== 0 ? "bg-blue-100" : ""}  px-2 py-4 p-2`,
             onClick: () => deleteBook(book),
           }
 
           return (
             <tr key={book._id}>
-              <td {...tdProps}>{book._id}</td>
+              <td {...tdProps}>{book.entryid}</td>
               <td {...tdProps}>{book.title}</td>
-              <td {...tdProps}>{book.auth1}</td>
-              <td {...tdProps}>{book.auth2}</td>
+              <td {...tdProps}>{book.author1}</td>
+              <td {...tdProps}>{book.author2}</td>
               <td {...tdProps}>{book.yearpublished}</td>
               <td {...tdProps}>{book.categories.join(", ")}</td>
               <td {...tdProps}>{book.bigskyaward}</td>

@@ -1,6 +1,7 @@
 import AdminBooksAssignments from "@/features/admin/books/assignments"
 
 import dbPromise, { jsonify } from "@/modules/mongodb"
+
 export default function AdminBooksAssignmentsPage({ bookAssignments }) {
   return <AdminBooksAssignments bookAssignments={bookAssignments} />
 }

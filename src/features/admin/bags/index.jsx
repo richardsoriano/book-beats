@@ -67,8 +67,9 @@ export default function AdminBags({ bags, books, readerAssignments }) {
             className: `${i % 2 !== 0 ? "bg-blue-100" : ""} p-2`,
             onClick: () => deleteBag(bag),
           }
+
           return (
-            <tr>
+            <tr key={i}>
               <td {...tdProps}>{bag.name}</td>
               <td {...tdProps}>{bag.category}</td>
               <td {...tdProps}>{bag.numBooks}</td>
