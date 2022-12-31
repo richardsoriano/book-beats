@@ -52,9 +52,9 @@ export default function NavBar({}) {
                     Scores
                   </a>
                 </Link>
-                <Link href="/admin/readers/assignments">
+                <Link href="/admin/books/parser">
                   <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
-                    Assignments
+                    Import Books
                   </a>
                 </Link>
               </div>

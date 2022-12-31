@@ -6,7 +6,7 @@ export default function Table({ columns = [], rows = [], renderRow }) {
     columns.find((column) => column.sortable).sortable
   )
   const [sortableDirection, setSortableDirection] = useState("asc")
-  const thClassNames = "text-left font-bold border-b-2 px-6 py-4"
+  const thClassNames = "text-left font-bold border-b-2 px-2 py-4"
 
   useEffect((sortableColumn) => {
     if (!sortableColumn) return
@@ -62,7 +62,7 @@ export default function Table({ columns = [], rows = [], renderRow }) {
                 {column.heading}
               </SortableColumn>
             ) : (
-              <th className="px-6 py-4">{column.heading}</th>
+              <th className="px-2 py-4">{column.heading}</th>
             )
           )}
           <th className={thClassNames}></th>

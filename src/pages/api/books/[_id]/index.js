@@ -5,12 +5,12 @@ import connect from "next-connect"
 const handler = connect()
 
 async function saveBook(req, res) {
-  console.log("Update Book")
   let {
     _id,
+    entryid,
     title,
-    auth1,
-    auth2,
+    author1,
+    author2,
     yearpublished,
     categories,
     bigskyaward,
@@ -33,36 +33,6 @@ async function saveBook(req, res) {
     acountry,
     copyIds,
   } = JSON.parse(req.body)
-  const newCopyIds = copyIds.split(",")
-  copyIds = newCopyIds
-  console.log(
-    "updated",
-    _id,
-    title,
-    auth1,
-    auth2,
-    yearpublished,
-    categories,
-    bigskyaward,
-    isbn,
-    nominatedby,
-    publisher,
-    paddress1,
-    paddress2,
-    pcity,
-    pstate,
-    pzip,
-    pcountry,
-    pphone,
-    pemail,
-    aaddress1,
-    aaddress2,
-    acity,
-    astate,
-    azip,
-    acountry,
-    copyIds
-  )
 
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection("books")
@@ -70,9 +40,10 @@ async function saveBook(req, res) {
     { _id: ObjectId(_id) },
     {
       $set: {
+        entryid,
         title,
-        auth1,
-        auth2,
+        author1,
+        author2,
         yearpublished,
         categories,
         bigskyaward,
@@ -100,9 +71,10 @@ async function saveBook(req, res) {
 
   res.status(200).json({
     _id,
+    entryid,
     title,
-    auth1,
-    auth2,
+    author1,
+    author2,
     yearpublished,
     categories,
     bigskyaward,
