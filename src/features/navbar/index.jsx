@@ -42,16 +42,21 @@ export default function NavBar({}) {
                     Bags
                   </a>
                 </Link>
-                <Link href="/admin/readers/invitees">
+                <Link href="/admin/bags/parser">
+                  <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
+                    Bag Parser
+                  </a>
+                </Link>
+                {/* <Link href="/admin/readers/invitees">
                   <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
                     Readers
                   </a>
-                </Link>
-                <Link href="/admin/bags/judges">
+                </Link> */}
+                {/* <Link href="/admin/bags/judges">
                   <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
                     Scores
                   </a>
-                </Link>
+                </Link> */}
                 <Link href="/admin/books/parser">
                   <a className="px-3 py-5 text-gray-700 hover:text-gray-900">
                     Import Books
