@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Button from "@/ui/buttons"
-import CreateEmptyBags from "./steps/createemptybags"
-import FindUnfilledBags from "./steps/findunfilledbags"
-import AssignBagsToReaders from "./steps/assignbagstoreaders"
+import CreateEmptyBags from "./steps/createEmptyBags"
+import FindUnfilledBags from "./steps/findUnfilledBags"
+import AssignBagsToReaders from "./steps/assignBagsToReaders"
 // import SaveToDB from "@/features/admin/bags/parser/steps/savetodb"
 
 export default function BagParser({ categories, books, bags }) {
