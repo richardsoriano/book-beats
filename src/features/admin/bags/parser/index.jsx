@@ -34,22 +34,25 @@ export default function BagParser({ categories, books, bags }) {
   function SaveToDB() {
     console.log("Save to DB")
   }
-  console.log("categories", categories)
-  console.log("books", books)
-  console.log("bags", bags)
+  // console.log("categories", categories)
+  // console.log("books", books)
+  // console.log("bags", bags)
   return (
     <div>
       <h1 className="text-2xl font-bold">Bag Parser</h1>
 
       <ul>
-        {categories.map((category) => (
-          <li>
+        {categories.map((category, i) => (
+          <li key={i}>
             {category}
             <ul className="mb-4 space-x-2 ">
               {books.map(
-                (book) =>
+                (book, i) =>
                   book.categories.includes(category) && (
-                    <li className="font-bold"> {book.title}</li>
+                    <li key={i} className="font-bold">
+                      {" "}
+                      {book.title}
+                    </li>
                   )
               )}
             </ul>
@@ -58,8 +61,9 @@ export default function BagParser({ categories, books, bags }) {
       </ul>
 
       <ul className="flex p-6 mb-4 space-x-2">
-        {Object.keys(steps).map((step) => (
+        {Object.keys(steps).map((step, i) => (
           <li
+            key={i}
             className={`${
               steps[step].label === steps[currentStep].label ? "underline" : ""
             }`}
