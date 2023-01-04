@@ -7,14 +7,18 @@ import AssignBagsToReaders from "./steps/assignBagsToReaders"
 
 export default function BagParser({ categories, books, bags }) {
   const [currentStep, setCurrentStep] = useState(0)
+  const [bagsToBeProcessed, setBagsToBeProcessed] = useState(bags)
 
   const steps = [
-    {
-      component: (
-        <FindUnfilledBags categories={categories} books={books} bags={bags} />
-      ),
-      label: "Find Unfilled Bags",
-    },
+    // {
+    //   component: (
+    //     <FindUnfilledBags
+    //       bagsToBeProcessed={bagsToBeProcessed}
+    //       setBagsToBeProcessed={setBagsToBeProcessed}
+    //     />
+    //   ),
+    //   label: "Find Unfilled Bags",
+    // },
     {
       component: (
         <CreateEmptyBags categories={categories} books={books} bags={bags} />
@@ -40,7 +44,16 @@ export default function BagParser({ categories, books, bags }) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Bag Parser</h1>
-
+      <Button
+        onClick={() =>
+          setBagsToBeProcessed(
+            bagsToBeProcessed.filter((bags) => bags.books.length < 4)
+          )
+        }
+      >
+        Find Unfilled Bags
+      </Button>
+      <FindUnfilledBags bagsToBeProcessed={bagsToBeProcessed} />
       <ul>
         {categories.map((category, i) => (
           <li key={i}>
@@ -84,6 +97,9 @@ export default function BagParser({ categories, books, bags }) {
       ) : (
         <Button onClick={SaveToDB}>Save</Button>
       )}
+      {/* {bagsToBeProcessed.map((bag) => (
+        <div>{bag.name}</div>
+      ))} */}
     </div>
   )
 }

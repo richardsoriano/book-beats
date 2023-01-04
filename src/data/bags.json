@@ -34,7 +34,7 @@
   },
   {
     "_id": "2004",
-    "name": "I 101",
+    "name": "Ind 101",
     "books": ["2001", "2002"],
     "copyIds": ["3008", "3010"],
     "titles": ["Dark Matters", "Light Matters"],
