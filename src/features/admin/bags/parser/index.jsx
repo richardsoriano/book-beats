@@ -5,10 +5,13 @@ import FindUnfilledBags from "./steps/findUnfilledBags"
 import AssignBagsToReaders from "./steps/assignBagsToReaders"
 // import SaveToDB from "@/features/admin/bags/parser/steps/savetodb"
 
-export default function BagParser({ categories, books, bags }) {
+export default function BagParser({ categories, books, booksNoBags, bags }) {
   const [currentStep, setCurrentStep] = useState(0)
   const [bagsToBeProcessed, setBagsToBeProcessed] = useState(bags)
+  const [unBaggedBooks, setUnBaggedBooks] = useState([])
 
+  console.log("booksNoBags", booksNoBags)
+  console.log("books", books)
   const steps = [
     // {
     //   component: (
@@ -35,8 +38,41 @@ export default function BagParser({ categories, books, bags }) {
     },
   ]
 
+  function createListBooksUnBagged(books, bagsToBeProcessed) {
+    // console.log("bagsToBeProcessed", bagsToBeProcessed)
+    let booksUnBagged = []
+    for (let i = 0; i < books.length; i++) {
+      for (let j = 0; j < books[i].copyIds.length; j++) {
+        for (let k = 0; k < bagsToBeProcessed.length; k++) {
+          if (bagsToBeProcessed[k].copyIds.includes(books[i].copyIds[j])) {
+            // console.log("title", books[i].title)
+            // console.log("id", books[i]._id)
+            // console.log("copyId", books[i].copyIds[j])
+            booksUnBagged.push({
+              _bookId: books[i]._id,
+              title: books[i].title,
+              copyId: books[i].copyIds[j],
+            })
+          }
+        }
+      }
+    }
+    // console.log("booksUnBagged", booksUnBagged)
+    // books.map((book)=>{
+    //   book.copyIds.map((copyId)=>
+    //   // reduce???
+    //     // bags.map((bag)=>(
+    //     //    if (bag.copyIds.includes(copyId)){
+
+    //     //   }else{
+
+    //     //   }
+    //     // ))
+    //   )
+    // })
+  }
   function SaveToDB() {
-    console.log("Save to DB")
+    // console.log("Save to DB")
   }
   // console.log("categories", categories)
   // console.log("books", books)
@@ -54,6 +90,9 @@ export default function BagParser({ categories, books, bags }) {
         Find Unfilled Bags
       </Button>
       <FindUnfilledBags bagsToBeProcessed={bagsToBeProcessed} />
+      <Button onClick={() => createListBooksUnBagged(books, bagsToBeProcessed)}>
+        List Books unBagged
+      </Button>
       <ul>
         {categories.map((category, i) => (
           <li key={i}>

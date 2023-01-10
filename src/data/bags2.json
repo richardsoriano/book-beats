@@ -1,0 +1,45 @@
+[
+  {
+    "_id": "2001",
+    "name": "Fir 101",
+    "category": "First Book",
+    "books": ["2001", "104"],
+    "copyIds": ["3008", "3006"],
+    "titles": ["Dark Matters", "Colleen: The Witch Trials"],
+    "pickupStatus": "needs pickup",
+    "assigned": "Mark Martinez Tellez"
+  },
+  {
+    "_id": "2002",
+    "name": "Chi 101",
+    "books": ["102", "103"],
+    "copyIds": ["3005", "3007"],
+    "titles": [
+      "Harvey how to get sober in 30 days",
+      "Colleen: The Witch Trials"
+    ],
+    "category": "Childrens",
+    "pickupStatus": "picked up",
+    "assigned": "Mark Martinez Tellez"
+  },
+  {
+    "_id": "2003",
+    "name": "Wom 101",
+    "books": ["103", "101"],
+    "copyIds": ["3005", "3001"],
+    "titles": ["Nighthawks in MiddleEarth", "Gardner's Office"],
+    "category": "Woman Writer",
+    "pickupStatus": "needs pickup",
+    "assigned": "Richard Soriano"
+  },
+  {
+    "_id": "2004",
+    "name": "Ind 101",
+    "books": ["2001", "2002"],
+    "copyIds": ["3008", "3010"],
+    "titles": ["Dark Matters", "Light Matters"],
+    "category": "Indegenous Writer",
+    "pickupStatus": "needs pickup",
+    "assigned": "Holly Soriano"
+  }
+]
