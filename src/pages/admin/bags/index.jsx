@@ -57,9 +57,7 @@ export async function getServerSideProps() {
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection("bags")
   const bags = await collection.find({}).toArray()
-  // console.log("bags", bags)
-  // bags: aggregateBags(jsonify(bags)),
-  // console.log("mybags", mybags)
+
   return {
     props: {
       bags: aggregateBags(jsonify(bags), mybags),

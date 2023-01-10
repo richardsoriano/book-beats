@@ -10,6 +10,7 @@ export default function BookAssignmentResults({
   filteredCategories,
   statuses,
 }) {
+  console.log("book assignments", bookAssignments)
   return (
     <Table
       columns={[
@@ -39,7 +40,7 @@ export default function BookAssignmentResults({
           <tr key={i}>
             <td {...tdProps}>{bookAssignment.title}</td>
             <td {...tdProps}>{bookAssignment.round}</td>
-            <td {...tdProps}>{bookAssignment.categories.join(", ")}</td>
+            <td {...tdProps}>{bookAssignment.categories}</td>
             <td {...tdProps}>{bookAssignment.assignedCount}</td>
             <td {...tdProps}>{bookAssignment.reviewedCount}</td>
             <td {...tdProps}>{bookAssignment.status}</td>

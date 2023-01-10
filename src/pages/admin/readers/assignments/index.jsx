@@ -1,5 +1,5 @@
-import AdminBooksAssignments from '@/features/admin/books/assignments'
-import readers from '@/data/readers'
+import AdminBooksAssignments from "@/features/admin/books/assignments"
+import readers from "@/data/readers"
 
 export default function AdminBooksAssignmentsPage({ bookAssignments }) {
   return <AdminBooksAssignments bookAssignments={bookAssignments} />
@@ -35,7 +35,7 @@ function aggregateBookAssignments(readers) {
         assignedCount: assigned.length,
         reviewedCount: reviewed.length,
         status:
-          assigned.length === reviewed.length ? 'Completed' : 'In progress',
+          assigned.length === reviewed.length ? "Completed" : "In progress",
       },
     ]
   }, [])
