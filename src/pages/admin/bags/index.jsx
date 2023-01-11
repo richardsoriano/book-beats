@@ -15,7 +15,7 @@ export default function AdminBagsPage({ bags, books, readerAssignments }) {
 
 function aggregateBags(bags, mybags) {
   // console.log("jsonify", bags)
-  console.log("mybags", mybags)
+  // console.log("mybags", mybags)
 
   return mybags.reduce((acc, bag) => {
     // bag.books.map(
