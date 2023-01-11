@@ -3,6 +3,8 @@ import Button from "@/ui/buttons"
 import CreateEmptyBags from "./steps/createEmptyBags"
 import FindUnfilledBags from "./steps/findUnfilledBags"
 import AssignBagsToReaders from "./steps/assignBagsToReaders"
+import isBagAvailable from "./helper"
+
 // import SaveToDB from "@/features/admin/bags/parser/steps/savetodb"
 
 export default function BagParser({ categories, books, booksNoBags, bags }) {
@@ -10,8 +12,15 @@ export default function BagParser({ categories, books, booksNoBags, bags }) {
   const [bagsToBeProcessed, setBagsToBeProcessed] = useState(bags)
   const [unBaggedBooks, setUnBaggedBooks] = useState([])
 
-  console.log("booksNoBags", booksNoBags)
-  console.log("books", books)
+  for (let i = 0; i < booksNoBags.length; i++) {
+    for (let j = 0; j < booksNoBags[i].copyIds.length; j++) {
+      console.log(
+        "bag avail= ",
+        isBagAvailable(booksNoBags[i], booksNoBags[i].copyIds[j], bags)
+      )
+    }
+  }
+
   const steps = [
     // {
     //   component: (

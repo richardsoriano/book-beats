@@ -1,25 +1,42 @@
 [
   {
+    "_id": "2005",
+    "name": "Wom 102",
+    "books": ["201", "201", "3001"],
+    "copyIds": ["2003", "2003", "3005"],
+    "titles": ["Nighthawks in MiddleEarth", "Gardner's Office"],
+    "category": "Childrens",
+    "pickupStatus": "needs pickup",
+    "assigned": "Richard Soriano"
+  },
+  {
     "_id": "2001",
     "name": "Fir 101",
     "category": "First Book",
-    "books": ["2001", "104"],
-    "copyIds": ["3005", "3015"],
+    "books": ["101", "101", "101", "101"],
+    "copyIds": ["3003"],
     "titles": ["Dark Matters", "Colleen: The Witch Trials"],
     "pickupStatus": "needs pickup",
     "assigned": "Mark Martinez Tellez"
   },
   {
     "_id": "2002",
-    "name": "Chi 101",
-    "books": ["102", "103"],
-    "copyIds": ["3003", "3002", "3001"],
-    "titles": [
-      "Harvey how to get sober in 30 days",
-      "Colleen: The Witch Trials"
-    ],
-    "category": "Childrens",
-    "pickupStatus": "picked up",
+    "name": "Sec 201",
+    "category": "Woman Writer",
+    "books": ["103", "103", "103"],
+    "copyIds": ["3013", "3013"],
+    "titles": ["Dark Matters", "Colleen: The Witch Trials"],
+    "pickupStatus": "needs pickup",
     "assigned": "Mark Martinez Tellez"
+  },
+  {
+    "_id": "2003",
+    "name": "Wom 101",
+    "books": ["123", "122"],
+    "copyIds": [],
+    "titles": ["Nighthawks in MiddleEarth", "Gardner's Office"],
+    "category": "Childrens",
+    "pickupStatus": "needs pickup",
+    "assigned": "Richard Soriano"
   }
 ]
