@@ -32,8 +32,8 @@
   {
     "_id": "2003",
     "name": "Wom 101",
-    "books": ["123", "122"],
-    "copyIds": [],
+    "books": ["102", "122"],
+    "copyIds": ["2003", "2003"],
     "titles": ["Nighthawks in MiddleEarth", "Gardner's Office"],
     "category": "Childrens",
     "pickupStatus": "needs pickup",
