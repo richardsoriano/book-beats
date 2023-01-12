@@ -22,7 +22,7 @@ export default function BagParser({ categories, books, booksNoBags, bags }) {
       component: (
         <AddBooksToBags
           booksNoBags={booksNoBags}
-          bags={bags}
+          bags={_bags}
           setBags={setBags}
         />
       ),
@@ -47,8 +47,7 @@ export default function BagParser({ categories, books, booksNoBags, bags }) {
         <Button onClick={() => setCurrentStep(2)}>3 Add Books to Bags</Button>
         <Button onClick={() => SaveToDB()}>4 Save to DB</Button>
       </div>
-      <div>{currentStep}</div>
-      <h2>{steps[currentStep].label}</h2>
+
       <div>{steps[currentStep].component}</div>
     </div>
   )

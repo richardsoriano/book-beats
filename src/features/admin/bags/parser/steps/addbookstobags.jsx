@@ -1,11 +1,74 @@
+import { useState, useEffect } from "react"
+
 import Table from "ui/table"
-import isBagAvailable from "./helper"
+
+import { getBookCategoryExcluded, isBagAvailable } from "./helper"
 import Button from "ui/buttons"
 export default function AddBooksToBags({
   booksNoBags,
   bags,
   setBags = () => {},
 }) {
+  const [bagsNew, setBagsNew] = useState(0)
+  const [booksAvailable, setBooksAvailable] = useState(booksNoBags.length)
+  const [booksPlacedInBags, setBooksPlacedInBags] = useState(0)
+  const [isReady, setIsReady] = useState(true)
+
+  useEffect(
+    (isReady) => {
+      if (!isReady) return
+    },
+    [isReady]
+  )
+
+  function addBooktoBag(index, i, j) {
+    let newBagBooks = bags[index].books
+    let newBagTitles = bags[index].titles
+    let newBagCopyIds = bags[index].copyIds
+    let newBagName = bags[index].name
+    let newBagCategory = bags[index].category
+
+    let newBookTitle = booksNoBags[i].title
+    let newBookCopyIds = booksNoBags[i].copyIds[j]
+    let newBookId = booksNoBags[i]._id
+
+    newBagTitles.push(newBookTitle)
+    newBagCopyIds.push(newBookCopyIds)
+    newBagBooks.push(newBookId)
+
+    let tmpBag = {
+      name: newBagName,
+      category: newBagCategory,
+      books: newBagBooks,
+      titles: newBagTitles,
+      copyIds: newBagCopyIds,
+    }
+    setBooksPlacedInBags((prev) => prev + 1)
+    setBags((prev) => prev.filter((_bag) => _bag._id !== bags[index]._id))
+    setBags((prev) => [...prev, tmpBag])
+    setBooksPlacedInBags((prev) => prev + 1)
+  }
+  function createNewBag(i, j) {
+    let newBagCategory = getBookCategoryExcluded(booksNoBags[i])
+    let newBagName = `${newBagCategory}${Math.floor(Math.random() * 10000)}`
+    let newBag = {
+      name: newBagName,
+      category: newBagCategory,
+      books: [],
+      titles: [],
+      copyIds: [],
+    }
+    let newBookId = booksNoBags[i]._id
+    let newBookTitle = booksNoBags[i].title
+    let newBookCopyIds = booksNoBags[i].copyIds[j]
+
+    newBag.books.push(newBookId)
+    newBag.titles.push(newBookTitle)
+    newBag.copyIds.push(newBookCopyIds)
+    console.log("New Bag created ", newBag)
+    setBags((prev) => [...prev, newBag])
+    setBooksPlacedInBags((prev) => prev + 1)
+  }
   function handleAddBooks() {
     const newBag = {
       name: "",
@@ -13,49 +76,67 @@ export default function AddBooksToBags({
       titles: [],
       copyIds: [],
     }
-    console.log("handling books")
+    console.log("handling books", booksNoBags)
+    let index
     for (let i = 0; i < booksNoBags.length; i++) {
-      for (let j = 0; j < booksNoBags[i].copyIds.length; j++) {
-        let index = 0
-        index = isBagAvailable(booksNoBags[i], booksNoBags[i].copyIds[j], bags)
-        console.log("index= ", index)
-        if (index >= 0) {
-          console.log("Add Bag")
-          bags[index].titles.push(booksNoBags[i].title)
-          bags[index].books.push(booksNoBags[i]._id)
-          bags[index].copyIds.push(booksNoBags[i].copyIds[j])
-          console.log("new bags", bags)
-          // setBags((prev) => ({ ...prev, bags }))
-        } else {
-          // create new bags
-          // push new bag onto bags
-          // setBags (prev=>{...prev,bags={bags}})
-          // grab last bag name category +'random number'
-          const newName = "category + rando"
-          const newBag = {
-            name: { newName },
-            books: [booksNoBags[i].title],
-            titles: [booksNoBags[i]._id],
-            copyIds: [booksNoBags[i].copyIds[j]],
+      // for (let j = 0; j < booksNoBags[i].copyIds.length; j++) {
+
+      for (let j = 0; j < booksNoBags[i].categories.length; j++) {
+        console.log("cat", booksNoBags[i].categories[j])
+        for (let k = 0; k < 4; k++) {
+          let indexCopyId = j * 4 + k
+          index = isBagAvailable(
+            booksNoBags[i],
+            booksNoBags[i].copyIds[indexCopyId],
+            bags
+          )
+          console.log("current book", booksNoBags[i].copyIds[indexCopyId])
+
+          if (index >= 0) {
+            // found a Bag
+            console.log("found a bag", index)
+            console.log("book", booksNoBags[i])
+            console.log("bag", bags[index])
+            addBooktoBag(index, i, indexCopyId)
+          } else {
+            // console.log("create a bag")
+            console.log("book", booksNoBags[i])
+            createNewBag(i, indexCopyId)
           }
-          bags.push(newBag)
-          console.log(bags)
         }
       }
     }
+    setIsReady(false)
   }
 
   return (
     <>
       <h2>Add Bags to Books</h2>
+
       <div>
         <Button onClick={() => handleAddBooks()}>Add</Button>
+        {/* {isReady ? (
+          <Button onClick={() => handleAddBooks()}>Add</Button>
+        ) : (
+          <div className="text-2xl text-red-600">Added Books to Bags!</div>
+        )} */}
+      </div>
+      <div className="flex-col justify-end">
+        <div className="flex justify-end">
+          <div className="mx-4 ">Bags Available: {bags.length}</div>
+          <div className="mx-4">New Bags: {bagsNew}</div>
+        </div>
+        <div className="flex justify-end">
+          <div className="mx-4">Books Available:{booksAvailable} </div>
+          <div className="mx-4">Books Placed in Bags: {booksPlacedInBags}</div>
+        </div>
       </div>
       <Table
         columns={[
           { heading: "Name", sortable: "name" },
           { heading: "Category", sortable: "category" },
           { heading: "Books", sortable: "books" },
+          { heading: "CopyIds", sortable: "copyIds" },
           { heading: "Num Books", sortable: "numBooks" },
         ]}
         rows={bags}
@@ -69,6 +150,7 @@ export default function AddBooksToBags({
               <td {...tdProps}>{bag.name}</td>
               <td {...tdProps}>{bag.category}</td>
               <td {...tdProps}>{bag.titles.join(", ")}</td>
+              <td {...tdProps}>{bag.copyIds.join(", ")}</td>
               <td {...tdProps}>{bag.books.length}</td>
             </tr>
           )

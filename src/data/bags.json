@@ -4,39 +4,49 @@
     "name": "Wom 102",
     "books": ["201", "201", "3001"],
     "copyIds": ["2003", "2003", "3005"],
-    "titles": ["Nighthawks in MiddleEarth", "Gardner's Office"],
+    "titles": [
+      "Nighthawks in MiddleEarth",
+      "Gardner's Office",
+      "50 years of chicks"
+    ],
     "category": "Childrens",
     "pickupStatus": "needs pickup",
     "assigned": "Richard Soriano"
-  },
-  {
-    "_id": "2001",
-    "name": "Fir 101",
-    "category": "First Book",
-    "books": ["101", "101", "101", "101"],
-    "copyIds": ["3003"],
-    "titles": ["Dark Matters", "Colleen: The Witch Trials"],
-    "pickupStatus": "needs pickup",
-    "assigned": "Mark Martinez Tellez"
   },
   {
     "_id": "2002",
-    "name": "Sec 201",
-    "category": "Woman Writer",
-    "books": ["103", "103", "103"],
-    "copyIds": ["3013", "3013"],
-    "titles": ["Dark Matters", "Colleen: The Witch Trials"],
-    "pickupStatus": "needs pickup",
+    "name": "Chi 101",
+    "books": ["102", "103"],
+    "copyIds": ["3005", "3007"],
+    "titles": [
+      "Harvey how to get sober in 30 days",
+      "Colleen: The Witch Trials"
+    ],
+    "category": "Childrens",
+    "pickupStatus": "picked up",
     "assigned": "Mark Martinez Tellez"
   },
   {
-    "_id": "2003",
-    "name": "Wom 101",
-    "books": ["102", "122"],
-    "copyIds": ["2003", "2003"],
-    "titles": ["Nighthawks in MiddleEarth", "Gardner's Office"],
-    "category": "Childrens",
-    "pickupStatus": "needs pickup",
-    "assigned": "Richard Soriano"
+    "_id": "3001",
+    "name": "First Book",
+    "books": ["102", "103"],
+    "copyIds": ["3005", "3007"],
+    "titles": [
+      "Harvey how to get sober in 30 days",
+      "Colleen: The Witch Trials"
+    ],
+    "category": "First Book",
+    "pickupStatus": "picked up",
+    "assigned": "Mark Martinez Tellez"
+  },
+  {
+    "_id": "3002",
+    "name": "First Book201",
+    "books": ["201"],
+    "copyIds": ["500"],
+    "titles": ["Drunk Night"],
+    "category": "First Book",
+    "pickupStatus": "picked up",
+    "assigned": "Jeff"
   }
 ]
