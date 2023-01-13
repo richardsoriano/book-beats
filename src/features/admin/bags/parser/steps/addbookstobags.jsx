@@ -43,13 +43,13 @@ export default function AddBooksToBags({
       titles: newBagTitles,
       copyIds: newBagCopyIds,
     }
-    setBooksPlacedInBags((prev) => prev + 1)
+
     setBags((prev) => prev.filter((_bag) => _bag._id !== bags[index]._id))
     setBags((prev) => [...prev, tmpBag])
     setBooksPlacedInBags((prev) => prev + 1)
   }
-  function createNewBag(i, j) {
-    let newBagCategory = getBookCategoryExcluded(booksNoBags[i])
+  function createNewBag(i, j, indexCopyId) {
+    let newBagCategory = getBookCategoryExcluded(booksNoBags[i], j)
     let newBagName = `${newBagCategory}${Math.floor(Math.random() * 10000)}`
     let newBag = {
       name: newBagName,
@@ -60,7 +60,7 @@ export default function AddBooksToBags({
     }
     let newBookId = booksNoBags[i]._id
     let newBookTitle = booksNoBags[i].title
-    let newBookCopyIds = booksNoBags[i].copyIds[j]
+    let newBookCopyIds = booksNoBags[i].copyIds[indexCopyId]
 
     newBag.books.push(newBookId)
     newBag.titles.push(newBookTitle)
@@ -68,6 +68,7 @@ export default function AddBooksToBags({
     console.log("New Bag created ", newBag)
     setBags((prev) => [...prev, newBag])
     setBooksPlacedInBags((prev) => prev + 1)
+    setBagsNew((prev) => prev + 1)
   }
   function handleAddBooks() {
     const newBag = {
@@ -79,29 +80,28 @@ export default function AddBooksToBags({
     console.log("handling books", booksNoBags)
     let index
     for (let i = 0; i < booksNoBags.length; i++) {
-      // for (let j = 0; j < booksNoBags[i].copyIds.length; j++) {
-
       for (let j = 0; j < booksNoBags[i].categories.length; j++) {
-        console.log("cat", booksNoBags[i].categories[j])
+        // console.log("cat", booksNoBags[i].categories[j])
         for (let k = 0; k < 4; k++) {
           let indexCopyId = j * 4 + k
           index = isBagAvailable(
             booksNoBags[i],
             booksNoBags[i].copyIds[indexCopyId],
-            bags
+            bags,
+            booksNoBags[i].categories[j]
           )
-          console.log("current book", booksNoBags[i].copyIds[indexCopyId])
+          // console.log("current book", booksNoBags[i].copyIds[indexCopyId])
 
           if (index >= 0) {
             // found a Bag
             console.log("found a bag", index)
-            console.log("book", booksNoBags[i])
-            console.log("bag", bags[index])
+            // console.log("book", booksNoBags[i])
+            // console.log("bag", bags[index])
             addBooktoBag(index, i, indexCopyId)
           } else {
-            // console.log("create a bag")
-            console.log("book", booksNoBags[i])
-            createNewBag(i, indexCopyId)
+            console.log("create a bag")
+            // console.log("book", booksNoBags[i])
+            createNewBag(i, j, indexCopyId)
           }
         }
       }
@@ -123,12 +123,14 @@ export default function AddBooksToBags({
       </div>
       <div className="flex-col justify-end">
         <div className="flex justify-end">
-          <div className="mx-4 ">Bags Available: {bags.length}</div>
-          <div className="mx-4">New Bags: {bagsNew}</div>
+          <div className="mx-4 ">Bags Total: {bags.length}</div>
+          <div className="mx-4">Bags New: {bagsNew}</div>
         </div>
         <div className="flex justify-end">
-          <div className="mx-4">Books Available:{booksAvailable} </div>
-          <div className="mx-4">Books Placed in Bags: {booksPlacedInBags}</div>
+          <div className="mx-4">Book Titles:{booksAvailable} </div>
+          <div className="mx-4">
+            Books/ CopyIds placed in Bags: {booksPlacedInBags}
+          </div>
         </div>
       </div>
       <Table
