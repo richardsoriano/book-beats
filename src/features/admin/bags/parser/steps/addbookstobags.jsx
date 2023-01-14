@@ -13,7 +13,7 @@ export default function AddBooksToBags({
   const [booksAvailable, setBooksAvailable] = useState(booksNoBags.length)
   const [booksPlacedInBags, setBooksPlacedInBags] = useState(0)
   const [isReady, setIsReady] = useState(true)
-
+  const [isSavedToDb, setIsSavedToDb] = useState(false)
   useEffect(
     (isReady) => {
       if (!isReady) return
@@ -22,12 +22,14 @@ export default function AddBooksToBags({
   )
 
   function addBooktoBag(index, i, j) {
+    let newBag_id = bags[index]._id
     let newBagBooks = bags[index].books
     let newBagTitles = bags[index].titles
     let newBagCopyIds = bags[index].copyIds
     let newBagName = bags[index].name
     let newBagCategory = bags[index].category
-
+    let newBagAssigned = bags[index].assigned
+    let newBagPickupStatus = bags[index].pickupstatus
     let newBookTitle = booksNoBags[i].title
     let newBookCopyIds = booksNoBags[i].copyIds[j]
     let newBookId = booksNoBags[i]._id
@@ -37,8 +39,11 @@ export default function AddBooksToBags({
     newBagBooks.push(newBookId)
 
     let tmpBag = {
+      _id: newBag_id,
       name: newBagName,
       category: newBagCategory,
+      assigned: newBagAssigned,
+      pickupstatus: newBagPickupStatus,
       books: newBagBooks,
       titles: newBagTitles,
       copyIds: newBagCopyIds,
@@ -48,12 +53,16 @@ export default function AddBooksToBags({
     setBags((prev) => [...prev, tmpBag])
     setBooksPlacedInBags((prev) => prev + 1)
   }
+
   function createNewBag(i, j, indexCopyId) {
     let newBagCategory = getBookCategoryExcluded(booksNoBags[i], j)
     let newBagName = `${newBagCategory}${Math.floor(Math.random() * 10000)}`
+
     let newBag = {
       name: newBagName,
       category: newBagCategory,
+      assigned: "",
+      pickupstatus: "needs pickup",
       books: [],
       titles: [],
       copyIds: [],
@@ -70,14 +79,17 @@ export default function AddBooksToBags({
     setBooksPlacedInBags((prev) => prev + 1)
     setBagsNew((prev) => prev + 1)
   }
-  function handleAddBooks() {
+
+  function handleParseBooksBags() {
     const newBag = {
+      _id: "",
       name: "",
       books: [],
       titles: [],
       copyIds: [],
     }
     console.log("handling books", booksNoBags)
+    console.log(newBag.hasOwnProperty("_id"))
     let index
     for (let i = 0; i < booksNoBags.length; i++) {
       for (let j = 0; j < booksNoBags[i].categories.length; j++) {
@@ -108,13 +120,26 @@ export default function AddBooksToBags({
     }
     setIsReady(false)
   }
+  async function SaveBags() {
+    const res = await fetch("/api/bags/parser", {
+      method: "POST",
+      body: JSON.stringify(bags),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data)
+      })
 
+    setIsSavedToDb(true)
+  }
   return (
     <>
       <h2>Add Bags to Books</h2>
 
       <div>
-        <Button onClick={() => handleAddBooks()}>Add</Button>
+        <Button onClick={() => handleParseBooksBags()}>Parse</Button>
+        <Button onClick={() => SaveBags()}>Save Bags</Button>
+        {isSavedToDb && <h2>Saved To Database</h2>}
         {/* {isReady ? (
           <Button onClick={() => handleAddBooks()}>Add</Button>
         ) : (
