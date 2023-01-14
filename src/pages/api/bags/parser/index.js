@@ -60,10 +60,10 @@ export default async function SaveBagsToDB(req, res) {
       ordered: false,
       upsert: true,
     })
+    dbConnection.close()
+    res.status(200).json({ result })
   } catch (error) {
     console.log("error", error)
     res.status(500).json({ error })
   }
-  dbConnection.close()
-  res.status(200).json({ result })
 }
