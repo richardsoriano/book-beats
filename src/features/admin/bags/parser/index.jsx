@@ -33,33 +33,24 @@ export default function BagParser({ categories, books, booksNoBags, bags }) {
   function setStep(step) {
     let progress = 0
     if (step === 0) {
-      progress = 25
+      progress = 33
     } else if (step === 1) {
-      progress = 50
+      progress = 66
     } else if (step === 2) {
-      progress = 75
-    } else if (step === 3) {
       progress = 100
     }
     setCurrentStep(step)
     setProgressPercentage(progress)
-    console.log("progress", progress)
   }
-  function saveDB(step) {
-    let progress = 100
-    setCurrentStep(step)
-    setProgressPercentage(progress)
-    // SaveToDB()
-  }
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Bag Parser</h1>
       <ProgressBar progressPercentage={progressPercentage} />
       <div className="flex items-center justify-around ">
-        <Button onClick={() => setCurrentStep(0)}>1 Books Available</Button>
-        <Button onClick={() => setCurrentStep(1)}>2 Bags Available</Button>
-        <Button onClick={() => setCurrentStep(2)}>3 Add Books to Bags</Button>
-        <Button onClick={() => SaveToDB()}>4 Save to DB</Button>
+        <Button onClick={() => setStep(0)}>Books Available</Button>
+        <Button onClick={() => setStep(1)}>Bags Available</Button>
+        <Button onClick={() => setStep(2)}>Add Books to Bags</Button>
       </div>
 
       <div>{steps[currentStep].component}</div>
