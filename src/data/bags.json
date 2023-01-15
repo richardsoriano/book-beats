@@ -10,7 +10,7 @@
       "50 years of chicks"
     ],
     "category": "Childrens",
-    "pickupStatus": "needs pickup",
+    "pickupstatus": "needs pickup",
     "assigned": "Richard Soriano"
   },
   {
@@ -23,7 +23,7 @@
       "Colleen: The Witch Trials"
     ],
     "category": "Childrens",
-    "pickupStatus": "picked up",
+    "pickupstatus": "picked up",
     "assigned": "Mark Martinez Tellez"
   },
   {
@@ -36,7 +36,7 @@
       "Colleen: The Witch Trials"
     ],
     "category": "First Book",
-    "pickupStatus": "picked up",
+    "pickupstatus": "picked up",
     "assigned": "Mark Martinez Tellez"
   },
   {
@@ -46,7 +46,7 @@
     "copyIds": ["500"],
     "titles": ["Drunk Night"],
     "category": "First Book",
-    "pickupStatus": "picked up",
+    "pickupstatus": "picked up",
     "assigned": "Jeff"
   }
 ]

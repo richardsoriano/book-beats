@@ -5,7 +5,7 @@
     "auth1": "nanc",
     "auth2": "Auth2",
     "yearpublished": "2021",
-    "categories": ["First Book", "Art & Photography", "Childrens"],
+    "categories": ["First Book"],
     "bigskyaward": "yes",
     "isbn": "9-abc-123-32123",
     "nominatedby": "publisher",
@@ -24,19 +24,6 @@
     "astate": "MT",
     "azip": "99000",
     "acountry": "USA",
-    "copyIds": [
-      "4001",
-      "4002",
-      "4003",
-      "4004",
-      "4005",
-      "4006",
-      "4007",
-      "4008",
-      "4009",
-      "4010",
-      "4011",
-      "4012"
-    ]
+    "copyIds": ["4001", "4002", "4003", "4004"]
   }
 ]
