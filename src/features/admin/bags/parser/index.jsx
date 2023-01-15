@@ -29,15 +29,7 @@ export default function BagParser({ categories, books, booksNoBags, bags }) {
       ),
       label: "Add Bags to Books",
     },
-    {
-      component: <SaveToDB />,
-      label: "Save To Bags DB",
-    },
   ]
-
-  function SaveToDB() {
-    console.log("Save to DB")
-  }
   function setStep(step) {
     let progress = 0
     if (step === 0) {
@@ -64,10 +56,10 @@ export default function BagParser({ categories, books, booksNoBags, bags }) {
       <h1 className="text-2xl font-bold">Bag Parser</h1>
       <ProgressBar progressPercentage={progressPercentage} />
       <div className="flex items-center justify-around ">
-        <Button onClick={() => setStep(0)}>Books Available</Button>
-        <Button onClick={() => setStep(1)}>Bags Available</Button>
-        <Button onClick={() => setStep(2)}>Add Books to Bags</Button>
-        <Button onClick={() => saveDB(4)}>Save to DB</Button>
+        <Button onClick={() => setCurrentStep(0)}>1 Books Available</Button>
+        <Button onClick={() => setCurrentStep(1)}>2 Bags Available</Button>
+        <Button onClick={() => setCurrentStep(2)}>3 Add Books to Bags</Button>
+        <Button onClick={() => SaveToDB()}>4 Save to DB</Button>
       </div>
 
       <div>{steps[currentStep].component}</div>
