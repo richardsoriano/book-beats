@@ -3,6 +3,9 @@ import Button from "@/ui/buttons"
 import TextField from "ui/text-field"
 import AttachCategories from "./attachCategories"
 import AttachCopyIds from "./attachCopyIds"
+import AttachNomStatus from "./attachNomStatus"
+
+const nomstatuses = ["Need Form", "Need Payment", "Need Books", "Complete"]
 
 export default function BookForm({
   books,
@@ -34,6 +37,8 @@ export default function BookForm({
           _id: data._id,
           entryid: data.entryid,
           title: data.title,
+          nomstatus: data.nomstatus,
+          nommemo: data.nommemo,
           author1: data.author1,
           author2: data.author2,
           yearpublished: data.yearpublished,
@@ -60,9 +65,9 @@ export default function BookForm({
         }
       })
     if (bookId !== "") {
-      books.map((_book) => console.log(_book._id))
+      // books.map((_book) => console.log(_book._id))
       setBooks((prev) => prev.filter((_book) => _book._id !== newBook._id))
-      books.map((_book) => console.log(_book._id))
+      // books.map((_book) => console.log(_book._id))
     }
     setBooks((prev) => [...prev, newBook])
     setSelectedBook(undefined)
@@ -70,7 +75,11 @@ export default function BookForm({
   return (
     <div>
       <div className="py-6">
-        <h2 className="text-4xl text-blue-400">Edit Book</h2>
+        {book._id ? (
+          <h2 className="text-4xl text-blue-400">Edit Book</h2>
+        ) : (
+          <h2 className="text-4xl text-blue-400">Add Book</h2>
+        )}
         <TextField
           label="Entry ID"
           value={book.entryid}
@@ -80,6 +89,16 @@ export default function BookForm({
           label="Title"
           value={book.title}
           onChange={(title) => setBook((prev) => ({ ...prev, title }))}
+        />
+        <AttachNomStatus
+          nomstatuses={nomstatuses}
+          book={book}
+          setBook={setBook}
+        />
+        <TextField
+          label="Nomination Memo"
+          value={book.nommemo}
+          onChange={(nommemo) => setBook((prev) => ({ ...prev, nommemo }))}
         />
         <TextField
           label="Author 1"

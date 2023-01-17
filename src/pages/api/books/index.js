@@ -5,6 +5,8 @@ export default async function CreateBook(req, res) {
   let {
     entryid,
     title,
+    nomstatus,
+    nommemo,
     author1,
     author2,
     yearpublished,
@@ -30,13 +32,14 @@ export default async function CreateBook(req, res) {
     copyIds,
   } = JSON.parse(req.body)
 
-  // console.log("books api")
-  const newCopyIds = copyIds.split(",")
+  const newCopyIds = copyIds.length ? copyIds.split(",") : ""
   copyIds = newCopyIds
   console.log(
     "books",
     entryid,
     title,
+    nomstatus,
+    nommemo,
     author1,
     author2,
     yearpublished,
@@ -66,6 +69,8 @@ export default async function CreateBook(req, res) {
   const { insertedId } = await collection.insertOne({
     entryid,
     title,
+    nomstatus,
+    nommemo,
     author1,
     author2,
     yearpublished,
@@ -95,6 +100,8 @@ export default async function CreateBook(req, res) {
     _id: insertedId.toString(),
     entryid,
     title,
+    nomstatus,
+    nommemo,
     author1,
     author2,
     yearpublished,
