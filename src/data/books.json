@@ -4,6 +4,8 @@
     "title": "Dark Matters",
     "auth1": "nanc",
     "auth2": "Auth2",
+    "nomstatus": "Needs Payment",
+    "nommessage": "wants to send check",
     "yearpublished": "2021",
     "categories": ["First Book"],
     "bigskyaward": "yes",
