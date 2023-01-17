@@ -9,6 +9,8 @@ async function saveBook(req, res) {
     _id,
     entryid,
     title,
+    nomstatus,
+    nommemo,
     author1,
     author2,
     yearpublished,
@@ -34,6 +36,7 @@ async function saveBook(req, res) {
     copyIds,
   } = JSON.parse(req.body)
 
+  let newCopyIds = copyIds.length ? copyIds.split(",") : ""
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection("books")
   const dbRes = await collection.updateOne(
@@ -42,6 +45,8 @@ async function saveBook(req, res) {
       $set: {
         entryid,
         title,
+        nomstatus,
+        nommemo,
         author1,
         author2,
         yearpublished,
@@ -64,7 +69,7 @@ async function saveBook(req, res) {
         astate,
         azip,
         acountry,
-        copyIds,
+        copyIds: newCopyIds,
       },
     }
   )
@@ -73,6 +78,8 @@ async function saveBook(req, res) {
     _id,
     entryid,
     title,
+    nomstatus,
+    nommemo,
     author1,
     author2,
     yearpublished,

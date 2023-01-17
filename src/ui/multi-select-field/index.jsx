@@ -15,7 +15,7 @@ export default function MultiSelectField({
   useClickOutside(ref, () => setOpen(false))
 
   return (
-    <div className="relative w-full" ref={ref}>
+    <div className="relative w-full my-2" ref={ref}>
       {label && (
         <label
           onClick={() => {

@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react'
-import useClickOutside from '@/hooks/use-click-outside'
+import { useState, useRef } from "react"
+import useClickOutside from "@/hooks/use-click-outside"
 
 export default function SelectField({
   label,
@@ -14,29 +14,39 @@ export default function SelectField({
   useClickOutside(ref, () => setOpen(false))
 
   return (
-    <div className='relative w-full' ref={ref}>
-      {label && <label onClick={() => setOpen(true)}>{label}</label>}
-      <div
-        className='w-full p-2 border'
-        onClick={() => setOpen((prev) => !prev)}
-      >
-        {value}
-      </div>
-      <div
-        className={`absolute border w-full mt-1 ${open ? 'block' : 'hidden'}`}
-      >
-        {options.map((option) => (
-          <div
-            className='p-2 bg-white'
-            onClick={() => {
-              onChange(option)
-              setOpen(false)
-            }}
+    <>
+      <div className="relative w-full my-2" ref={ref}>
+        {label && (
+          <label
+            className="text-lg font-semibold text-gray-500"
+            onClick={() => setOpen(true)}
           >
-            {renderOption(option)}
-          </div>
-        ))}
+            {label}
+          </label>
+        )}
+        <div
+          className="w-full p-2 my-2 border border-gray-900 rounded-sm"
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          {value}
+        </div>
+        <div
+          className={`absolute border w-full mt-1 ${open ? "block" : "hidden"}`}
+        >
+          {options.map((option, i) => (
+            <div
+              key={i}
+              className="p-2 bg-white"
+              onClick={() => {
+                onChange(option)
+                setOpen(false)
+              }}
+            >
+              {renderOption(option)}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

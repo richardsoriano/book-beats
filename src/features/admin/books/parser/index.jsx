@@ -1,9 +1,10 @@
 import { useState } from "react"
 import Papa from "papaparse"
-
+import ProgressBar from "@/ui/progress-bar"
 import Button from "@/ui/buttons"
 
 const createBooks = async (arrayOfBooks) => {
+  setCurrentStep(2)
   const res = await fetch(`/api/parser/`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -36,12 +37,47 @@ export default function AdminBooksParser({ lastBook }) {
   const [error, setError] = useState("")
   const [file, setFile] = useState("")
   const [aggregatedBooks, setAggregatedBooks] = useState([])
-  // const [lastCopyIds, setLastCopyIds] = useState(lastBook.copyIds)
-
+  const [lastCopyIds, setLastCopyIds] = useState(lastBook.copyIds)
+  const [currentStep, setCurrentStep] = useState(0)
+  const [progressPercentage, setProgressPercentage] = useState(0)
   const allowedExtensions = ["csv"]
+  const [hashMapCategories, setHashMapCategories] = useState({})
 
-  // console.log("book=", lastBook.copyIds)
+  const steps = [
+    {
+      // component: <BooksAvailable booksNoBags={booksNoBags} />,
+      label: "1. Choose CSV File",
+    },
+    {
+      // component: <BagsAvailable bags={bags} />,
+      label: "2. Parse File",
+    },
+    {
+      // component: (
+      //   <AddBooksToBags
+      //     booksNoBags={booksNoBags}
+      //     bags={_bags}
+      //     setBags={setBags}
+      //   />
+      // ),
+      label: "3. Save to DB",
+    },
+  ]
 
+  const listStats = () => {
+    return (
+      <div className="flex justify-around ">
+        <ul className="flex px-4">
+          <li className="px-4">Total Book Titles:{aggregatedBooks.length}</li>
+          {Object.keys(hashMapCategories).map((key) => (
+            <li className="px-4">
+              {key}: {hashMapCategories[key]}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
   const handleFileChange = (e) => {
     setError("")
 
@@ -54,9 +90,26 @@ export default function AdminBooksParser({ lastBook }) {
         return
       }
       setFile(inputFile)
+      setCurrentStep(0)
+      setProgressPercentage(33)
     }
   }
+  function calculateCategories(categories) {
+    let newHashMapCategories = {}
+    if (categories.length <= 0) {
+      return newHashMapCategories
+    }
+    let arrCategories = categories.split(",")
+    for (let i = 0; i < arrCategories.length; i++) {
+      if (newHashMapCategories[arrCategories[i]]) {
+        newHashMapCategories[arrCategories[i]]++
+      } else {
+        newHashMapCategories[arrCategories[i]] = 1
+      }
+    }
 
+    return newHashMapCategories
+  }
   const handleParse = () => {
     if (!file) return setError("Enter a valid file")
 
@@ -68,23 +121,16 @@ export default function AdminBooksParser({ lastBook }) {
       var arrayOfBooks = []
       var copyIds
       var categories
-      // console.log("lastCopyIds", lastBook.copyIds)
 
       var lastId = findLastId(lastBook.copyIds)
-      // console.log("last Id", lastId)
-      // console.log("parsedData=", parsedData)
 
       parsedData.map((book, i) => {
         categories = createArrayOfCategories(book.categories.trim())
         copyIds = createArrayOfCopyIDs(categories, lastId)
+        console.log("copyIds Parse", lastId, copyIds)
         lastId = findLastId(copyIds)
-        // console.log("after", lastId)
-        const newBook = {
-          ...book,
-          index: i,
-          categories: categories,
-          copyIds,
-        }
+
+        setHashMapCategories(calculateCategories(book.categories))
 
         arrayOfBooks.push({
           ...book,
@@ -93,12 +139,14 @@ export default function AdminBooksParser({ lastBook }) {
           copyIds,
         })
       })
-      // console.log("array of Books", arrayOfBooks)
+
       setAggregatedBooks(arrayOfBooks)
-      // createBooks(arrayOfBooks)
+
       const columns = Object.keys(parsedData[0])
-      // console.log(columns)
+
       setData(columns)
+      setCurrentStep(1)
+      setProgressPercentage(66)
     }
     reader.readAsText(file)
   }
@@ -113,26 +161,30 @@ export default function AdminBooksParser({ lastBook }) {
         </strong>
         Category{" "}
         <strong className="text-xl font-bold text-blue-600">
-          {lastBook.categories.join(",")}
+          {lastBook.categories.length ? lastBook.categories.join(",") : ""}
         </strong>
         copyIds:
         <strong className="text-xl font-bold text-blue-600">
-          {lastBook.copyIds.join(",")}
+          {lastBook.copyIds.length ? lastBook.copyIds.join(",") : ""}
         </strong>
       </h2>
-      <label className="text-2xl">Enter CSV File</label>
-      <div className="p-4 ">
-        <input
-          className="text-white bg-blue-500 rounded-md "
-          onChange={handleFileChange}
-          id="csvInput"
-          name="file"
-          type="File"
-        />
+      <ProgressBar progressPercentage={progressPercentage} />
+      <div>{steps[currentStep].label}</div>
+      <div className="flex items-center justify-around ">
+        <div className="p-2 ">
+          <input
+            className="text-white bg-blue-500 rounded-md "
+            onChange={handleFileChange}
+            id="csvInput"
+            name="file"
+            type="File"
+          />
+        </div>
+        <Button onClick={() => handleParse()}>Parse</Button>
+        <Button onClick={() => createBooks(aggregatedBooks)}>Save</Button>
       </div>
-      <div className="p-4">
-        <Button onClick={handleParse}>Parse</Button>
-      </div>
+      <h1 className="text-2xl font-bold">List Stats</h1>
+      {listStats()}
       <div style={{ marginTop: "3rem" }}>
         {error ? (
           error
@@ -141,29 +193,31 @@ export default function AdminBooksParser({ lastBook }) {
             <thead>
               <tr>
                 <th className="">EntryId</th>
-                <th className="">title</th>
-                <th className="">auth1</th>
-                <th className="">auth2</th>
-                <th className="">yearpublished</th>
-                <th className="">categories</th>
-                <th className="">bigskyaward</th>
+                <th className="">Title</th>
+                <th className="">Status</th>
+                <th className="">Memo</th>
+                <th className="">Author 1</th>
+                <th className="">Author 2</th>
+                <th className="">Year Published</th>
+                <th className="">Categories</th>
+                <th className="">Big Sky Award</th>
                 <th className="">isbn</th>
-                <th className="">nominatedby</th>
-                <th className="">publisher</th>
-                <th className="">paddress1</th>
-                <th className="">paddress2</th>
-                <th className="">pcity</th>
-                <th className="">pstate</th>
-                <th className="">pzip</th>
-                <th className="">pcountry</th>
-                <th className="">pphone</th>
-                <th className="">pemail</th>
-                <th className="">aaddress1</th>
-                <th className="">aaddress2</th>
-                <th className="">acity</th>
-                <th className="">astate</th>
-                <th className="">azip</th>
-                <th className="">acountry</th>
+                <th className="">Nominated By</th>
+                <th className="">Publisher</th>
+                <th className="">Pub Address1</th>
+                <th className="">Pub Address2</th>
+                <th className="">Pub City</th>
+                <th className="">Pub State</th>
+                <th className="">Pub Zip</th>
+                <th className="">Pub Country</th>
+                <th className="">Pub Phone</th>
+                <th className="">Pub Email</th>
+                <th className="">Auth Address1</th>
+                <th className="">Auth Address2</th>
+                <th className="">Auth City</th>
+                <th className="">Auth State</th>
+                <th className="">Auth Zip</th>
+                <th className="">Auth Country</th>
                 <th className="">copyIds</th>
               </tr>
             </thead>
@@ -178,6 +232,8 @@ export default function AdminBooksParser({ lastBook }) {
                   <tr key={i}>
                     <td {...tdProps}>{book.entryid}</td>
                     <td {...tdProps}>{book.title.substr(0, 50)}</td>
+                    <td {...tdProps}>{book.nomstatus}</td>
+                    <td {...tdProps}>{book.nommemo}</td>
                     <td {...tdProps}>{book.auth1}</td>
                     <td {...tdProps}>{book.auth2}</td>
                     <td {...tdProps}>{book.yearpublished}</td>
@@ -200,6 +256,7 @@ export default function AdminBooksParser({ lastBook }) {
                     <td {...tdProps}>{book.astate}</td>
                     <td {...tdProps}>{book.azip}</td>
                     <td {...tdProps}>{book.acountry}</td>
+
                     <td {...tdProps}>{book.copyIds.join(", ")}</td>
                   </tr>
                 )

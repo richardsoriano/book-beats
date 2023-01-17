@@ -45,10 +45,10 @@ export default function Table({ columns = [], rows = [], renderRow }) {
     >
       <thead>
         <tr>
-          {columns.map((column, i) =>
+          {columns.map((column) =>
             column.sortable ? (
               <SortableColumn
-                key={i}
+                key={column.uniqueId}
                 setSort={() => {
                   setSortableColumn(column.sortable)
                   setSortableDirection((prev) =>
