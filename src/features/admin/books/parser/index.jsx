@@ -51,16 +51,18 @@ export default function AdminBooksParser({ lastBook }) {
     return (
       <table className="border border-separate table-auto border-spacing-2 border-slate-500 whitespace-nowrap ">
         <thead>
-          <th className="p-4 bg-yellow-100">Total Book Titles</th>
-          {Object.keys(hashMapCategories).map((key) => (
-            <th className="p-4 bg-yellow-100">{key}</th>
-          ))}
+          <tr key={1}>
+            <th className="p-4 bg-yellow-100">Total Book Titles</th>
+            {Object.keys(hashMapCategories).map((key) => (
+              <th className="p-4 bg-yellow-100">{key}</th>
+            ))}
+          </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr key={2}>
             <th className="p-4 ">{aggregatedBooks.length}</th>
-            {Object.keys(hashMapCategories).map((key) => (
-              <th>{hashMapCategories[key]}</th>
+            {Object.keys(hashMapCategories).map((key, i) => (
+              <th key={i}>{hashMapCategories[key]}</th>
             ))}
           </tr>
         </tbody>
@@ -102,6 +104,7 @@ export default function AdminBooksParser({ lastBook }) {
   }
   const createBooks = async (arrayOfBooks) => {
     setCurrentStep(2)
+    setProgressPercentage(100)
     const res = await fetch(`/api/parser/`, {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -136,7 +139,7 @@ export default function AdminBooksParser({ lastBook }) {
           ...book,
 
           categories: categories,
-          createddate: createddate,
+
           copyIds,
         })
       })
@@ -171,7 +174,9 @@ export default function AdminBooksParser({ lastBook }) {
         </strong>
       </h2>
       <ProgressBar progressPercentage={progressPercentage} />
-      <div>{steps[currentStep].label}</div>
+      <div>
+        <h2 className="text-xl">{steps[currentStep].label}</h2>
+      </div>
       <div className="flex items-center justify-around ">
         <div className="p-2 ">
           <input
@@ -201,7 +206,6 @@ export default function AdminBooksParser({ lastBook }) {
                 <th className="">Memo</th>
                 <th className="">Author 1</th>
                 <th className="">Author 2</th>
-                {/* <th className="">Year Published</th> */}
                 <th className="">Categories</th>
                 <th className="">Big Sky Award</th>
                 <th className="">isbn</th>
@@ -225,6 +229,7 @@ export default function AdminBooksParser({ lastBook }) {
                 <th className="">Auth Country</th>
                 <th className="">Captcha</th>
                 <th className="">Created Date</th>
+                <th className="">Qualified</th>
                 <th className="">copyIds</th>
               </tr>
             </thead>
@@ -244,7 +249,6 @@ export default function AdminBooksParser({ lastBook }) {
                     <td {...tdProps}>{book.nommemo}</td>
                     <td {...tdProps}>{book.author1}</td>
                     <td {...tdProps}>{book.author2}</td>
-                    {/* <td {...tdProps}>{book.yearpublished}</td> */}
                     <td {...tdProps}>{book.categories.join(", ")}</td>
                     <td {...tdProps}>{book.bigskyaward}</td>
                     <td {...tdProps}>{book.isbn}</td>
@@ -268,6 +272,7 @@ export default function AdminBooksParser({ lastBook }) {
                     <td {...tdProps}>{book.acountry}</td>
                     <td {...tdProps}>{book.captcha}</td>
                     <td {...tdProps}>{book.createddate}</td>
+                    <td {...tdProps}>{book.qualifiedstatus}</td>
                     <td {...tdProps}>{book.copyIds.join(", ")}</td>
                   </tr>
                 )
@@ -275,11 +280,6 @@ export default function AdminBooksParser({ lastBook }) {
             </tbody>
           </table>
         )}
-        <div className="p-4">
-          <Button onClick={() => createBooks(aggregatedBooks)}>
-            Save Books to Database
-          </Button>
-        </div>
       </div>
     </div>
   )

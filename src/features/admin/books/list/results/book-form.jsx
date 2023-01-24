@@ -4,19 +4,20 @@ import TextField from "ui/text-field"
 import AttachCategories from "./attachCategories"
 import AttachCopyIds from "./attachCopyIds"
 import AttachNomStatus from "./attachNomStatus"
-
+import AttachQualifiedStatus from "./attachQualifiedStatus"
 const nomstatuses = ["Need Payment", "Need Books", "Complete"]
+const qualifiedstatuses = ["Yes", "No", "Partial"]
 
 export default function BookForm({
   books,
   categories,
+
   bookProps,
   setBooks = () => {},
   setSelectedBook = () => {},
 }) {
   const [book, setBook] = useState(bookProps)
   const [_categories, setCategories] = useState(categories)
-  // const [_copyIds, setCopyIds] = useState([])
 
   async function saveBook() {
     const bookId = book._id ? book._id : ""
@@ -33,9 +34,6 @@ export default function BookForm({
       .then((res) => res.json())
       .then((data) => {
         // enter you logic when the fetch is successful
-        console.log("receive data", data.createddate)
-        // const newCopyIds = data.copyIds ? data.copyIds.join(",") : []
-        // console.log("newCopyIds", newCopyIds)
         newBook = {
           _id: data._id,
           entryid: data.entryid,
@@ -44,7 +42,7 @@ export default function BookForm({
           nommemo: data.nommemo,
           author1: data.author1,
           author2: data.author2,
-          // yearpublished: data.yearpublished,
+          qualified: data.qualified,
           categories: data.categories,
           bigskyaward: data.bigskyaward,
           isbn: data.isbn,
@@ -68,13 +66,12 @@ export default function BookForm({
           acountry: data.acountry,
           captcha: data.captcha,
           createddate: data.createddate,
+          qualifiedstatus: data.qualifiedstatus,
           copyIds: data.copyIds,
         }
       })
     if (bookId !== "") {
-      // books.map((_book) => console.log(_book._id))
       setBooks((prev) => prev.filter((_book) => _book._id !== newBook._id))
-      // books.map((_book) => console.log(_book._id))
     }
     setBooks((prev) => [...prev, newBook])
     setSelectedBook(undefined)
@@ -117,13 +114,6 @@ export default function BookForm({
           value={book.author2}
           onChange={(author2) => setBook((prev) => ({ ...prev, author2 }))}
         />
-        {/* <TextField
-          label="Year Published"
-          value={book.yearpublished}
-          onChange={(yearpublished) =>
-            setBook((prev) => ({ ...prev, yearpublished }))
-          }
-        /> */}
         <AttachCategories
           categories={_categories}
           book={book}
@@ -244,6 +234,11 @@ export default function BookForm({
           onChange={(createddate) =>
             setBook((prev) => ({ ...prev, createddate }))
           }
+        />
+        <AttachQualifiedStatus
+          qualifiedstatuses={qualifiedstatuses}
+          book={book}
+          setBook={setBook}
         />
         <AttachCopyIds book={book} setBook={setBook} />
       </div>

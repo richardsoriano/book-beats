@@ -15,7 +15,6 @@ const newBook = {
   nommemo: "",
   author1: "",
   author2: "",
-  // yearpublished: "",
   categories: [],
   bigskyaward: "",
   isbn: "",
@@ -37,6 +36,7 @@ const newBook = {
   acountry: "",
   captcha: "",
   createddate: "",
+  qualifiedstatus: "",
   copyIds: "",
 }
 
@@ -66,7 +66,6 @@ export default function BookListResults({
       nommemo: "",
       author1: "",
       author2: "",
-      // yearpublished: "",
       categories: [],
       bigskyaward: "",
       isbn: "",
@@ -90,6 +89,7 @@ export default function BookListResults({
       acountry: "",
       captcha: "",
       createddate: "",
+      qualifiedstatus: "",
       copyIds: "",
     }
     console.log("new book", newBook)
@@ -100,7 +100,6 @@ export default function BookListResults({
     setBooks((prev) => prev.filter((_book) => _book._id !== bookToDelete._id))
   }
 
-  console.log("Books", bookList)
   return (
     <div>
       <Button onClick={() => setSelectedBook(newBook)}>New Book</Button>
@@ -112,7 +111,6 @@ export default function BookListResults({
           { heading: "Memo", sortable: "nommemo" },
           { heading: "Author 1", sortable: "author1" },
           { heading: "Author 2", sortable: "author2" },
-          // { heading: "Published", sortable: "yearpublished" },
           { heading: "Categories", sortable: "categories" },
           { heading: "BigSkyAward", sortable: "bigskyaward" },
           { heading: "ISBN", sortable: "isbn" },
@@ -136,6 +134,7 @@ export default function BookListResults({
           { heading: "Auth Country", sortable: "acountry" },
           { heading: "Captcha", sortable: "captcha" },
           { heading: "Created Date", sortable: "createddate" },
+          { heading: "Qualified", sortable: "qualifiedstatus" },
           { heading: "CopyIDs", sortable: "copyIds" },
           { heading: "X", sortable: false },
         ]}
@@ -163,7 +162,6 @@ export default function BookListResults({
               <td {...tdProps}>{book.nommemo}</td>
               <td {...tdProps}>{book.author1}</td>
               <td {...tdProps}>{book.author2}</td>
-              {/* <td {...tdProps}>{book.yearpublished}</td> */}
               <td {...tdProps}>
                 {book.categories.length ? book.categories.join(", ") : ""}
               </td>
@@ -189,6 +187,7 @@ export default function BookListResults({
               <td {...tdProps}>{book.acountry}</td>
               <td {...tdProps}>{book.captcha}</td>
               <td {...tdProps}>{book.createddate}</td>
+              <td {...tdProps}>{book.qualifiedstatus}</td>
               <td {...tdProps}>{book.copyIds}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
             </tr>
