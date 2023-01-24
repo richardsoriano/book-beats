@@ -5,7 +5,7 @@ export default async function CreateBook(req, res) {
   let {
     entryid,
     title,
-    nomstatus,
+    nomstatuses,
     nommemo,
     author1,
     author2,
@@ -32,17 +32,17 @@ export default async function CreateBook(req, res) {
     azip,
     acountry,
     captcha,
-    createddate,
+    created,
     copyIds,
   } = JSON.parse(req.body)
-  // console.dir("create book", copyIds)
-  const newCopyIds = copyIds.length ? copyIds.split(",") : []
+
+  const newCopyIds = copyIds.length ? copyIds.split(",") : ""
   copyIds = newCopyIds
   console.log(
     "books",
     entryid,
     title,
-    nomstatus,
+    nomstatuses,
     nommemo,
     author1,
     author2,
@@ -69,7 +69,7 @@ export default async function CreateBook(req, res) {
     azip,
     acountry,
     captcha,
-    createddate,
+    created,
     copyIds
   )
   const dbConnection = await dbPromise
@@ -77,7 +77,7 @@ export default async function CreateBook(req, res) {
   const { insertedId } = await collection.insertOne({
     entryid,
     title,
-    nomstatus,
+    nomstatuses,
     nommemo,
     author1,
     author2,
@@ -104,7 +104,7 @@ export default async function CreateBook(req, res) {
     azip,
     acountry,
     captcha,
-    createddate,
+    created,
     copyIds,
   })
 
@@ -112,7 +112,7 @@ export default async function CreateBook(req, res) {
     _id: insertedId.toString(),
     entryid,
     title,
-    nomstatus,
+    nomstatuses,
     nommemo,
     author1,
     author2,
@@ -139,7 +139,7 @@ export default async function CreateBook(req, res) {
     azip,
     acountry,
     captcha,
-    createddate,
+    created,
     copyIds,
   })
 }

@@ -1,6 +1,5 @@
 import TextField from "ui/text-field"
-export default function AttachCopyIds({ copyIds, book, setBook }) {
-  console.log("copyIds", copyIds.join(""))
+export default function AttachCopyIds({ book, setBook }) {
   return (
     <TextField
       label="CopyIds"

@@ -15,7 +15,7 @@ const newBook = {
   nommemo: "",
   author1: "",
   author2: "",
-  yearpublished: "",
+  // yearpublished: "",
   categories: [],
   bigskyaward: "",
   isbn: "",
@@ -35,7 +35,9 @@ const newBook = {
   astate: "",
   azip: "",
   acountry: "",
-  copyIds: [],
+  captcha: "",
+  createddate: "",
+  copyIds: "",
 }
 
 export default function BookListResults({
@@ -64,7 +66,7 @@ export default function BookListResults({
       nommemo: "",
       author1: "",
       author2: "",
-      yearpublished: "",
+      // yearpublished: "",
       categories: [],
       bigskyaward: "",
       isbn: "",
@@ -78,13 +80,17 @@ export default function BookListResults({
       pcountry: "",
       pphone: "",
       pemail: "",
+      aphone: "",
+      aemail: "",
       aaddress1: "",
       aaddress2: "",
       acity: "",
       astate: "",
       azip: "",
       acountry: "",
-      copyIds: [],
+      captcha: "",
+      createddate: "",
+      copyIds: "",
     }
     console.log("new book", newBook)
     const res = await fetch(`/api/books/${bookToDelete._id}`, {
@@ -94,7 +100,7 @@ export default function BookListResults({
     setBooks((prev) => prev.filter((_book) => _book._id !== bookToDelete._id))
   }
 
-  // console.log("Books", bookList)
+  console.log("Books", bookList)
   return (
     <div>
       <Button onClick={() => setSelectedBook(newBook)}>New Book</Button>
@@ -102,11 +108,11 @@ export default function BookListResults({
         columns={[
           { heading: "EntryID", sortable: "entryid" },
           { heading: "Title", sortable: "title" },
-          { heading: "Status", sortable: "nomstatus" },
+          { heading: "Status", sortable: "nomstatuses" },
           { heading: "Memo", sortable: "nommemo" },
           { heading: "Author 1", sortable: "author1" },
           { heading: "Author 2", sortable: "author2" },
-          { heading: "Published", sortable: "yearpublished" },
+          // { heading: "Published", sortable: "yearpublished" },
           { heading: "Categories", sortable: "categories" },
           { heading: "BigSkyAward", sortable: "bigskyaward" },
           { heading: "ISBN", sortable: "isbn" },
@@ -120,12 +126,16 @@ export default function BookListResults({
           { heading: "Pub Country", sortable: "pcountry" },
           { heading: "Pub Phone", sortable: "pphone" },
           { heading: "Pub Email", sortable: "pemail" },
+          { heading: "Auth Phone", sortable: "aphone" },
+          { heading: "Auth Email", sortable: "aemail" },
           { heading: "Auth Address 1", sortable: "aaddress1" },
           { heading: "Auth Address 2", sortable: "aaddress2" },
           { heading: "Auth City", sortable: "acity" },
           { heading: "Auth State", sortable: "astate" },
           { heading: "Auth Zip", sortable: "azip" },
           { heading: "Auth Country", sortable: "acountry" },
+          { heading: "Captcha", sortable: "captcha" },
+          { heading: "Created Date", sortable: "createddate" },
           { heading: "CopyIDs", sortable: "copyIds" },
           { heading: "X", sortable: false },
         ]}
@@ -153,7 +163,7 @@ export default function BookListResults({
               <td {...tdProps}>{book.nommemo}</td>
               <td {...tdProps}>{book.author1}</td>
               <td {...tdProps}>{book.author2}</td>
-              <td {...tdProps}>{book.yearpublished}</td>
+              {/* <td {...tdProps}>{book.yearpublished}</td> */}
               <td {...tdProps}>
                 {book.categories.length ? book.categories.join(", ") : ""}
               </td>
@@ -169,16 +179,17 @@ export default function BookListResults({
               <td {...tdProps}>{book.pcountry}</td>
               <td {...tdProps}>{book.pphone}</td>
               <td {...tdProps}>{book.pemail}</td>
+              <td {...tdProps}>{book.aphone}</td>
+              <td {...tdProps}>{book.aemail}</td>
               <td {...tdProps}>{book.aaddress1}</td>
               <td {...tdProps}>{book.aaddress2}</td>
               <td {...tdProps}>{book.acity}</td>
               <td {...tdProps}>{book.astate}</td>
               <td {...tdProps}>{book.azip}</td>
               <td {...tdProps}>{book.acountry}</td>
-
-              <td {...tdProps}>
-                {book.copyIds.length ? book.copyIds.join(", ") : ""}
-              </td>
+              <td {...tdProps}>{book.captcha}</td>
+              <td {...tdProps}>{book.createddate}</td>
+              <td {...tdProps}>{book.copyIds}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
             </tr>
           )

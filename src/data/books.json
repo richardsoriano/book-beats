@@ -1,9 +1,10 @@
 [
   {
     "_id": "2001",
+    "entryId": "102",
     "title": "Dark Matters",
-    "auth1": "nanc",
-    "auth2": "Auth2",
+    "author1": "nanc",
+    "author2": "Auth2",
     "nomstatus": "Needs Payment",
     "nommessage": "wants to send check",
     "yearpublished": "2021",
@@ -19,13 +20,17 @@
     "pzip": "99000",
     "pcountry": "USA",
     "pphone": "123-123-1234",
-    "pemail": "jkrowling@aol.com",
+    "pemail": "jkrowlin100@aol.com",
+    "aemail": "authors@aol.com",
+    "aphone": "123-333-2222",
     "aaddress1": "2001 Highland Road",
     "aaddress2": "Apt 1",
     "acity": "Billings",
     "astate": "MT",
     "azip": "99000",
     "acountry": "USA",
+    "captcha": "",
+    "created": "",
     "copyIds": ["4001", "4002", "4003", "4004"]
   }
 ]
