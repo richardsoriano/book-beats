@@ -9,7 +9,7 @@ export default function AdminBookListPage({ bookList, categories }) {
 }
 
 function aggregateBookList(books) {
-  return books
+  return books.map((book) => ({ ...book, copyIds: book.copyIds.join() }))
 }
 export async function getServerSideProps() {
   const dbConnection = await dbPromise

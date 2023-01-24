@@ -14,10 +14,10 @@ export default function AdminBagsPage({ bags, books, readerAssignments }) {
 }
 
 function aggregateBags(bags, mybags) {
-  // console.log("jsonify", bags)
+  console.log("jsonify", bags)
   // console.log("mybags", mybags)
 
-  return mybags.reduce((acc, bag) => {
+  return bags.reduce((acc, bag) => {
     // bag.books.map(
     //   (book, i) =>
     //     book ===
@@ -35,7 +35,7 @@ function aggregateBags(bags, mybags) {
         books: bag.books,
         numBooks: bag.books.length,
         assigned: bag.assigned,
-        pickupStatus: bag.pickupStatus,
+        pickupstatus: bag.pickupstatus,
       },
     ]
   }, [])

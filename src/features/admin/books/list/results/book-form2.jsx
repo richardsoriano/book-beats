@@ -16,13 +16,13 @@ export default function BookForm({
 }) {
   const [book, setBook] = useState(bookProps)
   const [_categories, setCategories] = useState(categories)
-  // const [_copyIds, setCopyIds] = useState([])
+  const [_copyIds, setCopyIds] = useState([])
 
   async function saveBook() {
     const bookId = book._id ? book._id : ""
 
     let newBook
-    console.log("book,", book)
+    console.log("book obj,", book)
     const res = await fetch(`/api/books/${bookId}`, {
       header: {
         "Content-Type": "application/json",
@@ -33,14 +33,11 @@ export default function BookForm({
       .then((res) => res.json())
       .then((data) => {
         // enter you logic when the fetch is successful
-        console.log("receive data", data.createddate)
-        // const newCopyIds = data.copyIds ? data.copyIds.join(",") : []
-        // console.log("newCopyIds", newCopyIds)
         newBook = {
           _id: data._id,
           entryid: data.entryid,
           title: data.title,
-          nomstatus: data.nomstatus,
+          nomstatuses: data.nomstatuses,
           nommemo: data.nommemo,
           author1: data.author1,
           author2: data.author2,
@@ -60,14 +57,14 @@ export default function BookForm({
           pemail: data.pemail,
           aphone: data.aphone,
           aemail: data.aemail,
-          aaddress1: data.aaddress1,
+          aaddress1: data.faaddress1,
           aaddress2: data.aaddress2,
           acity: data.acity,
           astate: data.astate,
           azip: data.azip,
           acountry: data.acountry,
           captcha: data.captcha,
-          createddate: data.createddate,
+          created: data.created,
           copyIds: data.copyIds,
         }
       })
@@ -239,13 +236,11 @@ export default function BookForm({
           onChange={(captcha) => setBook((prev) => ({ ...prev, captcha }))}
         />
         <TextField
-          label="Created Date"
-          value={book.createddate}
-          onChange={(createddate) =>
-            setBook((prev) => ({ ...prev, createddate }))
-          }
+          label="Created"
+          value={book.created}
+          onChange={(created) => setBook((prev) => ({ ...prev, created }))}
         />
-        <AttachCopyIds book={book} setBook={setBook} />
+        <AttachCopyIds copyIds={_copyIds} book={book} setBook={setBook} />
       </div>
       <Button onClick={saveBook}>Save</Button>
     </div>

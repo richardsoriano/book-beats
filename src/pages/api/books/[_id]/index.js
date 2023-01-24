@@ -13,7 +13,7 @@ async function saveBook(req, res) {
     nommemo,
     author1,
     author2,
-    yearpublished,
+    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -27,6 +27,8 @@ async function saveBook(req, res) {
     pcountry,
     pphone,
     pemail,
+    aphone,
+    aemail,
     aaddress1,
     aaddress2,
     acity,
@@ -34,11 +36,16 @@ async function saveBook(req, res) {
     azip,
     acountry,
     copyIds,
+    captcha,
+    createddate,
   } = JSON.parse(req.body)
 
-  let newCopyIds = copyIds.length ? copyIds.split(",") : ""
+  console.log("save date", createddate)
+  let arrCopyIds = copyIds.length ? copyIds.split(",") : []
+  // let newCopyIds = copyIds.length ? copyIds.split(",") : []
+  // console.dir("save book", newCopyIds)
   const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection("books")
+  const collection = await dbConnection.db().collection("books-test")
   const dbRes = await collection.updateOne(
     { _id: ObjectId(_id) },
     {
@@ -49,7 +56,7 @@ async function saveBook(req, res) {
         nommemo,
         author1,
         author2,
-        yearpublished,
+        // yearpublished,
         categories,
         bigskyaward,
         isbn,
@@ -63,13 +70,17 @@ async function saveBook(req, res) {
         pcountry,
         pphone,
         pemail,
+        aphone,
+        aemail,
         aaddress1,
         aaddress2,
         acity,
         astate,
         azip,
         acountry,
-        copyIds: newCopyIds,
+        captcha,
+        createddate,
+        copyIds: arrCopyIds,
       },
     }
   )
@@ -82,7 +93,7 @@ async function saveBook(req, res) {
     nommemo,
     author1,
     author2,
-    yearpublished,
+    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -96,13 +107,17 @@ async function saveBook(req, res) {
     pcountry,
     pphone,
     pemail,
+    aphone,
+    aemail,
     aaddress1,
     aaddress2,
     acity,
     astate,
     azip,
     acountry,
-    copyIds,
+    captcha,
+    createddate,
+    copyIds: arrCopyIds.join(),
   })
 }
 

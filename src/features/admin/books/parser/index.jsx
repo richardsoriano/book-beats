@@ -3,16 +3,6 @@ import Papa from "papaparse"
 import ProgressBar from "@/ui/progress-bar"
 import Button from "@/ui/buttons"
 
-const createBooks = async (arrayOfBooks) => {
-  setCurrentStep(2)
-  const res = await fetch(`/api/parser/`, {
-    method: "POST",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(arrayOfBooks),
-  }).then((res) => res.json())
-  return
-}
-
 const createArrayOfCategories = (categories) => {
   const arrCategories = categories.split(",")
 
@@ -42,7 +32,7 @@ export default function AdminBooksParser({ lastBook }) {
   const [progressPercentage, setProgressPercentage] = useState(0)
   const allowedExtensions = ["csv"]
   const [hashMapCategories, setHashMapCategories] = useState({})
-
+  var newHashMapCategories = {}
   const steps = [
     {
       // component: <BooksAvailable booksNoBags={booksNoBags} />,
@@ -53,29 +43,28 @@ export default function AdminBooksParser({ lastBook }) {
       label: "2. Parse File",
     },
     {
-      // component: (
-      //   <AddBooksToBags
-      //     booksNoBags={booksNoBags}
-      //     bags={_bags}
-      //     setBags={setBags}
-      //   />
-      // ),
       label: "3. Save to DB",
     },
   ]
 
   const listStats = () => {
     return (
-      <div className="flex justify-around ">
-        <ul className="flex px-4">
-          <li className="px-4">Total Book Titles:{aggregatedBooks.length}</li>
+      <table className="border border-separate table-auto border-spacing-2 border-slate-500 whitespace-nowrap ">
+        <thead>
+          <th className="p-4 bg-yellow-100">Total Book Titles</th>
           {Object.keys(hashMapCategories).map((key) => (
-            <li className="px-4">
-              {key}: {hashMapCategories[key]}
-            </li>
+            <th className="p-4 bg-yellow-100">{key}</th>
           ))}
-        </ul>
-      </div>
+        </thead>
+        <tbody>
+          <tr>
+            <th className="p-4 ">{aggregatedBooks.length}</th>
+            {Object.keys(hashMapCategories).map((key) => (
+              <th>{hashMapCategories[key]}</th>
+            ))}
+          </tr>
+        </tbody>
+      </table>
     )
   }
   const handleFileChange = (e) => {
@@ -95,20 +84,30 @@ export default function AdminBooksParser({ lastBook }) {
     }
   }
   function calculateCategories(categories) {
-    let newHashMapCategories = {}
     if (categories.length <= 0) {
       return newHashMapCategories
     }
-    let arrCategories = categories.split(",")
+    let arrCategories = categories.split(",").map((cat) => cat.trim())
+
     for (let i = 0; i < arrCategories.length; i++) {
+      console.log("cat", arrCategories[i])
+      console.log("cat length", arrCategories[i].length)
+
       if (newHashMapCategories[arrCategories[i]]) {
         newHashMapCategories[arrCategories[i]]++
       } else {
         newHashMapCategories[arrCategories[i]] = 1
       }
     }
-
-    return newHashMapCategories
+  }
+  const createBooks = async (arrayOfBooks) => {
+    setCurrentStep(2)
+    const res = await fetch(`/api/parser/`, {
+      method: "POST",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(arrayOfBooks),
+    }).then((res) => res.json())
+    return
   }
   const handleParse = () => {
     if (!file) return setError("Enter a valid file")
@@ -121,7 +120,8 @@ export default function AdminBooksParser({ lastBook }) {
       var arrayOfBooks = []
       var copyIds
       var categories
-
+      // TODO: convert createddate to an actual date.
+      var createddate = ""
       var lastId = findLastId(lastBook.copyIds)
 
       parsedData.map((book, i) => {
@@ -130,16 +130,18 @@ export default function AdminBooksParser({ lastBook }) {
         console.log("copyIds Parse", lastId, copyIds)
         lastId = findLastId(copyIds)
 
-        setHashMapCategories(calculateCategories(book.categories))
+        calculateCategories(book.categories)
 
         arrayOfBooks.push({
           ...book,
-          index: i,
+
           categories: categories,
+          createddate: createddate,
           copyIds,
         })
       })
 
+      setHashMapCategories(newHashMapCategories)
       setAggregatedBooks(arrayOfBooks)
 
       const columns = Object.keys(parsedData[0])
@@ -192,13 +194,14 @@ export default function AdminBooksParser({ lastBook }) {
           <table className="border border-separate table-auto border-spacing-2 border-slate-500 whitespace-nowrap ">
             <thead>
               <tr>
+                <th className="">ID</th>
                 <th className="">EntryId</th>
                 <th className="">Title</th>
                 <th className="">Status</th>
                 <th className="">Memo</th>
                 <th className="">Author 1</th>
                 <th className="">Author 2</th>
-                <th className="">Year Published</th>
+                {/* <th className="">Year Published</th> */}
                 <th className="">Categories</th>
                 <th className="">Big Sky Award</th>
                 <th className="">isbn</th>
@@ -212,12 +215,16 @@ export default function AdminBooksParser({ lastBook }) {
                 <th className="">Pub Country</th>
                 <th className="">Pub Phone</th>
                 <th className="">Pub Email</th>
+                <th className="">Auth Email</th>
+                <th className="">Auth Phone</th>
                 <th className="">Auth Address1</th>
                 <th className="">Auth Address2</th>
                 <th className="">Auth City</th>
                 <th className="">Auth State</th>
                 <th className="">Auth Zip</th>
                 <th className="">Auth Country</th>
+                <th className="">Captcha</th>
+                <th className="">Created Date</th>
                 <th className="">copyIds</th>
               </tr>
             </thead>
@@ -230,13 +237,14 @@ export default function AdminBooksParser({ lastBook }) {
                 }
                 return (
                   <tr key={i}>
+                    <td {...tdProps}>{i}</td>
                     <td {...tdProps}>{book.entryid}</td>
                     <td {...tdProps}>{book.title.substr(0, 50)}</td>
                     <td {...tdProps}>{book.nomstatus}</td>
                     <td {...tdProps}>{book.nommemo}</td>
-                    <td {...tdProps}>{book.auth1}</td>
-                    <td {...tdProps}>{book.auth2}</td>
-                    <td {...tdProps}>{book.yearpublished}</td>
+                    <td {...tdProps}>{book.author1}</td>
+                    <td {...tdProps}>{book.author2}</td>
+                    {/* <td {...tdProps}>{book.yearpublished}</td> */}
                     <td {...tdProps}>{book.categories.join(", ")}</td>
                     <td {...tdProps}>{book.bigskyaward}</td>
                     <td {...tdProps}>{book.isbn}</td>
@@ -250,13 +258,16 @@ export default function AdminBooksParser({ lastBook }) {
                     <td {...tdProps}>{book.pcountry}</td>
                     <td {...tdProps}>{book.pphone}</td>
                     <td {...tdProps}>{book.pemail}</td>
+                    <td {...tdProps}>{book.aemail}</td>
+                    <td {...tdProps}>{book.aphone}</td>
                     <td {...tdProps}>{book.aaddress1}</td>
                     <td {...tdProps}>{book.aaddress2}</td>
                     <td {...tdProps}>{book.acity}</td>
                     <td {...tdProps}>{book.astate}</td>
                     <td {...tdProps}>{book.azip}</td>
                     <td {...tdProps}>{book.acountry}</td>
-
+                    <td {...tdProps}>{book.captcha}</td>
+                    <td {...tdProps}>{book.createddate}</td>
                     <td {...tdProps}>{book.copyIds.join(", ")}</td>
                   </tr>
                 )
