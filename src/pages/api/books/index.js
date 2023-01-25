@@ -9,7 +9,6 @@ export default async function CreateBook(req, res) {
     nommemo,
     author1,
     author2,
-    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -33,9 +32,9 @@ export default async function CreateBook(req, res) {
     acountry,
     captcha,
     createddate,
+    qualifiedstatus,
     copyIds,
   } = JSON.parse(req.body)
-  // console.dir("create book", copyIds)
   const newCopyIds = copyIds.length ? copyIds.split(",") : []
   copyIds = newCopyIds
   console.log(
@@ -46,7 +45,6 @@ export default async function CreateBook(req, res) {
     nommemo,
     author1,
     author2,
-    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -70,6 +68,7 @@ export default async function CreateBook(req, res) {
     acountry,
     captcha,
     createddate,
+    qualifiedstatus,
     copyIds
   )
   const dbConnection = await dbPromise
@@ -81,7 +80,6 @@ export default async function CreateBook(req, res) {
     nommemo,
     author1,
     author2,
-    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -105,6 +103,7 @@ export default async function CreateBook(req, res) {
     acountry,
     captcha,
     createddate,
+    qualifiedstatus,
     copyIds,
   })
 
@@ -116,7 +115,6 @@ export default async function CreateBook(req, res) {
     nommemo,
     author1,
     author2,
-    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -140,6 +138,7 @@ export default async function CreateBook(req, res) {
     acountry,
     captcha,
     createddate,
+    qualifiedstatus,
     copyIds,
   })
 }

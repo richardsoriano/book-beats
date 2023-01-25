@@ -30,7 +30,8 @@
     "azip": "99000",
     "acountry": "USA",
     "captcha": "",
-    "created": "",
+    "createddate": "",
+    "qualifiedstatus": "",
     "copyIds": ["4001", "4002", "4003", "4004"]
   }
 ]

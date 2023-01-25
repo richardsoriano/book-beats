@@ -13,7 +13,6 @@ async function saveBook(req, res) {
     nommemo,
     author1,
     author2,
-    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -38,12 +37,11 @@ async function saveBook(req, res) {
     copyIds,
     captcha,
     createddate,
+    qualifiedstatus,
   } = JSON.parse(req.body)
 
-  console.log("save date", createddate)
   let arrCopyIds = copyIds.length ? copyIds.split(",") : []
-  // let newCopyIds = copyIds.length ? copyIds.split(",") : []
-  // console.dir("save book", newCopyIds)
+
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection("books-test")
   const dbRes = await collection.updateOne(
@@ -56,7 +54,6 @@ async function saveBook(req, res) {
         nommemo,
         author1,
         author2,
-        // yearpublished,
         categories,
         bigskyaward,
         isbn,
@@ -80,6 +77,7 @@ async function saveBook(req, res) {
         acountry,
         captcha,
         createddate,
+        qualifiedstatus,
         copyIds: arrCopyIds,
       },
     }
@@ -93,7 +91,6 @@ async function saveBook(req, res) {
     nommemo,
     author1,
     author2,
-    // yearpublished,
     categories,
     bigskyaward,
     isbn,
@@ -117,6 +114,7 @@ async function saveBook(req, res) {
     acountry,
     captcha,
     createddate,
+    qualifiedstatus,
     copyIds: arrCopyIds.join(),
   })
 }
