@@ -14,10 +14,12 @@ export function isBagAvailable(book, copyId, bags, bookCategory) {
       !bags[i].books.includes(book._id) &&
       !bags[i].copyIds.includes(copyId)
     ) {
+      console.log("FOUND", i)
       return i
     }
   }
   // no bag found
+  console.log("NOT FOUND")
   return -1
 }
 

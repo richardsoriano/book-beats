@@ -1,20 +1,17 @@
 export default function bagBooks({ books, bag, setBag }) {
-  const filteredBooks = books.filter(
-    (book) => book.categories.indexOf(bag.category) > -1
-  )
-  // // TODO list only those books that are elligble: qualifiedstatus==="Yes"
-  // const filteredBooks = books.filter(
-  //   (book) => (book.categories.indexOf(bag.category) > -1 && book.qualifiedstatus==="Yes")
-  // )
+  // console.log("books", books)
+  console.log("bag", bag)
+  // bag.books.map((b) => console.log(b))
+  // const [count, setBookCount] = useState(0)
   return (
     <>
       <div className="py-4">
-        <span className="font-extrabold text-red-400">
-          Number of Books: {bag.books.length}
+        <span className="text-lg font-semibold text-red-500">
+          Number of books: {bag.books.length}
         </span>
       </div>
       <ul>
-        {filteredBooks.map((book) => (
+        {books.map((book) => (
           <li
             className={`hover:bg-blue-500 hover:text-white 
             ${
@@ -23,16 +20,16 @@ export default function bagBooks({ books, bag, setBag }) {
                 : ""
             }
           `}
-            onClick={() =>
+            onClick={() => {
               setBag((prev) => ({
                 ...prev,
                 books: prev.books.some((_book) => _book === book._id)
                   ? prev.books.filter((_book) => _book !== book._id)
                   : [...prev.books, book._id],
               }))
-            }
+            }}
           >
-            {book.title.substring(0, 49)}
+            {book.title.substring(0, 40)}
           </li>
         ))}
       </ul>
