@@ -1,28 +1,12 @@
-import { useState } from 'react'
-import books from '@/data/books'
+import { useState } from "react"
 
-import { uniq } from '@/modules/array'
-import NameBag from './steps/nameBag'
-import AttachCategory from './steps/attachCategory'
-import BagBooks from './steps/bagBooks'
-import AssignReader from './steps/assignReader'
-import AssignStatus from './steps/assignStatus'
-
-const categories = uniq(
-  books.reduce((acc, assignment) => {
-    return [...acc, ...assignment.categories]
-  }, [])
-)
-function Button({ children, onClick = () => {} }) {
-  return (
-    <button
-      className='bg-blue-500 text-white border rounded-sm px-6 py-4'
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  )
-}
+import NameBag from "./steps/nameBag"
+import AttachCategory from "./steps/attachCategory"
+import BagBooks from "./steps/bagBooks"
+import AssignReader from "./steps/assignReader"
+import AssignStatus from "./steps/assignStatus"
+import categories from "@/data/categories"
+import Button from "@/ui/buttons"
 
 export default function BagForm({
   books,
@@ -35,40 +19,40 @@ export default function BagForm({
 }) {
   const [currentStep, setCurrentStep] = useState(0)
   const [bag, setBag] = useState(bagProps)
-
+  console.log("bag formreaders", readers)
   const steps = [
     {
       component: <NameBag bag={bag} setBag={setBag} />,
-      label: 'Name Bag',
+      label: "Name Bag",
     },
     {
       component: (
         <AttachCategory categories={categories} bag={bag} setBag={setBag} />
       ),
-      label: 'Attach Category',
+      label: "Attach Category",
     },
     {
       component: <BagBooks books={books} bag={bag} setBag={setBag} />,
-      label: 'Bag Books',
+      label: "Bag Books",
     },
     {
       component: <AssignReader readers={readers} bag={bag} setBag={setBag} />,
-      label: 'Assign Reader',
+      label: "Assign Reader",
     },
     {
       component: (
         <AssignStatus pickupStatus={pickupStatus} bag={bag} setBag={setBag} />
       ),
-      label: 'Assign Status',
+      label: "Assign Status",
     },
   ]
 
   async function saveBag() {
-    const bagId = bag._id ? bag._id : ''
+    const bagId = bag._id ? bag._id : ""
     let newBag
 
     const res = await fetch(`/api/bags/${bagId}`, {
-      method: bagId ? 'PATCH' : 'POST',
+      method: bagId ? "PATCH" : "POST",
       body: JSON.stringify(bag),
     })
       .then((res) => res.json())
@@ -84,7 +68,7 @@ export default function BagForm({
           pickupStatus: data.pickupStatus,
         }
       })
-    if (bagId !== '') {
+    if (bagId !== "") {
       bags.map((_bag) => console.log(_bag._id))
 
       // remove the old version
@@ -97,11 +81,11 @@ export default function BagForm({
   }
   return (
     <div>
-      <ul className='flex space-x-2 mb-4'>
+      <ul className="flex mb-4 space-x-2">
         {Object.keys(steps).map((step) => (
           <li
             className={`${
-              steps[step].label === steps[currentStep].label ? 'underline' : ''
+              steps[step].label === steps[currentStep].label ? "underline" : ""
             }`}
           >
             {step}. {steps[step].label}

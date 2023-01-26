@@ -15,7 +15,7 @@ const newBag = {
   pickupStatus: undefined,
 }
 
-export default function AdminBags({ bags, books, readerAssignments }) {
+export default function AdminBags({ bags, books, readerAssignments, readers }) {
   const [_bags, setBags] = useState(bags)
   const [selectedBag, setSelectedBag] = useState(undefined)
   const [bagToDelete, setBagToDelete] = useState(undefined)
@@ -39,10 +39,6 @@ export default function AdminBags({ bags, books, readerAssignments }) {
     })
     setBags((prev) => prev.filter((_bag) => _bag._id !== bagToDelete._id))
   }
-
-  const readers = readerAssignments.map(
-    (readerAssignment) => readerAssignment.reader
-  )
 
   return (
     <div>

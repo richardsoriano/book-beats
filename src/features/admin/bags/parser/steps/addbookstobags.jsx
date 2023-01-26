@@ -74,7 +74,7 @@ export default function AddBooksToBags({
     newBag.books.push(newBookId)
     newBag.titles.push(newBookTitle)
     newBag.copyIds.push(newBookCopyIds)
-    console.log("New Bag created ", newBag)
+    // console.log("New Bag created ", newBag)
     setBags((prev) => [...prev, newBag])
     setBooksPlacedInBags((prev) => prev + 1)
     setBagsNew((prev) => prev + 1)
@@ -88,14 +88,16 @@ export default function AddBooksToBags({
       titles: [],
       copyIds: [],
     }
-    console.log("handling books", booksNoBags)
-    console.log(newBag.hasOwnProperty("_id"))
+    // console.log("handling books", booksNoBags)
+    // console.log(newBag.hasOwnProperty("_id"))
     let index
     for (let i = 0; i < booksNoBags.length; i++) {
       for (let j = 0; j < booksNoBags[i].categories.length; j++) {
         // console.log("cat", booksNoBags[i].categories[j])
+        // console.log('bag cat',bag.)
         for (let k = 0; k < 4; k++) {
           let indexCopyId = j * 4 + k
+          console.log("bags", bags)
           index = isBagAvailable(
             booksNoBags[i],
             booksNoBags[i].copyIds[indexCopyId],
@@ -106,14 +108,16 @@ export default function AddBooksToBags({
 
           if (index >= 0) {
             // found a Bag
-            console.log("found a bag", index)
+            // console.log("found a bag", index)
             // console.log("book", booksNoBags[i])
             // console.log("bag", bags[index])
+
             addBooktoBag(index, i, indexCopyId)
           } else {
-            console.log("create a bag")
+            // console.log("create a bag")
             // console.log("book", booksNoBags[i])
             createNewBag(i, j, indexCopyId)
+            console.log("create New bags", bags)
           }
         }
       }
