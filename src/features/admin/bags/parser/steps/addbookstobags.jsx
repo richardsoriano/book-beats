@@ -2,8 +2,13 @@ import { useState, useEffect } from "react"
 
 import Table from "ui/table"
 
-import { getBookCategoryExcluded, isBagAvailable } from "./helper"
+import {
+  getBookCategoryExcluded,
+  isBagAvailable,
+  getRndInteger,
+} from "./helper"
 import Button from "ui/buttons"
+
 export default function AddBooksToBags({
   booksNoBags,
   bags,
@@ -12,24 +17,34 @@ export default function AddBooksToBags({
   const [bagsNew, setBagsNew] = useState(0)
   const [booksAvailable, setBooksAvailable] = useState(booksNoBags.length)
   const [booksPlacedInBags, setBooksPlacedInBags] = useState(0)
-  const [isReady, setIsReady] = useState(true)
+  const [hasParsedBooksBags, sethasParsedBooksBags] = useState(false)
   const [isSavedToDb, setIsSavedToDb] = useState(false)
-  useEffect(
-    (isReady) => {
-      if (!isReady) return
-    },
-    [isReady]
-  )
+
+  // local temp values for deep copy.
+  // setBags at the end. Avoid setBags in loops to avoid
+  // constant re-rendering.
+  let localBags = bags.map((_bag) => {
+    return { ..._bag }
+  })
+  let localBagsModifiedNew = []
+  let numBooksPlacedInBags = 0
+  let numBagsNew = 0
+  // useEffect(
+  //   (isReady) => {
+  //     if (!isReady) return
+  //   },
+  //   [isReady]
+  // )
 
   function addBooktoBag(index, i, j) {
-    let newBag_id = bags[index]._id
-    let newBagBooks = bags[index].books
-    let newBagTitles = bags[index].titles
-    let newBagCopyIds = bags[index].copyIds
-    let newBagName = bags[index].name
-    let newBagCategory = bags[index].category
-    let newBagAssigned = bags[index].assigned
-    let newBagPickupStatus = bags[index].pickupstatus
+    let newBag_id = localBags[index]._id
+    let newBagBooks = localBags[index].books
+    let newBagTitles = localBags[index].titles
+    let newBagCopyIds = localBags[index].copyIds
+    let newBagName = localBags[index].name
+    let newBagCategory = localBags[index].category
+    let newBagAssigned = localBags[index].assigned
+    let newBagPickupStatus = localBags[index].pickupstatus
     let newBookTitle = booksNoBags[i].title
     let newBookCopyIds = booksNoBags[i].copyIds[j]
     let newBookId = booksNoBags[i]._id
@@ -48,17 +63,32 @@ export default function AddBooksToBags({
       titles: newBagTitles,
       copyIds: newBagCopyIds,
     }
+    // Skip if we've done this already.
+    // localBagsModifiedNew is an array of bags that are either modified or new.
+    //
+    // filter by name. Not best practice, but it'll do.
+    // I don't want to add a random id. Why? Because I need to distinguish
+    // new bags versus modified bags.
+    // modified bags need to be filtered out.
+    // new bags plus modified bags will then be added.
+    let tmplocalBagsModifiedNew = localBagsModifiedNew.filter(
+      (bag) => bag.name !== localBags[index].name
+    )
+    localBagsModifiedNew = [...tmplocalBagsModifiedNew, tmpBag]
 
-    setBags((prev) => prev.filter((_bag) => _bag._id !== bags[index]._id))
-    setBags((prev) => [...prev, tmpBag])
-    setBooksPlacedInBags((prev) => prev + 1)
+    let tmplocalBags = localBags.filter(
+      (bag) => bag.name !== localBags[index].name
+    )
+    localBags = [...tmplocalBags, tmpBag]
+    numBooksPlacedInBags++
   }
 
   function createNewBag(i, j, indexCopyId) {
     let newBagCategory = getBookCategoryExcluded(booksNoBags[i], j)
-    let newBagName = `${newBagCategory}${Math.floor(Math.random() * 10000)}`
+    let newBagName = `${newBagCategory}${getRndInteger(1, 999999)}`
 
     let newBag = {
+      _id: "",
       name: newBagName,
       category: newBagCategory,
       assigned: "",
@@ -74,13 +104,18 @@ export default function AddBooksToBags({
     newBag.books.push(newBookId)
     newBag.titles.push(newBookTitle)
     newBag.copyIds.push(newBookCopyIds)
-    // console.log("New Bag created ", newBag)
-    setBags((prev) => [...prev, newBag])
-    setBooksPlacedInBags((prev) => prev + 1)
-    setBagsNew((prev) => prev + 1)
+
+    localBagsModifiedNew.push(newBag)
+    localBags.push(newBag)
+
+    numBooksPlacedInBags++
+    numBagsNew++
   }
 
   function handleParseBooksBags() {
+    if (hasParsedBooksBags) {
+      return
+    }
     const newBag = {
       _id: "",
       name: "",
@@ -88,41 +123,35 @@ export default function AddBooksToBags({
       titles: [],
       copyIds: [],
     }
-    // console.log("handling books", booksNoBags)
-    // console.log(newBag.hasOwnProperty("_id"))
+
     let index
     for (let i = 0; i < booksNoBags.length; i++) {
       for (let j = 0; j < booksNoBags[i].categories.length; j++) {
-        // console.log("cat", booksNoBags[i].categories[j])
-        // console.log('bag cat',bag.)
         for (let k = 0; k < 4; k++) {
           let indexCopyId = j * 4 + k
-          console.log("bags", bags)
           index = isBagAvailable(
             booksNoBags[i],
             booksNoBags[i].copyIds[indexCopyId],
-            bags,
-            booksNoBags[i].categories[j]
+            booksNoBags[i].categories[j],
+            localBags
           )
-          // console.log("current book", booksNoBags[i].copyIds[indexCopyId])
 
           if (index >= 0) {
-            // found a Bag
-            // console.log("found a bag", index)
-            // console.log("book", booksNoBags[i])
-            // console.log("bag", bags[index])
-
             addBooktoBag(index, i, indexCopyId)
           } else {
-            // console.log("create a bag")
-            // console.log("book", booksNoBags[i])
             createNewBag(i, j, indexCopyId)
-            console.log("create New bags", bags)
           }
         }
       }
     }
-    setIsReady(false)
+    let tmpModifiedNewIds = localBagsModifiedNew.map((b) => b.name)
+    let tmplocalBags = localBags.filter(
+      (bag) => tmpModifiedNewIds.indexOf(bag.name) > -1
+    )
+    setBags((prev) => [...prev, ...tmplocalBags])
+    setBagsNew(numBagsNew)
+    setBooksPlacedInBags(numBooksPlacedInBags)
+    sethasParsedBooksBags(true)
   }
   async function SaveBags() {
     const res = await fetch("/api/bags/parser", {
@@ -145,10 +174,10 @@ export default function AddBooksToBags({
         <Button onClick={() => SaveBags()}>Save Bags</Button>
         {isSavedToDb && <h2>Saved To Database</h2>}
         {/* {isReady ? (
-          <Button onClick={() => handleAddBooks()}>Add</Button>
-        ) : (
-          <div className="text-2xl text-red-600">Added Books to Bags!</div>
-        )} */}
+            <Button onClick={() => handleAddBooks()}>Add</Button>
+          ) : (
+            <div className="text-2xl text-red-600">Added Books to Bags!</div>
+          )} */}
       </div>
       <div className="flex-col justify-end">
         <div className="flex justify-end">

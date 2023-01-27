@@ -23,34 +23,24 @@ export default function AdminBagsParserPage({
 
 function aggregateBooksNeedBags(books, bags) {
   let BookCopyIdHashMap = createBaggedCopyIdHashMap(bags)
-
-  // console.log("book need bags", books.map((book) => ({
-  //   ...book,
-  //   copyIds: book.copyIds.filter((copyId) => {
-  //     if (isCopyIdBagged(BookCopyIdHashMap, copyId) === undefined) {
-  //       console.log("is in Not bag", copyId)
-  //       return copyId
-  //     }
-  //   }),
-  // }))
-  //)
-
-  return books.map((book) => ({
+  // console.log("BookCopyIdHashMap", BookCopyIdHashMap)
+  // remove books where all the copyIds are in bags.
+  // return books where at least 1 copyId is in a bag.
+  let myBooks = books.map((book) => ({
     ...book,
     copyIds: book.copyIds.filter((copyId) => {
       if (isCopyIdBagged(BookCopyIdHashMap, copyId) === undefined) {
-        console.log("is in Not bag", copyId)
         return copyId
       }
     }),
   }))
+  return myBooks.filter((book) => book.copyIds.length)
 }
 
 function isCopyIdBagged(BookCopyIdHashMap, copyId) {
-  return BookCopyIdHashMap.get(copyId.toString())
+  return BookCopyIdHashMap.get(copyId)
 }
 function createBaggedCopyIdHashMap(bags) {
-  console.log("created Bags HM", bags)
   let BookCopyIdHashMap = new Map()
 
   for (let i = 0; i < bags.length; i++) {
@@ -76,7 +66,7 @@ export async function getServerSideProps() {
   const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
   // const collectionReaders = await dbConnection.db().collection("readers")
   // const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
-  console.log("bags", bags.length)
+
   return {
     props: {
       categories: categories,
