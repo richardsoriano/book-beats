@@ -9,8 +9,11 @@ export default function AdminBooksAssignmentsPage({ bookAssignments }) {
 function aggregateBookAssignments(readers, books) {
   return books.reduce((acc, book) => {
     const assigned = readers.flatMap((reader) =>
-      reader.assignments.filter((assignment) => assignment.book === book._id)
+      reader.assignments.filter(
+        (assignment) => assignment.book._id === book._id
+      )
     )
+
     const reviewed = readers.flatMap((reader) =>
       reader.assignments.filter(
         (assignment) => assignment.book === book._id && assignment.reviewedOn
@@ -35,7 +38,6 @@ export async function getServerSideProps() {
   const books = await collectionBooks.find({}).toArray()
   const collectionReaders = await dbConnection.db().collection("readers")
   const readers = await collectionReaders.find({}).toArray()
-
   return {
     props: {
       bookAssignments: aggregateBookAssignments(

@@ -1,6 +1,6 @@
 import dbPromise, { jsonify } from "@/modules/mongodb"
 import AdminBags from "@/features/admin/bags"
-import readers from "@/data/readers"
+// import readers from "@/data/readers"
 
 export default function AdminBagsPage({
   bags,
@@ -59,9 +59,9 @@ export async function getServerSideProps() {
 
   const collectionBooks = await dbConnection.db().collection("books")
   const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
-  // const collectionReaders = await dbConnection.db().collection("readers")
-  // const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
-  console.log("readers", readers)
+  const collectionReaders = await dbConnection.db().collection("readers")
+  const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
+
   return {
     props: {
       bags: aggregateBags(jsonify(bags)),

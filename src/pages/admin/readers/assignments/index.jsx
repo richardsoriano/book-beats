@@ -1,5 +1,5 @@
 import AdminBooksAssignments from "@/features/admin/books/assignments"
-import readers from "@/data/readers"
+// import readers from "@/data/readers"
 
 export default function AdminBooksAssignmentsPage({ bookAssignments }) {
   return <AdminBooksAssignments bookAssignments={bookAssignments} />
@@ -40,10 +40,12 @@ function aggregateBookAssignments(readers) {
     ]
   }, [])
 }
-export function getServerSideProps() {
+export async function getServerSideProps() {
+  const collectionReaders = await dbConnection.db().collection("readers")
+  const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
   return {
     props: {
-      bookAssignments: aggregateBookAssignments(readers),
+      bookAssignments: aggregateBookAssignments(jsonify(readers)),
     },
   }
 }

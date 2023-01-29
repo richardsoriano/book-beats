@@ -92,9 +92,6 @@ export default function AdminBooksParser({ lastBook }) {
     let arrCategories = categories.split(",").map((cat) => cat.trim())
 
     for (let i = 0; i < arrCategories.length; i++) {
-      console.log("cat", arrCategories[i])
-      console.log("cat length", arrCategories[i].length)
-
       if (newHashMapCategories[arrCategories[i]]) {
         newHashMapCategories[arrCategories[i]]++
       } else {
@@ -227,7 +224,6 @@ export default function AdminBooksParser({ lastBook }) {
                 <th className="">Auth State</th>
                 <th className="">Auth Zip</th>
                 <th className="">Auth Country</th>
-                <th className="">Captcha</th>
                 <th className="">Created Date</th>
                 <th className="">Qualified</th>
                 <th className="">copyIds</th>
@@ -270,7 +266,6 @@ export default function AdminBooksParser({ lastBook }) {
                     <td {...tdProps}>{book.astate}</td>
                     <td {...tdProps}>{book.azip}</td>
                     <td {...tdProps}>{book.acountry}</td>
-                    <td {...tdProps}>{book.captcha}</td>
                     <td {...tdProps}>{book.createddate}</td>
                     <td {...tdProps}>{book.qualifiedstatus}</td>
                     <td {...tdProps}>{book.copyIds.join(", ")}</td>

@@ -1,0 +1,137 @@
+[{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e4"
+  },
+  "name": "Art & Photography3564",
+  "assigned": "",
+  "category": "Art & Photography",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1004
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e5"
+  },
+  "name": "Art & Photography6378",
+  "assigned": "",
+  "category": "Art & Photography",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1001
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e6"
+  },
+  "name": "Art & Photography8749",
+  "assigned": "",
+  "category": "Art & Photography",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1002
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e7"
+  },
+  "name": "Children's Picture Book3087",
+  "assigned": "",
+  "category": "Children's Picture Book",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1005
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e9"
+  },
+  "name": "Children's Picture Book7301",
+  "assigned": "",
+  "category": "Children's Picture Book",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1007
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e8"
+  },
+  "name": "Children's Picture Book5067",
+  "assigned": "",
+  "category": "Children's Picture Book",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1008
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4e3"
+  },
+  "name": "Art & Photography2273",
+  "assigned": "",
+  "category": "Art & Photography",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1003
+  ]
+},{
+  "_id": {
+    "$oid": "63d2d7c8871068847239c4ea"
+  },
+  "name": "Children's Picture Book9534",
+  "assigned": "",
+  "category": "Children's Picture Book",
+  "pickupstatus": "needs pickup",
+  "books": [
+    "63d2d33df27c4796611254f5"
+  ],
+  "titles": [
+    "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+  ],
+  "copyIds": [
+    1006
+  ]
+}]
