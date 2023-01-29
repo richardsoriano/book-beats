@@ -19,7 +19,7 @@ export default function BagForm({
 }) {
   const [currentStep, setCurrentStep] = useState(0)
   const [bag, setBag] = useState(bagProps)
-  console.log("bag formreaders", readers)
+
   const steps = [
     {
       component: <NameBag bag={bag} setBag={setBag} />,

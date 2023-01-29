@@ -173,11 +173,6 @@ export default function AddBooksToBags({
         <Button onClick={() => handleParseBooksBags()}>Parse</Button>
         <Button onClick={() => SaveBags()}>Save Bags</Button>
         {isSavedToDb && <h2>Saved To Database</h2>}
-        {/* {isReady ? (
-            <Button onClick={() => handleAddBooks()}>Add</Button>
-          ) : (
-            <div className="text-2xl text-red-600">Added Books to Bags!</div>
-          )} */}
       </div>
       <div className="flex-col justify-end">
         <div className="flex justify-end">

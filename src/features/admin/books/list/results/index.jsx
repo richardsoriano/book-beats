@@ -34,7 +34,6 @@ const newBook = {
   astate: "",
   azip: "",
   acountry: "",
-  captcha: "",
   createddate: "",
   qualifiedstatus: "",
   copyIds: "",
@@ -87,7 +86,6 @@ export default function BookListResults({
       astate: "",
       azip: "",
       acountry: "",
-      captcha: "",
       createddate: "",
       qualifiedstatus: "",
       copyIds: "",
@@ -132,7 +130,7 @@ export default function BookListResults({
           { heading: "Auth State", sortable: "astate" },
           { heading: "Auth Zip", sortable: "azip" },
           { heading: "Auth Country", sortable: "acountry" },
-          { heading: "Captcha", sortable: "captcha" },
+
           { heading: "Created Date", sortable: "createddate" },
           { heading: "Qualified", sortable: "qualifiedstatus" },
           { heading: "CopyIDs", sortable: "copyIds" },
@@ -185,7 +183,6 @@ export default function BookListResults({
               <td {...tdProps}>{book.astate}</td>
               <td {...tdProps}>{book.azip}</td>
               <td {...tdProps}>{book.acountry}</td>
-              <td {...tdProps}>{book.captcha}</td>
               <td {...tdProps}>{book.createddate}</td>
               <td {...tdProps}>{book.qualifiedstatus}</td>
               <td {...tdProps}>{book.copyIds}</td>

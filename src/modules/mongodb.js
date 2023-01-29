@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient } from "mongodb"
 
 const uri = process.env.MONGODB_URI
 const options = {
@@ -7,7 +7,7 @@ const options = {
 }
 
 const dbPromise =
-  process.env.NODE_ENV === 'development' ? development() : production()
+  process.env.NODE_ENV === "development" ? development() : production()
 
 export function jsonify(val) {
   return JSON.parse(JSON.stringify(val))

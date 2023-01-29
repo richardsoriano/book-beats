@@ -35,7 +35,6 @@ async function saveBook(req, res) {
     azip,
     acountry,
     copyIds,
-    captcha,
     createddate,
     qualifiedstatus,
   } = JSON.parse(req.body)
@@ -75,7 +74,6 @@ async function saveBook(req, res) {
         astate,
         azip,
         acountry,
-        captcha,
         createddate,
         qualifiedstatus,
         copyIds: arrCopyIds,
@@ -112,7 +110,6 @@ async function saveBook(req, res) {
     astate,
     azip,
     acountry,
-    captcha,
     createddate,
     qualifiedstatus,
     copyIds: arrCopyIds.join(),

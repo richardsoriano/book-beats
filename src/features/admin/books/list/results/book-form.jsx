@@ -64,7 +64,6 @@ export default function BookForm({
           astate: data.astate,
           azip: data.azip,
           acountry: data.acountry,
-          captcha: data.captcha,
           createddate: data.createddate,
           qualifiedstatus: data.qualifiedstatus,
           copyIds: data.copyIds,
@@ -222,11 +221,6 @@ export default function BookForm({
           label="Auth Country"
           value={book.acountry}
           onChange={(acountry) => setBook((prev) => ({ ...prev, acountry }))}
-        />
-        <TextField
-          label="Captcha"
-          value={book.captcha}
-          onChange={(captcha) => setBook((prev) => ({ ...prev, captcha }))}
         />
         <TextField
           label="Created Date"
