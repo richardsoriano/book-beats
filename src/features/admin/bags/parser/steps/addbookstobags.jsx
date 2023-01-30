@@ -23,7 +23,7 @@ export default function AddBooksToBags({
   // local temp values for deep copy.
   // setBags at the end. Avoid setBags in loops to avoid
   // constant re-rendering.
-  booksNoBags.map((b) => console.log("books No Bags", b))
+
   let localBags = bags.map((_bag) => {
     return { ..._bag }
   })
