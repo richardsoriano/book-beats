@@ -1,10 +1,10 @@
-import dbPromise from "@/modules/mongodb"
+import dbPromise, { jsonify } from "@/modules/mongodb"
 import { ObjectId } from "mongodb"
 
 function createBulkUpdateString(arrayOfBagsToBeUpdated) {
   return arrayOfBagsToBeUpdated.map((item) => ({
     updateOne: {
-      filter: { _id: item._id },
+      filter: { _id: ObjectId(item._id) },
       update: {
         $set: {
           name: item.name,
@@ -24,13 +24,15 @@ function createBulkUpdateString(arrayOfBagsToBeUpdated) {
 function createBulkInsertString(arrayOfBagsToBeInserted) {
   return arrayOfBagsToBeInserted.map((item) => ({
     insertOne: {
-      name: item.name,
-      assigned: item.assigned,
-      category: item.category,
-      pickupstatus: item.pickupstatus,
-      books: [...item.books],
-      titles: [...item.titles],
-      copyIds: [...item.copyIds],
+      document: {
+        name: item.name,
+        assigned: item.assigned,
+        category: item.category,
+        pickupstatus: item.pickupstatus,
+        books: item.books,
+        titles: item.titles,
+        copyIds: item.copyIds,
+      },
     },
   }))
 }
@@ -39,31 +41,31 @@ export default async function SaveBagsToDB(req, res) {
   console.log("Save To DB")
   const arrayOfBags = JSON.parse(req.body)
 
-  let arrayOfBagsToBeInserted = arrayOfBags.filter(
-    (bag) => !bag.hasOwnProperty("_id")
-  )
-  let arrayOfBagsToBeUpdated = arrayOfBags.filter((bag) =>
-    bag.hasOwnProperty("_id")
-  )
-  console.log("insert=", arrayOfBagsToBeInserted)
-  console.log("update=", arrayOfBagsToBeUpdated)
+  let arrayOfBagsToBeInserted = arrayOfBags.filter((bag) => bag._id === "")
+  let arrayOfBagsToBeUpdated = arrayOfBags.filter((bag) => bag._id !== "")
 
   const bulkDataUpdate = createBulkUpdateString(arrayOfBagsToBeUpdated)
   const bulkDataInsert = createBulkInsertString(arrayOfBagsToBeInserted)
   const bulkData = bulkDataInsert.concat(bulkDataUpdate)
+  if (bulkData.length === 0) {
+    res.status(200).json({ Hello: "Empty" })
+    return
+  }
 
-  const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection("bags")
+  const dbConnectionBagsBulkWrite = await dbPromise
+  const collection = await dbConnectionBagsBulkWrite.db().collection("bags")
+
   try {
-    console.log("bulk", bulkData)
+    console.log("bulkData", bulkData)
     const result = await collection.bulkWrite(bulkData, {
       ordered: false,
       upsert: true,
     })
-    dbConnection.close()
     res.status(200).json({ result })
   } catch (error) {
     console.log("error", error)
     res.status(500).json({ error })
   }
+
+  return
 }

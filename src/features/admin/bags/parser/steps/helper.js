@@ -4,7 +4,6 @@ export function isBagAvailable(book, copyId, bookCategory, localBags) {
   // bag is same category as any of the book categories. book.categories.include()
   // bag does not already have the book = !bags[i].books.includes(book._id)
   // bag does not already have the copyId = !bags[i].copyIds.include(copyId)
-
   for (let i = 0; i < localBags.length; i++) {
     if (
       localBags[i].copyIds.length < 4 &&

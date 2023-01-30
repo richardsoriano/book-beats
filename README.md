@@ -1,5 +1,4 @@
-# DevmentorLive NextJS Starter Template
-
+# Book Beats by Richard Soriano
 ## Getting Started
 
 To create an app using this starter

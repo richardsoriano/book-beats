@@ -2,8 +2,6 @@ import dbPromise, { jsonify } from "@/modules/mongodb"
 
 import BagParser from "@/features/admin/bags/parser/"
 import categories from "@/data/categories"
-// import bags from "@/data/bags"
-// import books from "@/data/books"
 
 export default function AdminBagsParserPage({
   categories,
@@ -23,7 +21,7 @@ export default function AdminBagsParserPage({
 
 function aggregateBooksNeedBags(books, bags) {
   let BookCopyIdHashMap = createBaggedCopyIdHashMap(bags)
-  // console.log("BookCopyIdHashMap", BookCopyIdHashMap)
+
   // remove books where all the copyIds are in bags.
   // return books where at least 1 copyId is in a bag.
   let myBooks = books.map((book) => ({
@@ -64,14 +62,11 @@ export async function getServerSideProps() {
 
   const collectionBooks = await dbConnection.db().collection("books")
   const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
-  // const collectionReaders = await dbConnection.db().collection("readers")
-  // const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
 
   return {
     props: {
       categories: categories,
       booksNoBags: aggregateBooksNeedBags(jsonify(books), jsonify(bags)),
-      // booksNoBags: aggregateBooks(jsonify(books)),
       books: aggregateBooks(jsonify(books)),
       bags: aggregateBags(jsonify(bags)),
     },
