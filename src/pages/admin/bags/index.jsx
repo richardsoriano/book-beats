@@ -29,7 +29,7 @@ function aggregateBags(bags) {
         category: bag.category,
         books: bag.books,
         numBooks: bag.books.length,
-        assigned: bag.assigned,
+        reader: bag.reader,
         pickupstatus: bag.pickupstatus,
       },
     ]

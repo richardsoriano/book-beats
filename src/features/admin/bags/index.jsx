@@ -12,14 +12,14 @@ const newBag = {
   category: undefined,
   books: [],
   reader: undefined,
-  pickupStatus: undefined,
+  pickupstatus: undefined,
 }
 
 export default function AdminBags({ bags, books, readerAssignments, readers }) {
   const [_bags, setBags] = useState(bags)
   const [selectedBag, setSelectedBag] = useState(undefined)
   const [bagToDelete, setBagToDelete] = useState(undefined)
-  const pickupStatus = ["needs pickup", "picked up", "returned"]
+  const pickupstatus = ["needs pickup", "picked up", "returned"]
   function deleteBag(bag) {
     setBagToDelete(bag)
   }
@@ -30,7 +30,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
       name: "",
       category: undefined,
       reader: "",
-      pickupStatus: undefined,
+      pickupstatus: undefined,
       books: [],
     }
     const res = await fetch(`/api/bags/${bagToDelete._id}`, {
@@ -49,8 +49,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
           { heading: "Name", sortable: "name" },
           { heading: "Category", sortable: "category" },
           { heading: "Num Books", sortable: "numBooks" },
-          { heading: "Reader", sortable: "assigned" },
-          { heading: "Status", sortable: "pickupStatus" },
+          { heading: "Reader", sortable: "reader" },
+          { heading: "Status", sortable: "pickupstatus" },
           { heading: "Delete", sortable: false },
         ]}
         rows={_bags}
@@ -69,8 +69,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
               <td {...tdProps}>{bag.name}</td>
               <td {...tdProps}>{bag.category}</td>
               <td {...tdProps}>{bag.numBooks}</td>
-              <td {...tdProps}>{bag.assigned}</td>
-              <td {...tdProps}>{bag.pickupStatus}</td>
+              <td {...tdProps}>{bag.reader}</td>
+              <td {...tdProps}>{bag.pickupstatus}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
             </tr>
           )
@@ -83,7 +83,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
             bagProps={selectedBag}
             bags={_bags}
             readers={readers}
-            pickupStatus={pickupStatus}
+            pickupstatus={pickupstatus}
             setBags={setBags}
             setSelectedBag={setSelectedBag}
           />

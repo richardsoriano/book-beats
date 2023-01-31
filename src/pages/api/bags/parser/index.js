@@ -8,7 +8,7 @@ function createBulkUpdateString(arrayOfBagsToBeUpdated) {
       update: {
         $set: {
           name: item.name,
-          assigned: item.assigned,
+          reader: item.reader,
           category: item.category,
           pickupstatus: item.pickupstatus,
           books: [...item.books],
@@ -26,7 +26,7 @@ function createBulkInsertString(arrayOfBagsToBeInserted) {
     insertOne: {
       document: {
         name: item.name,
-        assigned: item.assigned,
+        reader: item.reader,
         category: item.category,
         pickupstatus: item.pickupstatus,
         books: item.books,
