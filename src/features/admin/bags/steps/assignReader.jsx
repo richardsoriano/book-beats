@@ -25,9 +25,7 @@ export default function assignReader({ readers, bag, setBag = () => {} }) {
         className="w-full p-2 my-2 border border-gray-900 rounded-sm"
         onClick={() => setOpen((prev) => !prev)}
       >
-        {bag.assigned
-          ? readers.find((_reader) => _reader._id === bag.assigned).name
-          : ""}
+        {bag.reader}
       </div>
       <div
         className={`absolute border w-full mt-1 ${open ? "block" : "hidden"}`}
@@ -37,7 +35,7 @@ export default function assignReader({ readers, bag, setBag = () => {} }) {
             key={i}
             className="p-2 bg-white"
             onClick={() => {
-              setBag((prev) => ({ ...prev, assigned: reader._id }))
+              setBag((prev) => ({ ...prev, reader: reader.name }))
               setOpen(false)
             }}
           >

@@ -13,7 +13,7 @@ export default function BagForm({
   bagProps,
   bags,
   readers,
-  pickupStatus,
+  pickupstatus,
   setBags = () => {},
   setSelectedBag = () => {},
 }) {
@@ -41,7 +41,7 @@ export default function BagForm({
     },
     {
       component: (
-        <AssignStatus pickupStatus={pickupStatus} bag={bag} setBag={setBag} />
+        <AssignStatus pickupstatus={pickupstatus} bag={bag} setBag={setBag} />
       ),
       label: "Assign Status",
     },
@@ -65,15 +65,12 @@ export default function BagForm({
           books: data.books,
           numBooks: bag.books.length,
           reader: data.reader,
-          pickupStatus: data.pickupStatus,
+          pickupstatus: data.pickupstatus,
         }
       })
     if (bagId !== "") {
-      bags.map((_bag) => console.log(_bag._id))
-
       // remove the old version
       setBags((prev) => prev.filter((_bag) => _bag._id !== bagId))
-      bags.map((_bag) => console.log(_bag._id))
     }
 
     setBags((prev) => [...prev, newBag])

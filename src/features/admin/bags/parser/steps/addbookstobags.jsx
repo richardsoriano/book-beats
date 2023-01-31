@@ -44,7 +44,7 @@ export default function AddBooksToBags({
     let newBagCopyIds = localBags[index].copyIds
     let newBagName = localBags[index].name
     let newBagCategory = localBags[index].category
-    let newBagAssigned = localBags[index].assigned
+    let newBagReader = localBags[index].reader
     let newBagPickupStatus = localBags[index].pickupstatus
     let newBookTitle = booksNoBags[i].title
     let newBookCopyIds = booksNoBags[i].copyIds[j]
@@ -58,7 +58,7 @@ export default function AddBooksToBags({
       _id: newBag_id,
       name: newBagName,
       category: newBagCategory,
-      assigned: newBagAssigned,
+      reader: newBagReader,
       pickupstatus: newBagPickupStatus,
       books: newBagBooks,
       titles: newBagTitles,
@@ -92,7 +92,7 @@ export default function AddBooksToBags({
       _id: "",
       name: newBagName,
       category: newBagCategory,
-      assigned: "",
+      reader: "",
       pickupstatus: "needs pickup",
       books: [],
       titles: [],

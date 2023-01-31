@@ -1,11 +1,11 @@
-import SelectField from 'ui/select-field'
+import SelectField from "ui/select-field"
 
-export default function assignStatus({ pickupStatus, bag, setBag = () => {} }) {
+export default function assignStatus({ pickupstatus, bag, setBag = () => {} }) {
   return (
     <SelectField
-      options={pickupStatus}
-      value={bag.pickupStatus}
-      onChange={(pickupStatus) => setBag((prev) => ({ ...prev, pickupStatus }))}
+      options={pickupstatus}
+      value={bag.pickupstatus}
+      onChange={(pickupstatus) => setBag((prev) => ({ ...prev, pickupstatus }))}
     />
   )
 }

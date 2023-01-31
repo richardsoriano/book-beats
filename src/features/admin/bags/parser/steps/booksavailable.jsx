@@ -6,7 +6,7 @@ export default function BooksAvailable({ booksNoBags }) {
       <Table
         columns={[
           { heading: "Title", sortable: "name" },
-          { heading: "Author", sortable: "auth1" },
+          { heading: "Author", sortable: "author1" },
           { heading: "Categories", sortable: "categories" },
           { heading: "copyIds", sortable: "copyIds" },
         ]}
@@ -19,7 +19,7 @@ export default function BooksAvailable({ booksNoBags }) {
           return (
             <tr key={i}>
               <td {...tdProps}>{_books.title}</td>
-              <td {...tdProps}>{_books.auth1}</td>
+              <td {...tdProps}>{_books.author1}</td>
               <td {...tdProps}>{_books.categories.join(", ")}</td>
               <td {...tdProps}>{_books.copyIds.join(", ")}</td>
             </tr>
