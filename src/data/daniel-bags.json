@@ -1,0 +1,570 @@
+[
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a14815"
+    },
+    "name": "DANIEL Art & Photography205294",
+    "reader": "",
+    "category": "Art & Photography",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1004]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a14816"
+    },
+    "name": "DANIEL Art & Photography297898",
+    "reader": "",
+    "category": "Art & Photography",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1001]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a14817"
+    },
+    "name": "DANIEL Art & Photography589119",
+    "reader": "",
+    "category": "Art & Photography",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1002]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a14818"
+    },
+    "name": "DANIEL Art & Photography907548",
+    "reader": "",
+    "category": "Art & Photography",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1003]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a14819"
+    },
+    "name": "DANIEL Children's Picture Book208039",
+    "reader": "",
+    "category": "Children's Picture Book",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1005]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a1481a"
+    },
+    "name": "DANIEL Children's Picture Book365989",
+    "reader": "",
+    "category": "Children's Picture Book",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1006]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a1481b"
+    },
+    "name": "DANIEL Children's Picture Book376321",
+    "reader": "",
+    "category": "Children's Picture Book",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1007]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1ad2f29cfb9c12a1481c"
+    },
+    "name": "DANIEL Children's Picture Book613776",
+    "reader": "",
+    "category": "Children's Picture Book",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1a5af29cfb9c12a14814"],
+    "titles": [
+      "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide"
+    ],
+    "copyIds": [1008]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14820"
+    },
+    "name": "DANIEL Creative Nonfiction103956",
+    "reader": "",
+    "category": "Creative Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1adef29cfb9c12a1481d",
+      "63dc1adef29cfb9c12a1481e",
+      "63dc1adef29cfb9c12a1481f",
+      "63dc1b0bf29cfb9c12a1482d"
+    ],
+    "titles": [
+      "Home Waters",
+      "Shadow Landscape: Stories from the Field",
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest"
+    ],
+    "copyIds": [1012, 1016, 1020, 1053]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14821"
+    },
+    "name": "DANIEL Creative Nonfiction220539",
+    "reader": "",
+    "category": "Creative Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1adef29cfb9c12a1481d",
+      "63dc1adef29cfb9c12a1481e",
+      "63dc1adef29cfb9c12a1481f",
+      "63dc1b0bf29cfb9c12a1482d"
+    ],
+    "titles": [
+      "Home Waters",
+      "Shadow Landscape: Stories from the Field",
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest"
+    ],
+    "copyIds": [1011, 1015, 1019, 1054]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14822"
+    },
+    "name": "DANIEL Creative Nonfiction409535",
+    "reader": "",
+    "category": "Creative Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1adef29cfb9c12a1481d",
+      "63dc1adef29cfb9c12a1481e",
+      "63dc1adef29cfb9c12a1481f",
+      "63dc1b0bf29cfb9c12a1482d"
+    ],
+    "titles": [
+      "Home Waters",
+      "Shadow Landscape: Stories from the Field",
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest"
+    ],
+    "copyIds": [1010, 1014, 1018, 1055]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14823"
+    },
+    "name": "DANIEL Creative Nonfiction434115",
+    "reader": "",
+    "category": "Creative Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1adef29cfb9c12a1481d",
+      "63dc1adef29cfb9c12a1481e",
+      "63dc1adef29cfb9c12a1481f",
+      "63dc1b0bf29cfb9c12a1482d"
+    ],
+    "titles": [
+      "Home Waters",
+      "Shadow Landscape: Stories from the Field",
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest"
+    ],
+    "copyIds": [1009, 1013, 1017, 1056]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14824"
+    },
+    "name": "DANIEL Nonfiction154959",
+    "reader": "",
+    "category": "Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1adef29cfb9c12a1481f"],
+    "titles": [
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood"
+    ],
+    "copyIds": [1024]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14825"
+    },
+    "name": "DANIEL Nonfiction491185",
+    "reader": "",
+    "category": "Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1adef29cfb9c12a1481f"],
+    "titles": [
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood"
+    ],
+    "copyIds": [1023]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14826"
+    },
+    "name": "DANIEL Nonfiction532045",
+    "reader": "",
+    "category": "Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1adef29cfb9c12a1481f"],
+    "titles": [
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood"
+    ],
+    "copyIds": [1021]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1aecf29cfb9c12a14827"
+    },
+    "name": "DANIEL Nonfiction9748",
+    "reader": "",
+    "category": "Nonfiction",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1adef29cfb9c12a1481f"],
+    "titles": [
+      "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood"
+    ],
+    "copyIds": [1022]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1482f"
+    },
+    "name": "DANIEL Fiction193931",
+    "reader": "",
+    "category": "Fiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a1482a",
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a14828"
+    ],
+    "titles": [
+      "A Flicker of Light",
+      "Everything Affects Everyone",
+      "The Winter-Blooming Tree"
+    ],
+    "copyIds": [1042, 1034, 1026]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14830"
+    },
+    "name": "DANIEL Fiction23257",
+    "reader": "",
+    "category": "Fiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a1482a",
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a14828"
+    ],
+    "titles": [
+      "A Flicker of Light",
+      "Everything Affects Everyone",
+      "The Winter-Blooming Tree"
+    ],
+    "copyIds": [1041, 1033, 1025]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14831"
+    },
+    "name": "DANIEL Fiction285122",
+    "reader": "",
+    "category": "Fiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a1482a",
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a14828"
+    ],
+    "titles": [
+      "A Flicker of Light",
+      "Everything Affects Everyone",
+      "The Winter-Blooming Tree"
+    ],
+    "copyIds": [1043, 1035, 1027]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14832"
+    },
+    "name": "DANIEL Fiction741631",
+    "reader": "",
+    "category": "Fiction",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a1482a",
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a14828"
+    ],
+    "titles": [
+      "A Flicker of Light",
+      "Everything Affects Everyone",
+      "The Winter-Blooming Tree"
+    ],
+    "copyIds": [1044, 1036, 1028]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14833"
+    },
+    "name": "DANIEL Poetry155092",
+    "reader": "",
+    "category": "Poetry",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482c"],
+    "titles": ["HEART OF THE PRAIRIE"],
+    "copyIds": [1052]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14834"
+    },
+    "name": "DANIEL Poetry55230",
+    "reader": "",
+    "category": "Poetry",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482c"],
+    "titles": ["HEART OF THE PRAIRIE"],
+    "copyIds": [1051]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14835"
+    },
+    "name": "DANIEL Poetry674303",
+    "reader": "",
+    "category": "Poetry",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482c"],
+    "titles": ["HEART OF THE PRAIRIE"],
+    "copyIds": [1049]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14836"
+    },
+    "name": "DANIEL Poetry932221",
+    "reader": "",
+    "category": "Poetry",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482c"],
+    "titles": ["HEART OF THE PRAIRIE"],
+    "copyIds": [1050]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14837"
+    },
+    "name": "DANIEL Short Stories182261",
+    "reader": "",
+    "category": "Short Stories",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482e"],
+    "titles": ["LIve Well: My Ukrainian Upbringing and Other Stories"],
+    "copyIds": [1064]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14838"
+    },
+    "name": "DANIEL Short Stories33969",
+    "reader": "",
+    "category": "Short Stories",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482e"],
+    "titles": ["LIve Well: My Ukrainian Upbringing and Other Stories"],
+    "copyIds": [1063]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14839"
+    },
+    "name": "DANIEL Short Stories751646",
+    "reader": "",
+    "category": "Short Stories",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482e"],
+    "titles": ["LIve Well: My Ukrainian Upbringing and Other Stories"],
+    "copyIds": [1061]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1483a"
+    },
+    "name": "DANIEL Short Stories857353",
+    "reader": "",
+    "category": "Short Stories",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a1482e"],
+    "titles": ["LIve Well: My Ukrainian Upbringing and Other Stories"],
+    "copyIds": [1062]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1483b"
+    },
+    "name": "DANIEL Woman Writer179390",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a14828"],
+    "titles": ["The Winter-Blooming Tree"],
+    "copyIds": [1032]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1483c"
+    },
+    "name": "DANIEL Woman Writer195319",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a14828"],
+    "titles": ["The Winter-Blooming Tree"],
+    "copyIds": [1031]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1483d"
+    },
+    "name": "DANIEL Woman Writer281883",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a14828"],
+    "titles": ["The Winter-Blooming Tree"],
+    "copyIds": [1029]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1483e"
+    },
+    "name": "DANIEL Woman Writer556690",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": ["63dc1b0bf29cfb9c12a14828"],
+    "titles": ["The Winter-Blooming Tree"],
+    "copyIds": [1030]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a1483f"
+    },
+    "name": "DANIEL Woman Writer625885",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a1482e",
+      "63dc1b0bf29cfb9c12a1482d",
+      "63dc1b0bf29cfb9c12a1482b"
+    ],
+    "titles": [
+      "Everything Affects Everyone",
+      "LIve Well: My Ukrainian Upbringing and Other Stories",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest",
+      "The Broken Statue "
+    ],
+    "copyIds": [1040, 1068, 1060, 1048]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14840"
+    },
+    "name": "DANIEL Woman Writer702429",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a1482e",
+      "63dc1b0bf29cfb9c12a1482d",
+      "63dc1b0bf29cfb9c12a1482b"
+    ],
+    "titles": [
+      "Everything Affects Everyone",
+      "LIve Well: My Ukrainian Upbringing and Other Stories",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest",
+      "The Broken Statue "
+    ],
+    "copyIds": [1039, 1067, 1059, 1047]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14841"
+    },
+    "name": "DANIEL Woman Writer763501",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a1482e",
+      "63dc1b0bf29cfb9c12a1482d",
+      "63dc1b0bf29cfb9c12a1482b"
+    ],
+    "titles": [
+      "Everything Affects Everyone",
+      "LIve Well: My Ukrainian Upbringing and Other Stories",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest",
+      "The Broken Statue "
+    ],
+    "copyIds": [1038, 1066, 1058, 1046]
+  },
+  {
+    "_id": {
+      "$oid": "63dc1b24f29cfb9c12a14842"
+    },
+    "name": "DANIEL Woman Writer774737",
+    "reader": "",
+    "category": "Woman Writer",
+    "pickupstatus": "needs pickup",
+    "books": [
+      "63dc1b0bf29cfb9c12a14829",
+      "63dc1b0bf29cfb9c12a1482e",
+      "63dc1b0bf29cfb9c12a1482d",
+      "63dc1b0bf29cfb9c12a1482b"
+    ],
+    "titles": [
+      "Everything Affects Everyone",
+      "LIve Well: My Ukrainian Upbringing and Other Stories",
+      "Lookout: Love, Solitude, and Searching for Wildfire in the Boreal Forest",
+      "The Broken Statue "
+    ],
+    "copyIds": [1037, 1065, 1057, 1045]
+  }
+]

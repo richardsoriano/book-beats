@@ -1,0 +1,303 @@
+[
+  {
+    "_id": "1000",
+    "name": "DAN TEST Julie",
+    "email": "julie@example.com",
+    "role": ["reader", "judge", "wrangler"],
+    "preferences": {
+      "maxNumberOfBooks": 4,
+      "categories": [
+        "Art & Photography",
+        "Big Sky",
+        "Children’s Middle Grade",
+        "Children’s Picture Book",
+        "Creative Nonfiction",
+        "Fiction",
+        "First Book",
+        "Indigenous Writer",
+        "Nonfiction",
+        "Poetry",
+        "Short Stories",
+        "Woman Writer",
+        "Young Adult"
+      ]
+    },
+    "bags": [],
+    "assignments": [
+      {
+        "_id": "63d2d33df27c4796611254f5",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa453",
+          "title": "Home Waters",
+          "categories": ["Creative Nonfiction"]
+        },
+        "review": {
+          "creativity": 4,
+          "topic": 4,
+          "writing": 4,
+          "structure": 4,
+          "readingExperience": 4
+        }
+      }
+    ]
+  },
+  {
+    "_id": "1001",
+    "name": "DAN TEST Shari",
+    "email": "shari@example.com",
+    "role": ["reader", "judge", "wrangler"],
+    "preferences": {
+      "maxNumberOfBooks": 4,
+      "categories": [
+        "Art & Photography",
+        "Big Sky",
+        "Children’s Middle Grade",
+        "Children’s Picture Book",
+        "Creative Nonfiction",
+        "Fiction",
+        "First Book",
+        "Indigenous Writer",
+        "Nonfiction",
+        "Poetry",
+        "Short Stories",
+        "Woman Writer",
+        "Young Adult"
+      ]
+    },
+    "bags": [],
+    "assignments": [
+      {
+        "_id": "63d2d33df27c4796611254f5",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d33df27c4796611254f5",
+          "title": "The Scenic Geology of Alberta – A Roadside Touring and Hiking Guide",
+          "categories": ["Nature", "Children", "Art"]
+        },
+        "review": {
+          "creativity": 4,
+          "topic": 4,
+          "writing": 4,
+          "structure": 4,
+          "readingExperience": 4
+        }
+      }
+    ]
+  },
+  {
+    "_id": "1002",
+    "name": "DAN TEST Richard Soriano",
+    "email": "soriano.richard2020@gmail.com",
+    "role": ["reader", "judge", "wrangler"],
+    "preferences": {
+      "maxNumberOfBooks": 4,
+      "categories": [
+        "Art & Photography",
+        "Big Sky",
+        "Children’s Middle Grade",
+        "Children’s Picture Book",
+        "Creative Nonfiction",
+        "Fiction",
+        "First Book",
+        "Indigenous Writer",
+        "Nonfiction",
+        "Poetry",
+        "Short Stories",
+        "Woman Writer",
+        "Young Adult"
+      ]
+    },
+    "bags": ["61983853f17ab9815c17058d"],
+    "assignments": [
+      {
+        "_id": "5000",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa454",
+          "title": "Shadow Landscape: Stories from the Field",
+          "categories": ["Creative Nonfiction"]
+        },
+        "review": {
+          "creativity": 4,
+          "topic": 4,
+          "writing": 4,
+          "structure": 4,
+          "readingExperience": 4
+        }
+      },
+      {
+        "_id": "5001",
+        "assignedOn": "2022-1-5",
+        "reviewedOn": "2022-1-6",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa455",
+          "title": "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood",
+          "categories": ["Creative Nonfiction", "Nonfiction"]
+        },
+        "review": {
+          "creativity": 4,
+          "topic": 4,
+          "writing": 4,
+          "structure": 4,
+          "readingExperience": 4
+        }
+      },
+      {
+        "_id": "63d2d33df27c479661125877",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa453",
+          "title": "Home Waters",
+          "categories": ["Creative Nonfiction"]
+        },
+        "review": {
+          "creativity": 4,
+          "topic": 4,
+          "writing": 4,
+          "structure": 4,
+          "readingExperience": 4
+        }
+      }
+    ]
+  },
+  {
+    "_id": "1004",
+    "name": "DAN TEST Holly Soriano",
+    "email": "sorianopictures@gmail.com",
+    "role": ["reader", "judge", "wrangler"],
+    "preferences": {
+      "maxNumberOfBooks": 4,
+      "categories": [
+        "Art & Photography",
+        "Big Sky",
+        "Children’s Middle Grade",
+        "Children’s Picture Book",
+        "Creative Nonfiction",
+        "Fiction",
+        "First Book",
+        "Indigenous Writer",
+        "Nonfiction",
+        "Poetry",
+        "Short Stories",
+        "Woman Writer",
+        "Young Adult"
+      ]
+    },
+    "assignments": [
+      {
+        "_id": "5003",
+        "assignedOn": "2021-10-3",
+        "reviewedOn": "2021-10-22",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa455",
+          "title": "The Holly: Five Bullets, One Gun, and the Struggle to Save an American Neighborhood",
+          "categories": ["Creative Nonfiction", "Nonfiction"]
+        },
+        "review": {
+          "creativity": 2,
+          "topic": 2,
+          "writing": 2,
+          "structure": 2,
+          "readingExperience": 2
+        }
+      },
+      {
+        "_id": "5004",
+        "assignedOn": "2021-10-3",
+        "reviewedOn": "2021-10-22",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa454",
+          "title": "Shadow Landscape: Stories from the Field",
+          "categories": ["Creative Nonfiction"]
+        },
+        "review": {
+          "creativity": 2,
+          "topic": 2,
+          "writing": 2,
+          "structure": 2,
+          "readingExperience": 2
+        }
+      }
+    ]
+  },
+  {
+    "_id": "1005",
+    "name": "DAN TEST Daniel Park",
+    "email": "daniel@test.com",
+    "role": ["reader", "judge", "wrangler"],
+    "preferences": {
+      "maxNumberOfBooks": 4,
+      "categories": [
+        "Art & Photography",
+        "Big Sky",
+        "Children’s Middle Grade",
+        "Children’s Picture Book",
+        "Creative Nonfiction",
+        "Fiction",
+        "First Book",
+        "Indigenous Writer",
+        "Nonfiction",
+        "Poetry",
+        "Short Stories",
+        "Woman Writer",
+        "Young Adult"
+      ]
+    },
+    "assignments": [
+      {
+        "_id": "5008",
+        "assignedOn": "2021-10-5",
+        "reviewedOn": "2021-10-21",
+        "event": {
+          "_id": "as3dfsh",
+          "name": "High Plains books"
+        },
+        "book": {
+          "_id": "63d2d816c190241528ffa453",
+          "title": "Home Waters",
+          "categories": ["Creative Nonfiction"]
+        },
+        "review": {
+          "creativity": 5,
+          "topic": 5,
+          "writing": 5,
+          "structure": 5,
+          "readingExperience": 5
+        }
+      }
+    ]
+  }
+]

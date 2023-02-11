@@ -1,5 +1,8 @@
 import dbPromise, { jsonify } from "@/modules/mongodb"
 import AdminBags from "@/features/admin/bags"
+import books from "@/data/books"
+import bags from "@/data/bags"
+import readers from "@/data/readers"
 
 export default function AdminBagsPage({
   bags,
@@ -66,10 +69,13 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      bags: aggregateBags(jsonify(bags)),
-      books: aggregateBooks(jsonify(books)),
-      readerAssignments: aggregateReaderAssignments(readers),
-      readers: aggregateReaders(jsonify(readers)),
+      bags: bags,
+      books: books,
+      readers: readers,
+      // bags: aggregateBags(jsonify(bags)),
+      // books: aggregateBooks(jsonify(books)),
+      // readerAssignments: aggregateReaderAssignments(readers),
+      // readers: aggregateReaders(jsonify(readers)),
     },
   }
 }
