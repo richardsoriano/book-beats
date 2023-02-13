@@ -41,31 +41,31 @@ export default async function SaveBagsToDB(req, res) {
   console.log("Save To DB")
   const arrayOfBags = JSON.parse(req.body)
 
-  let arrayOfBagsToBeInserted = arrayOfBags.filter((bag) => bag._id === "")
-  let arrayOfBagsToBeUpdated = arrayOfBags.filter((bag) => bag._id !== "")
+  // let arrayOfBagsToBeInserted = arrayOfBags.filter((bag) => bag._id === "")
+  // let arrayOfBagsToBeUpdated = arrayOfBags.filter((bag) => bag._id !== "")
 
-  const bulkDataUpdate = createBulkUpdateString(arrayOfBagsToBeUpdated)
-  const bulkDataInsert = createBulkInsertString(arrayOfBagsToBeInserted)
-  const bulkData = bulkDataInsert.concat(bulkDataUpdate)
-  if (bulkData.length === 0) {
-    res.status(200).json({ Hello: "Empty" })
-    return
-  }
+  // const bulkDataUpdate = createBulkUpdateString(arrayOfBagsToBeUpdated)
+  // const bulkDataInsert = createBulkInsertString(arrayOfBagsToBeInserted)
+  // const bulkData = bulkDataInsert.concat(bulkDataUpdate)
+  // if (bulkData.length === 0) {
+  //   res.status(200).json({ Hello: "Empty" })
+  //   return
+  // }
 
-  const dbConnectionBagsBulkWrite = await dbPromise
-  const collection = await dbConnectionBagsBulkWrite.db().collection("bags")
+  // const dbConnectionBagsBulkWrite = await dbPromise
+  // const collection = await dbConnectionBagsBulkWrite.db().collection("bags")
 
-  try {
-    console.log("bulkData", bulkData)
-    const result = await collection.bulkWrite(bulkData, {
-      ordered: false,
-      upsert: true,
-    })
-    res.status(200).json({ result })
-  } catch (error) {
-    console.log("error", error)
-    res.status(500).json({ error })
-  }
+  // try {
+  //   console.log("bulkData", bulkData)
+  //   const result = await collection.bulkWrite(bulkData, {
+  //     ordered: false,
+  //     upsert: true,
+  //   })
+  //   res.status(200).json({ result })
+  // } catch (error) {
+  //   console.log("error", error)
+  //   res.status(500).json({ error })
+  // }
 
   return
 }

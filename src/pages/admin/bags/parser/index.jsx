@@ -1,7 +1,9 @@
-import dbPromise, { jsonify } from "@/modules/mongodb"
+// import dbPromise, { jsonify } from "@/modules/mongodb"
 
 import BagParser from "@/features/admin/bags/parser/"
 import categories from "@/data/categories"
+import books from "@/data/daniel-books"
+import bags from "@/data/daniel-bags"
 
 export default function AdminBagsParserPage({
   categories,
@@ -56,19 +58,22 @@ function aggregateBags(bags) {
 }
 
 export async function getServerSideProps() {
-  const dbConnection = await dbPromise
-  const collectionBags = await dbConnection.db().collection("bags")
-  const bags = await collectionBags.find({}).sort({ name: 1 }).toArray()
+  // const dbConnection = await dbPromise
+  // const collectionBags = await dbConnection.db().collection("bags")
+  // const bags = await collectionBags.find({}).sort({ name: 1 }).toArray()
 
-  const collectionBooks = await dbConnection.db().collection("books")
-  const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
+  // const collectionBooks = await dbConnection.db().collection("books")
+  // const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
 
   return {
     props: {
       categories: categories,
-      booksNoBags: aggregateBooksNeedBags(jsonify(books), jsonify(bags)),
-      books: aggregateBooks(jsonify(books)),
-      bags: aggregateBags(jsonify(bags)),
+      booksNoBags: aggregateBooksNeedBags(books, bags),
+      books: aggregateBooks(books),
+      bags: aggregateBags(bags),
+      // booksNoBags: aggregateBooksNeedBags(jsonify(books), jsonify(bags)),
+      // books: aggregateBooks(jsonify(books)),
+      // bags: aggregateBags(jsonify(bags)),
     },
   }
 }

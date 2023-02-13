@@ -1,5 +1,9 @@
-import dbPromise, { jsonify } from "@/modules/mongodb"
+// import dbPromise, { jsonify } from "@/modules/mongodb"
 import AdminBags from "@/features/admin/bags"
+
+import readers from "@/data/daniel-readers"
+import bags from "@/data/daniel-bags"
+import books from "@/data/daniel-books"
 
 export default function AdminBagsPage({
   bags,
@@ -52,24 +56,28 @@ function aggregateReaders(readers) {
   return readers
 }
 export async function getServerSideProps() {
-  const dbConnectionBags = await dbPromise
-  const collectionBags = await dbConnectionBags.db().collection("bags")
-  const bags = await collectionBags.find({}).sort({ name: 1 }).toArray()
+  // const dbConnectionBags = await dbPromise
+  // const collectionBags = await dbConnectionBags.db().collection("bags")
+  // const bags = await collectionBags.find({}).sort({ name: 1 }).toArray()
 
-  const dbConnectionBooks = await dbPromise
-  const collectionBooks = await dbConnectionBooks.db().collection("books")
-  const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
+  // const dbConnectionBooks = await dbPromise
+  // const collectionBooks = await dbConnectionBooks.db().collection("books")
+  // const books = await collectionBooks.find({}).sort({ title: 1 }).toArray()
 
-  const dbConnectionReaders = await dbPromise
-  const collectionReaders = await dbConnectionReaders.db().collection("readers")
-  const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
+  // const dbConnectionReaders = await dbPromise
+  // const collectionReaders = await dbConnectionReaders.db().collection("readers")
+  // const readers = await collectionReaders.find({}).sort({ name: 1 }).toArray()
 
   return {
     props: {
-      bags: aggregateBags(jsonify(bags)),
-      books: aggregateBooks(jsonify(books)),
+      // bags: aggregateBags(jsonify(bags)),
+      // books: aggregateBooks(jsonify(books)),
+      // readerAssignments: aggregateReaderAssignments(readers),
+      // readers: aggregateReaders(jsonify(readers)),
+      bags: aggregateBags(bags),
+      books: aggregateBooks(books),
       readerAssignments: aggregateReaderAssignments(readers),
-      readers: aggregateReaders(jsonify(readers)),
+      readers: aggregateReaders(readers),
     },
   }
 }

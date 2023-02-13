@@ -41,45 +41,45 @@ async function saveBook(req, res) {
 
   let arrCopyIds = copyIds.length ? copyIds.split(",") : []
 
-  const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection("books-test")
-  const dbRes = await collection.updateOne(
-    { _id: ObjectId(_id) },
-    {
-      $set: {
-        entryid,
-        title,
-        nomstatus,
-        nommemo,
-        author1,
-        author2,
-        categories,
-        bigskyaward,
-        isbn,
-        nominatedby,
-        publisher,
-        paddress1,
-        paddress2,
-        pcity,
-        pstate,
-        pzip,
-        pcountry,
-        pphone,
-        pemail,
-        aphone,
-        aemail,
-        aaddress1,
-        aaddress2,
-        acity,
-        astate,
-        azip,
-        acountry,
-        createddate,
-        qualifiedstatus,
-        copyIds: arrCopyIds,
-      },
-    }
-  )
+  // // const dbConnection = await dbPromise
+  // // const collection = await dbConnection.db().collection("books-test")
+  // // const dbRes = await collection.updateOne(
+  // //   { _id: ObjectId(_id) },
+  // //   {
+  // //     $set: {
+  // //       entryid,
+  // //       title,
+  // //       nomstatus,
+  // //       nommemo,
+  // //       author1,
+  // //       author2,
+  // //       categories,
+  // //       bigskyaward,
+  // //       isbn,
+  // //       nominatedby,
+  // //       publisher,
+  // //       paddress1,
+  // //       paddress2,
+  // //       pcity,
+  // //       pstate,
+  // //       pzip,
+  // //       pcountry,
+  // //       pphone,
+  // //       pemail,
+  // //       aphone,
+  // //       aemail,
+  // //       aaddress1,
+  // //       aaddress2,
+  // //       acity,
+  // //       astate,
+  // //       azip,
+  // //       acountry,
+  // //       createddate,
+  // //       qualifiedstatus,
+  // //       copyIds: arrCopyIds,
+  // //     },
+  // //   }
+  // )
 
   res.status(200).json({
     _id,
@@ -122,10 +122,10 @@ handler.delete(async (req, res) => {
   const { _id } = JSON.parse(req.body)
   console.log("Delete", _id)
 
-  const dbConnection = await dbPromise
-  const collection = await dbConnection.db().collection("books")
+  // const dbConnection = await dbPromise
+  // const collection = await dbConnection.db().collection("books")
 
-  await collection.deleteOne({ _id: ObjectId(_id) })
+  // await collection.deleteOne({ _id: ObjectId(_id) })
 
   res.status(200).json({})
 })
