@@ -12,6 +12,7 @@ export function filter(
 }
 
 export function search(assignments, query) {
+  if (query.trim() === '') return assignments
   if (query.length < 3) return assignments
   return assignments.filter(
     (assignment) =>
