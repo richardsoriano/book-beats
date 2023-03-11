@@ -1,4 +1,5 @@
 import Page from "@/ui/page"
+
 export default function LandingPage() {
   return (
     <div className="container mx-auto mt-16 ml-6 ">
