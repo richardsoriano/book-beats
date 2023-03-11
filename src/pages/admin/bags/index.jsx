@@ -16,6 +16,7 @@ export default function AdminBagsPage({
     />
   )
 }
+
 function aggregateBooks(books) {
   return books
 }
@@ -28,6 +29,8 @@ function aggregateBags(bags) {
         name: bag.name,
         category: bag.category,
         books: bag.books,
+        titles: bag.titles,
+        copyIds: bag.copyIds,
         numBooks: bag.books.length,
         reader: bag.reader,
         pickupstatus: bag.pickupstatus,
@@ -38,19 +41,21 @@ function aggregateBags(bags) {
 function aggregateReaderAssignments(assignments) {
   return assignments.map((assignment) => ({
     reader: assignment.name,
-    max: assignment.preferences.maxNumberOfBooks,
-    assignedCount: assignment.assignments.length,
-    completedCount: assignment.assignments.filter(
-      (assignment) => assignment.reviewedOn !== null
-    ).length,
-    availableCount:
-      assignment.preferences.maxNumberOfBooks - assignment.assignments.length,
-    categories: assignment.preferences.categories,
+    // max: assignment.preferences.maxNumberOfBooks,
+    max: 4,
+    // assignedCount: assignment.assignments.length,
+    // completedCount: assignment.assignments.filter(
+    //   (assignment) => assignment.reviewedOn !== null
+    // ).length,
+    // availableCount:
+    //   assignment.preferences.maxNumberOfBooks - assignment.assignments.length,
+    // categories: assignment.preferences.categories,
   }))
 }
 function aggregateReaders(readers) {
   return readers
 }
+
 export async function getServerSideProps() {
   const dbConnectionBags = await dbPromise
   const collectionBags = await dbConnectionBags.db().collection("bags")

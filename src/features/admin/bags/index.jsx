@@ -13,13 +13,17 @@ const newBag = {
   books: [],
   reader: undefined,
   pickupstatus: undefined,
+  titles: "",
+  copyIds: [],
 }
 
 export default function AdminBags({ bags, books, readerAssignments, readers }) {
   const [_bags, setBags] = useState(bags)
   const [selectedBag, setSelectedBag] = useState(undefined)
   const [bagToDelete, setBagToDelete] = useState(undefined)
+  const [errors, setErrors] = useState([])
   const pickupstatus = ["needs pickup", "picked up", "returned"]
+
   function deleteBag(bag) {
     setBagToDelete(bag)
   }
@@ -43,12 +47,19 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Bags</h1>
+      {errors.map((error) => (
+        <div className="py-4">
+          <span className="text-lg font-semibold text-red-500">{error}</span>
+        </div>
+      ))}
       <Button onClick={() => setSelectedBag(newBag)}>New Bag</Button>
       <Table
         columns={[
           { heading: "Name", sortable: "name" },
           { heading: "Category", sortable: "category" },
           { heading: "Num Books", sortable: "numBooks" },
+          { heading: "Titles", sortable: "titles" },
+          { heading: "CopyIds", sortable: "copyIds" },
           { heading: "Reader", sortable: "reader" },
           { heading: "Status", sortable: "pickupstatus" },
           { heading: "Delete", sortable: false },
@@ -69,7 +80,9 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
               <td {...tdProps}>{bag.name}</td>
               <td {...tdProps}>{bag.category}</td>
               <td {...tdProps}>{bag.numBooks}</td>
-              <td {...tdProps}>{bag.reader}</td>
+              <td {...tdProps}>{bag.titles.join(", ")}</td>
+              <td {...tdProps}>{bag.copyIds.join(", ")}</td>
+              <td {...tdProps}>{bag.reader ? bag.reader : "unassigned"}</td>
               <td {...tdProps}>{bag.pickupstatus}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
             </tr>
@@ -86,6 +99,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
             pickupstatus={pickupstatus}
             setBags={setBags}
             setSelectedBag={setSelectedBag}
+            setErrors={setErrors}
           />
         </Modal>
       )}

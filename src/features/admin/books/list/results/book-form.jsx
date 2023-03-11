@@ -234,7 +234,13 @@ export default function BookForm({
           book={book}
           setBook={setBook}
         />
-        <AttachCopyIds book={book} setBook={setBook} />
+        {book._id ? (
+          <div className="py-4">
+            <span className="text-lg font-semibold">{book.copyIds}</span>
+          </div>
+        ) : (
+          <AttachCopyIds book={book} setBook={setBook} />
+        )}
       </div>
       <Button onClick={saveBook}>Save</Button>
     </div>
