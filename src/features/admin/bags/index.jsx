@@ -59,15 +59,15 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
   }
 
   const columns = [
-    { field: "id", headerName: "ID", width: 170 },
-    { field: "bagId", headerName: "Bag ID", width: 170 },
-    { field: "name", headerName: "Name", width: 170 },
-    { field: "category", headerName: "Category", width: 170 },
-    { field: "numBooks", headerName: "Num Books", width: 170 },
-    { field: "titles", headerName: "Titles", width: 170 },
-    { field: "copyIds", headerName: "Copy ID", width: 170 },
-    { field: "reader", headerName: "Reader", width: 170 },
-    { field: "status", headerName: "Status", width: 170 },
+    { field: "id", headerName: "ID", width: 100 },
+    { field: "bagId", headerName: "Bag ID", width: 200 },
+    { field: "name", headerName: "Name", width: 200 },
+    { field: "category", headerName: "Category", width: 200 },
+    { field: "numBooks", headerName: "Num Books", width: 100 },
+    { field: "titles", headerName: "Titles", width: 500 },
+    { field: "copyIds", headerName: "Copy ID", width: 300 },
+    { field: "reader", headerName: "Reader", width: 200 },
+    { field: "status", headerName: "Status", width: 200 },
   ]
 
   const rows = _bags.map((_bag, i) => ({
