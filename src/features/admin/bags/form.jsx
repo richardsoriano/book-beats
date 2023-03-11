@@ -40,7 +40,9 @@ export default function BagForm({
     {
       component: bag._id ? (
         <div className="py-4">
-          <span className="text-lg font-semibold">{bag.titles.join(", ")}</span>
+          <span className="text-lg font-semibold">
+            {bag.titles ? bag.titles.join(", ") : ""}
+          </span>
         </div>
       ) : (
         <BagBooks books={books} bag={bag} setBag={setBag} />
@@ -204,6 +206,7 @@ export default function BagForm({
           books: data.books,
           titles: data.titles,
           copyIds: data.copyIds,
+
           numBooks: data.books.length,
           reader: data.reader,
           pickupstatus: data.pickupstatus,

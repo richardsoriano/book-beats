@@ -36,6 +36,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
       reader: "",
       pickupstatus: undefined,
       books: [],
+      titles: "",
+      copyIds: [],
     }
     const res = await fetch(`/api/bags/${bagToDelete._id}`, {
       method: "DELETE",
@@ -47,11 +49,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Bags</h1>
-      {errors.map((error) => (
-        <div className="py-4">
-          <span className="text-lg font-semibold text-red-500">{error}</span>
-        </div>
-      ))}
+
       <Button onClick={() => setSelectedBag(newBag)}>New Bag</Button>
       <Table
         columns={[
@@ -80,8 +78,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
               <td {...tdProps}>{bag.name}</td>
               <td {...tdProps}>{bag.category}</td>
               <td {...tdProps}>{bag.numBooks}</td>
-              <td {...tdProps}>{bag.titles.join(", ")}</td>
-              <td {...tdProps}>{bag.copyIds.join(", ")}</td>
+              <td {...tdProps}>{bag.titles ? bag.titles.join(", ") : ""}</td>
+              <td {...tdProps}>{bag.copyIds ? bag.copyIds.join(", ") : ""}</td>
               <td {...tdProps}>{bag.reader ? bag.reader : "unassigned"}</td>
               <td {...tdProps}>{bag.pickupstatus}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>

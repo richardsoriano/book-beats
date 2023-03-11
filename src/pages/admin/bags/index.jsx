@@ -41,15 +41,14 @@ function aggregateBags(bags) {
 function aggregateReaderAssignments(assignments) {
   return assignments.map((assignment) => ({
     reader: assignment.name,
-    // max: assignment.preferences.maxNumberOfBooks,
-    max: 4,
-    // assignedCount: assignment.assignments.length,
-    // completedCount: assignment.assignments.filter(
-    //   (assignment) => assignment.reviewedOn !== null
-    // ).length,
-    // availableCount:
-    //   assignment.preferences.maxNumberOfBooks - assignment.assignments.length,
-    // categories: assignment.preferences.categories,
+    max: assignment.preferences.maxNumberOfBooks,
+    assignedCount: assignment.assignments.length,
+    completedCount: assignment.assignments.filter(
+      (assignment) => assignment.reviewedOn !== null
+    ).length,
+    availableCount:
+      assignment.preferences.maxNumberOfBooks - assignment.assignments.length,
+    categories: assignment.preferences.categories,
   }))
 }
 function aggregateReaders(readers) {
