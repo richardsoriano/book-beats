@@ -5,7 +5,11 @@ import Modal from "@/ui/modal"
 import Button from "@/ui/buttons"
 import BagForm from "./form"
 import { XIcon } from "@heroicons/react/solid"
-
+import {
+  DataGrid,
+  GridToolbarExport,
+  GridToolbarContainer,
+} from "@material-ui/data-grid"
 const newBag = {
   _id: "",
   name: "",
@@ -46,12 +50,65 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
     setBags((prev) => prev.filter((_bag) => _bag._id !== bagToDelete._id))
   }
 
+  function MyExportButton() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    )
+  }
+  // const columns=[
+  //   { heading: "Name", sortable: "name" },
+  //   { heading: "Category", sortable: "category" },
+  //   { heading: "Num Books", sortable: "numBooks" },
+  //   { heading: "Titles", sortable: "titles" },
+  //   { heading: "CopyIds", sortable: "copyIds" },
+  //   { heading: "Reader", sortable: "reader" },
+  //   { heading: "Status", sortable: "pickupstatus" },
+  //   { heading: "Delete", sortable: false },
+  // ]
+  const columns = [
+    { field: "id", headerName: "ID", width: 170 },
+    { field: "bagId", headerName: "Bag ID", width: 170 },
+    { field: "name", headerName: "Name", width: 170 },
+    { field: "category", headerName: "Category", width: 170 },
+    { field: "numBooks", headerName: "Num Books", width: 170 },
+    { field: "titles", headerName: "Titles", width: 170 },
+    { field: "copyIds", headerName: "Copy ID", width: 170 },
+    { field: "reader", headerName: "Reader", width: 170 },
+    { field: "status", headerName: "Status", width: 170 },
+  ]
+
+  const rows = _bags.map((_bag, i) => ({
+    id: i,
+    bagId: _bag._id,
+    name: _bag.name,
+    category: _bag.category,
+    numBooks: _bag.numBooks,
+    titles: _bag.titles.join(", "),
+    copyIds: _bag.copyIds.join(", "),
+    reader: _bag.reader,
+    status: _bag.status,
+  }))
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Bags</h1>
 
       <Button onClick={() => setSelectedBag(newBag)}>New Bag</Button>
-      <Table
+
+      <div style={{ height: 800, width: "90%" }}>
+        <h4>Export to CSV</h4>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={100}
+          components={{
+            Toolbar: MyExportButton,
+          }}
+        />
+      </div>
+      {/* <Table
         columns={[
           { heading: "Name", sortable: "name" },
           { heading: "Category", sortable: "category" },
@@ -86,7 +143,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
             </tr>
           )
         }}
-      />
+      /> */}
       {selectedBag && (
         <Modal open={true} close={() => setSelectedBag(undefined)}>
           <BagForm
