@@ -16,6 +16,7 @@ export default function AdminBagsPage({
     />
   )
 }
+
 function aggregateBooks(books) {
   return books
 }
@@ -28,6 +29,8 @@ function aggregateBags(bags) {
         name: bag.name,
         category: bag.category,
         books: bag.books,
+        titles: bag.titles,
+        copyIds: bag.copyIds,
         numBooks: bag.books.length,
         reader: bag.reader,
         pickupstatus: bag.pickupstatus,
@@ -51,6 +54,7 @@ function aggregateReaderAssignments(assignments) {
 function aggregateReaders(readers) {
   return readers
 }
+
 export async function getServerSideProps() {
   const dbConnectionBags = await dbPromise
   const collectionBags = await dbConnectionBags.db().collection("bags")

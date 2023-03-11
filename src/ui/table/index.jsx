@@ -38,37 +38,39 @@ export default function Table({ columns = [], rows = [], renderRow }) {
   }
 
   return (
-    <table
-      cellSpacing={0}
-      cellPadding={0}
-      className="w-full p-10 table-auto whitespace-nowrap"
-    >
-      <thead>
-        <tr>
-          {columns.map((column) =>
-            column.sortable ? (
-              <SortableColumn
-                key={column.uniqueId}
-                setSort={() => {
-                  setSortableColumn(column.sortable)
-                  setSortableDirection((prev) =>
-                    prev === "asc" ? "desc" : "asc"
-                  )
-                }}
-                sort={sortableColumn === column.sortable}
-                className={thClassNames}
-                sortableDirection={sortableDirection}
-              >
-                {column.heading}
-              </SortableColumn>
-            ) : (
-              <th className="px-2 py-4">{column.heading}</th>
-            )
-          )}
-          <th className={thClassNames}></th>
-        </tr>
-      </thead>
-      <tbody>{sort(rows).map((row, i) => renderRow(row, i))}</tbody>
-    </table>
+    <div class="p-8 overflow-auto relative">
+      <table
+        cellSpacing={0}
+        cellPadding={0}
+        className="w-full p-10 table-auto whitespace-nowrap"
+      >
+        <thead>
+          <tr>
+            {columns.map((column) =>
+              column.sortable ? (
+                <SortableColumn
+                  key={column.uniqueId}
+                  setSort={() => {
+                    setSortableColumn(column.sortable)
+                    setSortableDirection((prev) =>
+                      prev === "asc" ? "desc" : "asc"
+                    )
+                  }}
+                  sort={sortableColumn === column.sortable}
+                  className={thClassNames}
+                  sortableDirection={sortableDirection}
+                >
+                  {column.heading}
+                </SortableColumn>
+              ) : (
+                <th className="px-2 py-4">{column.heading}</th>
+              )
+            )}
+            <th className={thClassNames}></th>
+          </tr>
+        </thead>
+        <tbody>{sort(rows).map((row, i) => renderRow(row, i))}</tbody>
+      </table>
+    </div>
   )
 }

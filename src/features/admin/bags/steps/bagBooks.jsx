@@ -28,7 +28,9 @@ export default function bagBooks({ books, bag, setBag }) {
                 ...prev,
                 books: prev.books.some((_book) => _book === book._id)
                   ? prev.books.filter((_book) => _book !== book._id)
-                  : [...prev.books, book._id],
+                  : prev.books.length < 4
+                  ? [...prev.books, book._id]
+                  : [...prev.books],
               }))
             }
           >
