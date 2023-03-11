@@ -114,10 +114,10 @@ export default function BookListResults({
     { field: "id", headerName: "ID", width: 100 },
     { field: "bookId", headerName: "Book ID", width: 200 },
     { field: "title", headerName: "Title", width: 500 },
-    { field: "nomstatus", headerName: "Nominated Status", width: 200 },
-    { field: "nommemo", headerName: "Nominated Memo", width: 200 },
+    { field: "nomstatus", headerName: "Status", width: 200 },
+    { field: "nommemo", headerName: "Memo", width: 200 },
     { field: "author1", headerName: "Author 1", width: 200 },
-    { field: "categories", headerName: "Categories", width: 300 },
+    { field: "categories", headerName: "Categories", width: 500 },
     { field: "copyIds", headerName: "Copy ID", width: 300 },
   ]
 
