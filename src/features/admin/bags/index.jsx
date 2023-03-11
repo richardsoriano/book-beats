@@ -97,18 +97,18 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
 
       <Button onClick={() => setSelectedBag(newBag)}>New Bag</Button>
 
-      <div style={{ height: 800, width: "90%" }}>
+      <div style={{ height: 400, width: "90%" }}>
         <h4>Export to CSV</h4>
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={100}
+          pageSize={10}
           components={{
             Toolbar: MyExportButton,
           }}
         />
       </div>
-      {/* <Table
+      <Table
         columns={[
           { heading: "Name", sortable: "name" },
           { heading: "Category", sortable: "category" },
@@ -143,7 +143,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
             </tr>
           )
         }}
-      /> */}
+      />
       {selectedBag && (
         <Modal open={true} close={() => setSelectedBag(undefined)}>
           <BagForm
