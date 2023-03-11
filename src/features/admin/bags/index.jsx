@@ -57,16 +57,7 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
       </GridToolbarContainer>
     )
   }
-  // const columns=[
-  //   { heading: "Name", sortable: "name" },
-  //   { heading: "Category", sortable: "category" },
-  //   { heading: "Num Books", sortable: "numBooks" },
-  //   { heading: "Titles", sortable: "titles" },
-  //   { heading: "CopyIds", sortable: "copyIds" },
-  //   { heading: "Reader", sortable: "reader" },
-  //   { heading: "Status", sortable: "pickupstatus" },
-  //   { heading: "Delete", sortable: false },
-  // ]
+
   const columns = [
     { field: "id", headerName: "ID", width: 170 },
     { field: "bagId", headerName: "Bag ID", width: 170 },
