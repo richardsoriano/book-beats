@@ -6,6 +6,11 @@ import Table from "@/ui/table"
 import Modal from "@/ui/modal"
 import BookForm from "./book-form"
 import { XIcon } from "@heroicons/react/solid"
+import {
+  DataGrid,
+  GridToolbarExport,
+  GridToolbarContainer,
+} from "@material-ui/data-grid"
 
 const newBook = {
   _id: "",
@@ -50,6 +55,14 @@ export default function BookListResults({
   const [_books, setBooks] = useState(bookList)
   const [selectedBook, setSelectedBook] = useState(undefined)
   const [bookToDelete, setBookToDelete] = useState(undefined)
+
+  function MyExportButton() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    )
+  }
 
   function deleteBook(book) {
     console.log("book to dele", book)
@@ -97,10 +110,42 @@ export default function BookListResults({
     })
     setBooks((prev) => prev.filter((_book) => _book._id !== bookToDelete._id))
   }
+  const columns = [
+    { field: "id", headerName: "ID", width: 100 },
+    { field: "bookId", headerName: "Book ID", width: 200 },
+    { field: "title", headerName: "Title", width: 500 },
+    { field: "nomstatus", headerName: "Nominated Status", width: 200 },
+    { field: "nommemo", headerName: "Nominated Memo", width: 200 },
+    { field: "author1", headerName: "Author 1", width: 200 },
+    { field: "categories", headerName: "Categories", width: 300 },
+    { field: "copyIds", headerName: "Copy ID", width: 300 },
+  ]
+
+  const rows = _books.map((_book, i) => ({
+    id: i,
+    bookId: _book.entryid,
+    title: _book.title,
+    nomstatus: _book.nomstatus,
+    nommemo: _book.nommemo,
+    author1: _book.author1,
+    categories: _book.categories.join(", "),
+    copyIds: _book.copyIds,
+  }))
 
   return (
     <div>
       <Button onClick={() => setSelectedBook(newBook)}>New Book</Button>
+      <div style={{ height: 400, width: "90%" }}>
+        <h4>Export to CSV</h4>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          components={{
+            Toolbar: MyExportButton,
+          }}
+        />
+      </div>
       <Table
         columns={[
           { heading: "EntryID", sortable: "entryid" },
