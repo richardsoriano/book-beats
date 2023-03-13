@@ -10,6 +10,8 @@ import {
   GridToolbarExport,
   GridToolbarContainer,
 } from "@material-ui/data-grid"
+
+const eventCodeDefault = "hpbaw2023"
 const newBag = {
   _id: "",
   name: "",
@@ -19,6 +21,8 @@ const newBag = {
   pickupstatus: undefined,
   titles: "",
   copyIds: [],
+  bagMemo: "",
+  eventCode: eventCodeDefault,
 }
 
 export default function AdminBags({ bags, books, readerAssignments, readers }) {
@@ -42,6 +46,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
       books: [],
       titles: "",
       copyIds: [],
+      bagMemo: "",
+      eventCode: eventCodeDefault,
     }
     const res = await fetch(`/api/bags/${bagToDelete._id}`, {
       method: "DELETE",
@@ -68,6 +74,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
     { field: "copyIds", headerName: "Copy ID", width: 300 },
     { field: "reader", headerName: "Reader", width: 200 },
     { field: "status", headerName: "Status", width: 200 },
+    { field: "bagMemo", headerName: "Bag Memo", width: 300 },
+    { field: "eventCode", headerName: "Event Code", width: 200 },
   ]
 
   const rows = _bags.map((_bag, i) => ({
@@ -80,6 +88,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
     copyIds: _bag.copyIds.join(", "),
     reader: _bag.reader,
     status: _bag.status,
+    bagMemo: _bag.bagMemo,
+    eventCode: _bag.eventCode,
   }))
 
   return (
@@ -108,6 +118,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
           { heading: "CopyIds", sortable: "copyIds" },
           { heading: "Reader", sortable: "reader" },
           { heading: "Status", sortable: "pickupstatus" },
+          { heading: "Bag Memo", sortable: "bagMemo" },
+          { heading: "Event Code", sortable: "eventCode" },
           { heading: "Delete", sortable: false },
         ]}
         rows={_bags}
@@ -130,6 +142,8 @@ export default function AdminBags({ bags, books, readerAssignments, readers }) {
               <td {...tdProps}>{bag.copyIds ? bag.copyIds.join(", ") : ""}</td>
               <td {...tdProps}>{bag.reader ? bag.reader : "unassigned"}</td>
               <td {...tdProps}>{bag.pickupstatus}</td>
+              <td {...tdProps}>{bag.bagMemo}</td>
+              <td {...tdProps}>{bag.eventCode}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
             </tr>
           )

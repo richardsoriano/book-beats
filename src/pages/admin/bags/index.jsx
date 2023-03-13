@@ -34,6 +34,8 @@ function aggregateBags(bags) {
         numBooks: bag.books.length,
         reader: bag.reader,
         pickupstatus: bag.pickupstatus,
+        bagMemo: bag.bagMemo,
+        eventCode: bag.eventCode,
       },
     ]
   }, [])

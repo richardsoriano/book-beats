@@ -5,6 +5,7 @@ import AttachCategory from "./steps/attachCategory"
 import BagBooks from "./steps/bagBooks"
 import AssignReader from "./steps/assignReader"
 import AssignStatus from "./steps/assignStatus"
+import AssignBagMemo from "./steps/assignBagMemo"
 import categories from "@/data/categories"
 import Button from "@/ui/buttons"
 // import { hash } from "bcrypt"
@@ -25,7 +26,7 @@ export default function BagForm({
   const steps = [
     {
       component: <NameBag bag={bag} setBag={setBag} />,
-      label: "Name Bag",
+      label: "Name",
     },
     {
       component: bag._id ? (
@@ -58,6 +59,10 @@ export default function BagForm({
         <AssignStatus pickupstatus={pickupstatus} bag={bag} setBag={setBag} />
       ),
       label: "Assign Status",
+    },
+    {
+      component: <AssignBagMemo bag={bag} setBag={setBag} />,
+      label: "Memo",
     },
   ]
   // START
@@ -210,6 +215,8 @@ export default function BagForm({
           numBooks: data.books.length,
           reader: data.reader,
           pickupstatus: data.pickupstatus,
+          bagMemo: data.bagMemo,
+          eventCode: data.eventCode,
         }
       })
     if (bagId !== "") {
