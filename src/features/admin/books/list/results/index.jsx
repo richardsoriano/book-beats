@@ -12,6 +12,7 @@ import {
   GridToolbarContainer,
 } from "@material-ui/data-grid"
 
+const eventCodeDefault = "hpbaw2023"
 const newBook = {
   _id: "",
   entryid: "",
@@ -42,6 +43,7 @@ const newBook = {
   createddate: "",
   qualifiedstatus: "",
   copyIds: "",
+  eventCode: eventCodeDefault,
 }
 
 export default function BookListResults({
@@ -102,6 +104,7 @@ export default function BookListResults({
       createddate: "",
       qualifiedstatus: "",
       copyIds: "",
+      eventCode: eventCodeDefault,
     }
     console.log("new book", newBook)
     const res = await fetch(`/api/books/${bookToDelete._id}`, {
@@ -119,6 +122,7 @@ export default function BookListResults({
     { field: "author1", headerName: "Author 1", width: 200 },
     { field: "categories", headerName: "Categories", width: 500 },
     { field: "copyIds", headerName: "Copy ID", width: 300 },
+    { field: "eventCode", headerName: "Event Code", width: 300 },
   ]
 
   const rows = _books.map((_book, i) => ({
@@ -130,6 +134,7 @@ export default function BookListResults({
     author1: _book.author1,
     categories: _book.categories.join(", "),
     copyIds: _book.copyIds,
+    eventCode: _book.eventCode,
   }))
 
   return (
@@ -179,6 +184,7 @@ export default function BookListResults({
           { heading: "Created Date", sortable: "createddate" },
           { heading: "Qualified", sortable: "qualifiedstatus" },
           { heading: "CopyIDs", sortable: "copyIds" },
+          { heading: "Event Code", sortable: "eventCode" },
           { heading: "X", sortable: false },
         ]}
         rows={filter(
@@ -231,6 +237,7 @@ export default function BookListResults({
               <td {...tdProps}>{book.createddate}</td>
               <td {...tdProps}>{book.qualifiedstatus}</td>
               <td {...tdProps}>{book.copyIds}</td>
+              <td {...tdProps}>{book.eventCode}</td>
               <td {...tdDel}>{<XIcon className="w-5 h-5 text-red-500" />}</td>
             </tr>
           )

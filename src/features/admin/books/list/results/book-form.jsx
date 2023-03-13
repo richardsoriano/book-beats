@@ -67,6 +67,7 @@ export default function BookForm({
           createddate: data.createddate,
           qualifiedstatus: data.qualifiedstatus,
           copyIds: data.copyIds,
+          eventCode: data.eventCode,
         }
       })
     if (bookId !== "") {
@@ -241,6 +242,9 @@ export default function BookForm({
         ) : (
           <AttachCopyIds book={book} setBook={setBook} />
         )}
+        <div className="py-4">
+          <span className="text-lg font-semibold">{book.eventCode}</span>
+        </div>
       </div>
       <Button onClick={saveBook}>Save</Button>
     </div>

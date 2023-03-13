@@ -123,7 +123,7 @@ export default function AdminBooksParser({ lastBook }) {
       // TODO: convert createddate to an actual date.
       var createddate = ""
       var lastId = findLastId(lastBook.copyIds)
-
+      const eventCodeDefault = "hpbaw2023"
       parsedData.map((book, i) => {
         categories = createArrayOfCategories(book.categories.trim())
         copyIds = createArrayOfCopyIDs(categories, lastId)
@@ -136,8 +136,8 @@ export default function AdminBooksParser({ lastBook }) {
           ...book,
 
           categories: categories,
-
           copyIds,
+          eventCode: eventCodeDefault,
         })
       })
 
@@ -227,6 +227,7 @@ export default function AdminBooksParser({ lastBook }) {
                 <th className="">Created Date</th>
                 <th className="">Qualified</th>
                 <th className="">copyIds</th>
+                <th className="">Event Codes</th>
               </tr>
             </thead>
             <tbody>
@@ -269,6 +270,7 @@ export default function AdminBooksParser({ lastBook }) {
                     <td {...tdProps}>{book.createddate}</td>
                     <td {...tdProps}>{book.qualifiedstatus}</td>
                     <td {...tdProps}>{book.copyIds.join(", ")}</td>
+                    <td {...tdProps}>{book.eventCode}</td>
                   </tr>
                 )
               })}
