@@ -36,7 +36,7 @@ export default function AddBooksToBags({
   //   },
   //   [isReady]
   // )
-
+  const eventCodeDefault = "hpbaw2023"
   function addBooktoBag(index, i, j) {
     let newBag_id = localBags[index]._id
     let newBagBooks = localBags[index].books
@@ -63,6 +63,8 @@ export default function AddBooksToBags({
       books: newBagBooks,
       titles: newBagTitles,
       copyIds: newBagCopyIds,
+      bagMemo: "hi",
+      eventCode: eventCodeDefault,
     }
     // Skip if we've done this already.
     // localBagsModifiedNew is an array of bags that are either modified or new.
@@ -82,6 +84,8 @@ export default function AddBooksToBags({
     )
     localBags = [...tmplocalBags, tmpBag]
     numBooksPlacedInBags++
+    console.log("Add to Bags")
+    console.log("localBags", localBags)
   }
 
   function createNewBag(i, j, indexCopyId) {
@@ -97,6 +101,8 @@ export default function AddBooksToBags({
       books: [],
       titles: [],
       copyIds: [],
+      bagMemo: "hi",
+      eventCode: eventCodeDefault,
     }
     let newBookId = booksNoBags[i]._id
     let newBookTitle = booksNoBags[i].title
@@ -108,7 +114,7 @@ export default function AddBooksToBags({
 
     localBagsModifiedNew.push(newBag)
     localBags.push(newBag)
-
+    console.log("Create New Bags", localBags)
     numBooksPlacedInBags++
     numBagsNew++
   }
@@ -116,13 +122,6 @@ export default function AddBooksToBags({
   function handleParseBooksBags() {
     if (hasParsedBooksBags) {
       return
-    }
-    const newBag = {
-      _id: "",
-      name: "",
-      books: [],
-      titles: [],
-      copyIds: [],
     }
 
     let index
@@ -199,6 +198,8 @@ export default function AddBooksToBags({
           { heading: "Books", sortable: "books" },
           { heading: "CopyIds", sortable: "copyIds" },
           { heading: "Num Books", sortable: "numBooks" },
+          { heading: "Bag Memo", sortable: "bagMemo" },
+          { heading: "Event Code", sortable: "eventCode" },
         ]}
         rows={bags}
         renderRow={(bag, i) => {
@@ -213,6 +214,8 @@ export default function AddBooksToBags({
               <td {...tdProps}>{bag.titles.join(", ")}</td>
               <td {...tdProps}>{bag.copyIds.join(", ")}</td>
               <td {...tdProps}>{bag.books.length}</td>
+              <td {...tdProps}>{bag.bagMemo}</td>
+              <td {...tdProps}>{bag.eventCode}</td>
             </tr>
           )
         }}

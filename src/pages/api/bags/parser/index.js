@@ -14,6 +14,8 @@ function createBulkUpdateString(arrayOfBagsToBeUpdated) {
           books: [...item.books],
           titles: [...item.titles],
           copyIds: [...item.copyIds],
+          bagMemo: item.bagMemo,
+          eventCode: item.eventCode,
         },
       },
       upsert: true,
@@ -32,6 +34,8 @@ function createBulkInsertString(arrayOfBagsToBeInserted) {
         books: item.books,
         titles: item.titles,
         copyIds: item.copyIds,
+        bagMemo: item.bagMemo,
+        eventCode: item.eventCode,
       },
     },
   }))
