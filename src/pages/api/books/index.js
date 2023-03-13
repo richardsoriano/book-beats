@@ -33,6 +33,7 @@ export default async function CreateBook(req, res) {
     createddate,
     qualifiedstatus,
     copyIds,
+    eventCode,
   } = JSON.parse(req.body)
   const newCopyIds = copyIds.length ? copyIds.split(",") : []
   copyIds = newCopyIds
@@ -67,7 +68,8 @@ export default async function CreateBook(req, res) {
     acountry,
     createddate,
     qualifiedstatus,
-    copyIds
+    copyIds,
+    eventCode
   )
   const dbConnection = await dbPromise
   const collection = await dbConnection.db().collection("books")
@@ -102,6 +104,7 @@ export default async function CreateBook(req, res) {
     createddate,
     qualifiedstatus,
     copyIds,
+    eventCode,
   })
 
   res.status(201).json({
@@ -136,5 +139,6 @@ export default async function CreateBook(req, res) {
     createddate,
     qualifiedstatus,
     copyIds,
+    eventCode,
   })
 }
