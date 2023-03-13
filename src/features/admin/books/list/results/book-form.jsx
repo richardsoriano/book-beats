@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "@/ui/buttons"
 import TextField from "ui/text-field"
 import AttachCategories from "./attachCategories"
@@ -21,6 +21,11 @@ export default function BookForm({
 
   async function saveBook() {
     const bookId = book._id ? book._id : ""
+
+    //prevents empty entries for entryid, book title and author
+    if(book.entryid.trim() === '') return; 
+    if(book.title.trim() === '') return;
+    if(book.author1.trim() === '') return; 
 
     let newBook
     console.log("book,", book)
@@ -76,6 +81,8 @@ export default function BookForm({
     setBooks((prev) => [...prev, newBook])
     setSelectedBook(undefined)
   }
+
+  // make edits for line 88
   return (
     <div>
       <div className="py-6">
