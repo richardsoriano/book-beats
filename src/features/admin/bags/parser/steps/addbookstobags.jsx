@@ -63,7 +63,7 @@ export default function AddBooksToBags({
       books: newBagBooks,
       titles: newBagTitles,
       copyIds: newBagCopyIds,
-      bagMemo: "hi",
+      bagMemo: "",
       eventCode: eventCodeDefault,
     }
     // Skip if we've done this already.
@@ -101,7 +101,7 @@ export default function AddBooksToBags({
       books: [],
       titles: [],
       copyIds: [],
-      bagMemo: "hi",
+      bagMemo: "",
       eventCode: eventCodeDefault,
     }
     let newBookId = booksNoBags[i]._id
